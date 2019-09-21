@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">messagePortal</string>
+    <!-- System Values-->
+    <string name="accessURL">https://www.greatbayco.com/tutoraccess/index.php</string>
+    <string name="dbusername">greatbc9_enduser</string>
+    <string name="dbpassword">shenzhen1982</string>
+    <string name="dbname">greatbc9_education</string>
+    <string name="Asian_Date_Format">yyyy-MM-dd</string>
+    <string name="DEFAULT_SQL_DATETIME_FORMAT">yyyy-MM-dd HH:mm:ss</string>
+    <!--System Constants-->
+    <integer name="MAX_TEXT_LENGTH">300</integer>
+    <!--DUMMY STRING-->
+    <string name="place_holder">Place Holder</string>
+    <string name="inbox">Inbox</string>
+    <string name="sent">Sent</string>
+    <string name="settings">Settings</string>
+    <string name="calendar">Calendar</string>
+    <string name="profile">Profile</string>
+</resources>

@@ -1,0 +1,141 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.greatbayco"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
+10
+11    <supports-screens
+11-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:11:5-14:40
+12        android:anyDensity="true"
+12-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:12:9-34
+13        android:largeScreens="true"
+13-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:13:9-36
+14        android:normalScreens="true" />
+14-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:14:9-37
+15
+16    <uses-feature
+16-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:16:5-18:36
+17        android:name="android.hardware.location.network"
+17-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:17:9-57
+18        android:required="false" />
+18-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:18:9-33
+19    <uses-feature
+19-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:19:5-21:36
+20        android:name="android.hardware.location.gps"
+20-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:20:9-53
+21        android:required="false" />
+21-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:21:9-33
+22    <uses-feature
+22-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:22:5-24:36
+23        android:name="android.hardware.telephony"
+23-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:23:9-50
+24        android:required="false" />
+24-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:24:9-33
+25    <uses-feature
+25-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:25:5-27:36
+26        android:name="android.hardware.wifi"
+26-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:26:9-45
+27        android:required="false" />
+27-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\0b59502faa340a2eda406451eb71836f\osmdroid-android-6.0.2\AndroidManifest.xml:27:9-33
+28
+29    <application
+29-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:5:5-19:19
+30        android:allowBackup="true"
+30-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:6:9-35
+31        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+31-->[androidx.core:core:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\a022ba9aa093ecf006304f17ad5f4168\core-1.0.0\AndroidManifest.xml:22:18-86
+32        android:debuggable="true"
+33        android:icon="@mipmap/ic_launcher"
+33-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:7:9-43
+34        android:label="@string/app_name"
+34-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:8:9-41
+35        android:roundIcon="@mipmap/ic_launcher_round"
+35-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:9:9-54
+36        android:supportsRtl="true"
+36-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:10:9-35
+37        android:testOnly="true"
+38        android:theme="@style/AppTheme" >
+38-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:11:9-40
+39        <activity android:name="com.tutorgenie.messageportal.MainActivity" >
+39-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:12:9-18:20
+39-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:12:19-47
+40            <intent-filter>
+40-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:13:13-17:29
+41                <action android:name="android.intent.action.MAIN" />
+41-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:14:17-69
+41-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:14:25-66
+42
+43                <category android:name="android.intent.category.LAUNCHER" />
+43-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:16:17-77
+43-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:16:27-74
+44            </intent-filter>
+45        </activity>
+46        <activity
+46-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\2b6a3b19d2fb792737e3f407e59b9c07\jetified-facebook-common-5.4.0\AndroidManifest.xml:29:9-32:66
+47            android:name="com.facebook.FacebookActivity"
+47-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\2b6a3b19d2fb792737e3f407e59b9c07\jetified-facebook-common-5.4.0\AndroidManifest.xml:30:13-57
+48            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+48-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\2b6a3b19d2fb792737e3f407e59b9c07\jetified-facebook-common-5.4.0\AndroidManifest.xml:31:13-96
+49            android:theme="@style/com_facebook_activity_theme" />
+49-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\2b6a3b19d2fb792737e3f407e59b9c07\jetified-facebook-common-5.4.0\AndroidManifest.xml:32:13-63
+50        <activity android:name="com.facebook.CustomTabMainActivity" />
+50-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\2b6a3b19d2fb792737e3f407e59b9c07\jetified-facebook-common-5.4.0\AndroidManifest.xml:33:9-71
+50-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\2b6a3b19d2fb792737e3f407e59b9c07\jetified-facebook-common-5.4.0\AndroidManifest.xml:33:19-68
+51        <activity android:name="com.facebook.CustomTabActivity" />
+51-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\2b6a3b19d2fb792737e3f407e59b9c07\jetified-facebook-common-5.4.0\AndroidManifest.xml:34:9-67
+51-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\2b6a3b19d2fb792737e3f407e59b9c07\jetified-facebook-common-5.4.0\AndroidManifest.xml:34:19-64
+52        <!--
+53         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+54         with the application context. This config is merged in with the host app's manifest,
+55         but there can only be one provider with the same authority activated at any given
+56         point; so if the end user has two or more different apps that use Facebook SDK, only the
+57         first one will be able to use the provider. To work around this problem, we use the
+58         following placeholder in the authority to identify each host application as if it was
+59         a completely different provider.
+60        -->
+61        <provider
+61-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:39:9-42:40
+62            android:name="com.facebook.internal.FacebookInitProvider"
+62-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:40:13-70
+63            android:authorities="com.greatbayco.FacebookInitProvider"
+63-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:41:13-72
+64            android:exported="false" />
+64-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:42:13-37
+65
+66        <receiver
+66-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:44:9-50:20
+67            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+67-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:45:13-86
+68            android:exported="false" >
+68-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:46:13-37
+69            <intent-filter>
+69-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:47:13-49:29
+70                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+70-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:48:17-95
+70-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:48:25-92
+71            </intent-filter>
+72        </receiver>
+73        <receiver
+73-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:51:9-58:20
+74            android:name="com.facebook.CampaignTrackingReceiver"
+74-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:52:13-65
+75            android:exported="true"
+75-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:53:13-36
+76            android:permission="android.permission.INSTALL_PACKAGES" >
+76-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:54:13-69
+77            <intent-filter>
+77-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:55:13-57:29
+78                <action android:name="com.android.vending.INSTALL_REFERRER" />
+78-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:56:17-79
+78-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5f65daa8755176b0158f4ed50239499b\jetified-facebook-core-5.4.0\AndroidManifest.xml:56:25-76
+79            </intent-filter>
+80        </receiver>
+81    </application>
+82
+83</manifest>
