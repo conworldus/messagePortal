@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sl\\values-sl.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-2\\files-2.1\\ea5969bf40cb76d21ef0fd2654b2f1a6\\appcompat-1.0.0\\res\\values-sl\\values-sl.xml",
+                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-2\\files-2.1\\97430cd23cd0051ce9dca09efa057f64\\appcompat-1.0.0\\res\\values-sl\\values-sl.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-2\\files-2.1\\4fdd2e59868941abb81a6889035112d4\\jetified-navigation-ui-1.0.0\\res\\values-sl\\values-sl.xml",
+                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-2\\files-2.1\\b54c1ad24f7ebe71ab621b14a3b2f83d\\jetified-navigation-ui-1.0.0\\res\\values-sl\\values-sl.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-2\\files-2.1\\a022ba9aa093ecf006304f17ad5f4168\\core-1.0.0\\res\\values-sl\\values-sl.xml",
+                    "source": "C:\\Users\\user\\.gradle\\caches\\transforms-2\\files-2.1\\93d975d05863dd9ef34306a1b041598b\\core-1.0.0\\res\\values-sl\\values-sl.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

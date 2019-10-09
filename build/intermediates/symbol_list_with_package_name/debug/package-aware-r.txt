@@ -736,6 +736,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color red
 color ripple_material_dark
 color ripple_material_light
 color secondary_text_default_material_dark
@@ -750,6 +751,7 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color tooltip_background_dark
 color tooltip_background_light
+color white
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -1102,6 +1104,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable direction_arrow
+drawable ic_delete_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_menu_black_24dp
@@ -1112,6 +1115,7 @@ drawable ic_menu_offline
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_star_black_24dp
 drawable marker_default
 drawable marker_default_focused_base
 drawable moreinfo_arrow
@@ -1150,6 +1154,7 @@ id FUNCTION
 id META
 id SHIFT
 id SYM
+id SplashTitle
 id action0
 id action_bar
 id action_bar_activity_content
@@ -1196,6 +1201,7 @@ id bubble_subdescription
 id bubble_title
 id button
 id buttonPanel
+id calendar
 id cancel_action
 id cancel_button
 id center
@@ -1225,8 +1231,10 @@ id coordinator
 id credits
 id custom
 id customPanel
+id date_time
 id decor_content_parent
 id default_activity_button
+id delete_btn
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -1250,6 +1258,7 @@ id fill_vertical
 id filled
 id fixed
 id forever
+id from
 id ghost_view
 id gone
 id group_divider
@@ -1275,9 +1284,12 @@ id listMode
 id list_item
 id login
 id mainPager
+id mainToolBar
+id mark
 id masked
 id media_actions
 id message
+id messageList
 id middle
 id mini
 id mtrl_child_content_container
@@ -1306,6 +1318,7 @@ id pin
 id progress_bar
 id progress_circular
 id progress_horizontal
+id progress_status
 id radio
 id right
 id right_icon
@@ -1313,6 +1326,7 @@ id right_side
 id save_image_matrix
 id save_non_transition_alpha
 id save_scale_type
+id schedule_list
 id screen
 id scroll
 id scrollIndicatorDown
@@ -1342,6 +1356,7 @@ id snackbar_text
 id snap
 id snapMargins
 id spacer
+id splashProgress
 id split_action_bar
 id spread
 id spread_inside
@@ -1352,6 +1367,7 @@ id standard
 id start
 id status_bar_latest_event_content
 id stretch
+id subject
 id submenuarrow
 id submit_area
 id tabMode
@@ -1390,6 +1406,7 @@ id visible
 id withText
 id wrap
 id wrap_content
+integer MAX_TEXT_LENGTH
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -1438,6 +1455,8 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout activity_splash
+layout adapter_message
 layout bonuspack_bubble
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
@@ -1460,6 +1479,9 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout fragment_calendar
+layout fragment_dummy
+layout fragment_mailview
 layout login_activity
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
@@ -1485,6 +1507,8 @@ layout support_simple_spinner_dropdown_item
 menu main_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
+string Asian_Date_Format
+string DEFAULT_SQL_DATETIME_FORMAT
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -1526,12 +1550,14 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string about
 string about_message
+string accessURL
 string app_name
 string appbar_scrolling_view_behavior
 string base
 string base_nl
 string bing
 string bottom_sheet_behavior
+string calendar
 string character_counter_content_description
 string character_counter_pattern
 string com_facebook_device_auth_instructions
@@ -1559,6 +1585,9 @@ string com_facebook_smart_login_confirmation_title
 string com_facebook_tooltip_default
 string compass
 string cyclemap
+string dbname
+string dbpassword
+string dbusername
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string fiets_nl
@@ -1568,8 +1597,10 @@ string format_distance_kilometers
 string format_distance_meters
 string format_distance_miles
 string format_distance_nautical_miles
+string from_label
 string hide_bottom_view_on_scroll_behavior
 string hills
+string inbox
 string map_mode
 string mapbox
 string mapnik
@@ -1585,15 +1616,22 @@ string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string place_holder
+string profile
+string program_name
 string public_transport
 string roads_nl
 string samples
 string search_menu_title
+string sent
 string set_mode_hide_me
 string set_mode_offline
 string set_mode_online
 string set_mode_show_me
+string settings
 string status_bar_notification_info_overflow
+string test_password
+string test_username
 string topo
 string unknown
 style AlertDialog_AppCompat
@@ -2103,6 +2141,7 @@ style com_facebook_auth_dialog_instructions_textview
 style com_facebook_button
 style com_facebook_button_like
 style com_facebook_loginview_default_style
+style loadingBars
 style tabItemText
 style tooltip_bubble_text
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle

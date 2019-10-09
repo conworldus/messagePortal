@@ -4,32 +4,20 @@
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_activity.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\login_activity.xml"
-    },
-    {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
-    },
-    {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
-    },
-    {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
-    },
-    {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_mailview.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\fragment_mailview.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_message.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\adapter_message.xml"
     },
     {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
@@ -52,6 +40,50 @@
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_delete_black_24dp.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_delete_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_activity.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\login_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_dummy.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\fragment_dummy.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_calendar.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\fragment_calendar.xml"
+    },
+    {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
@@ -60,12 +92,8 @@
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
-    },
-    {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_star_black_24dp.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_star_black_24dp.xml"
     },
     {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",

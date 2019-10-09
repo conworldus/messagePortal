@@ -261,6 +261,7 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
+    <color name="red">#FF0000</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
@@ -273,6 +274,7 @@
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="tooltip_background_dark">#e6616161</color>
     <color name="tooltip_background_light">#e6FFFFFF</color>
+    <color name="white">#FFFFF0</color>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_content_inset_with_nav">72dp</dimen>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
@@ -549,6 +551,7 @@
     <item name="transition_transform" type="id"/>
     <item name="up" type="id"/>
     <item name="view_offset_helper" type="id"/>
+    <integer name="MAX_TEXT_LENGTH">300</integer>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
     <integer name="app_bar_elevation_anim_duration">150</integer>
@@ -564,6 +567,8 @@
     <integer name="mtrl_tab_indicator_anim_duration_ms">250</integer>
     <integer name="show_password_duration">200</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
+    <string name="Asian_Date_Format">yyyy-MM-dd</string>
+    <string name="DEFAULT_SQL_DATETIME_FORMAT">yyyy-MM-dd HH:mm:ss</string>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_up_description">Navigate up</string>
     <string name="abc_action_menu_overflow_description">More options</string>
@@ -605,12 +610,14 @@
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="about">About</string>
     <string name="about_message">This software uses map data provided by OpenStreetMap.org</string>
+    <string name="accessURL">https://www.greatbayco.com/tutoraccess/index.php</string>
     <string name="app_name">messagePortal</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="base">OSM base layer</string>
     <string name="base_nl">Netherlands base overlay</string>
     <string name="bing">Bing</string>
     <string name="bottom_sheet_behavior" translatable="false">com.google.android.material.bottomsheet.BottomSheetBehavior</string>
+    <string name="calendar">Calendar</string>
     <string name="character_counter_content_description">Character limit exceeded %1$d of %2$d</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
     <string name="com_facebook_device_auth_instructions">Visit &lt;b>facebook.com/device&lt;/b> and enter the code shown above.</string>
@@ -638,6 +645,9 @@
     <string name="com_facebook_tooltip_default">You\'re in control - choose what info you want to share with apps.</string>
     <string name="compass">Compass</string>
     <string name="cyclemap">Cycle Map</string>
+    <string name="dbname">greatbc9_education</string>
+    <string name="dbpassword">shenzhen1982</string>
+    <string name="dbusername">greatbc9_enduser</string>
     <string name="fab_transformation_scrim_behavior" translatable="false">com.google.android.material.transformation.FabTransformationScrimBehavior</string>
     <string name="fab_transformation_sheet_behavior" translatable="false">com.google.android.material.transformation.FabTransformationSheetBehavior</string>
     <string name="fiets_nl">OpenFietsKaart overlay</string>
@@ -647,8 +657,10 @@
     <string name="format_distance_meters">%s m</string>
     <string name="format_distance_miles">%s mi</string>
     <string name="format_distance_nautical_miles">%s nm</string>
+    <string name="from_label">From: %1$s</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string name="hills">Hills</string>
+    <string name="inbox">Inbox</string>
     <string name="map_mode">Map Source</string>
     <string name="mapbox">MapBox</string>
     <string name="mapnik" translatable="false">Mapnik</string>
@@ -664,15 +676,22 @@
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
+    <string name="place_holder">Place Holder</string>
+    <string name="profile">Profile</string>
+    <string name="program_name">Tutor Portal</string>
     <string name="public_transport">Public transport</string>
     <string name="roads_nl">Netherlands roads overlay</string>
     <string name="samples">Samples</string>
     <string name="search_menu_title">Search</string>
+    <string name="sent">Sent</string>
     <string name="set_mode_hide_me">hiding my current location</string>
     <string name="set_mode_offline">Set to offline mode</string>
     <string name="set_mode_online">Set to online mode</string>
     <string name="set_mode_show_me">showing and tracking my current location</string>
+    <string name="settings">Settings</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="test_password">1234</string>
+    <string name="test_username">whiteboyrick@gmail.com</string>
     <string name="topo">Topographic</string>
     <string name="unknown">Unknown</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
@@ -685,7 +704,7 @@
     <item name="android:windowExitAnimation">@anim/design_bottom_sheet_slide_out</item>
   </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -3056,6 +3075,13 @@
         <item name="android:background">@drawable/com_facebook_button_like_background</item>
     </style>
     <style name="com_facebook_loginview_default_style" parent="com_facebook_button"/>
+    <style name="loadingBars">
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
     <style name="tabItemText">
         <item name="android:textSize">10sp</item>
         <item name="android:textStyle">bold</item>

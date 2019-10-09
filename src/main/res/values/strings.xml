@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">messagePortal</string>
+    <!--Testing Variables-->
+    <string name="test_username">whiteboyrick@gmail.com</string>
+    <string name="test_password">1234</string>
     <!-- System Values-->
     <string name="accessURL">https://www.greatbayco.com/tutoraccess/index.php</string>
     <string name="dbusername">greatbc9_enduser</string>
@@ -16,4 +19,6 @@
     <string name="settings">Settings</string>
     <string name="calendar">Calendar</string>
     <string name="profile">Profile</string>
+    <string name="program_name">Tutor Portal</string>
+    <string name="from_label">From: %1$s</string>
 </resources>

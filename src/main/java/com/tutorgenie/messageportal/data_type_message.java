@@ -1,8 +1,16 @@
 package com.tutorgenie.messageportal;
 
+import android.annotation.SuppressLint;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Date;
 
 public class data_type_message
 {
@@ -17,43 +25,29 @@ public class data_type_message
     private String time = "";
     private String from_name;
     private String to_name;
-    private String label;
+    private String label="";
+    private Date full_date = new Date();
 
     public data_type_message()
     {
     }
 
-    public data_type_message(String date, String from, String subject, boolean isRead)
+    public void setFull_date(String date, String time)
     {
-        this.date = date;
-        this.from = from;
-        this.subject = subject;
-        this.isRead = isRead;
+        try
+        {
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat(
+                    "yyyy-MM-dd HH:mm:ss");
+            full_date = format.parse(date+" "+time);
+        }catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
     }
 
-    public static boolean getMessageFromJSON(JSONArray messages, data_type_message m) throws JSONException
+    public Date getFull_date()
     {
-        if (messages == null) throw new JSONException("JSON ARRAY IS EMPTY!");
-        JSONObject temp;
-        for (int i = 0; i < messages.length(); i++)
-        {
-            m = new data_type_message();
-            temp = messages.getJSONObject(i);
-            m.setDate(temp.getString("date"));
-            m.setMessage(temp.getString("message"));
-            m.setFrom(temp.getString("from_id"));
-            m.setTo(temp.getString("to_id"));
-            m.setMessageID(temp.getInt("message_id"));
-            m.setSubject(temp.getString("subject"));
-            m.setFrom_name(temp.getString("from_name"));
-            m.setTo_name(temp.getString("to_name"));
-            m.setTime(temp.getString("time"));
-            int r = temp.getInt("is_read");
-            if (r == 0)
-                m.setRead(false);
-            else m.setRead(true);
-        }
-        return true;
+        return full_date;
     }
 
     public String getLabel()
