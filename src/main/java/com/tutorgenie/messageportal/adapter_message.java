@@ -81,7 +81,8 @@ public class adapter_message extends ArrayAdapter<data_type_message>
     }
 
     @Override
-    public int getViewTypeCount() {
+    public int getViewTypeCount()
+    {
         return getCount();
     }
 
@@ -132,14 +133,14 @@ public class adapter_message extends ArrayAdapter<data_type_message>
                     m.setLabel("Marked");
                     img.setColorFilter(Color.YELLOW);
                     //send a code to online
-                    updateLabel(m.getMessageID(), "Marked");
+                    updateLabel(m.getMessageID(), "Marked", context);
                 }
                 else
                 {
                     m.setLabel("Inbox");
                     img.setColorFilter(Color.GRAY);
                     //send a code to online db
-                    updateLabel(m.getMessageID(), "Inbox");
+                    updateLabel(m.getMessageID(), "Inbox", context);
                 }
             }
         });
@@ -154,7 +155,7 @@ public class adapter_message extends ArrayAdapter<data_type_message>
         return view;
     }
 
-    private void updateLabel(int ID, String status)
+    public static void updateLabel(int ID, String status, Context tContext)
     {
         try
         {
@@ -162,8 +163,8 @@ public class adapter_message extends ArrayAdapter<data_type_message>
             obj.put("query_type", "UPDATE_LABEL");
             obj.put("message_id", String.valueOf(ID));
             obj.put("label", status);
-            obj.put("username", context.getString(R.string.test_username));
-            obj.put("password", context.getString(R.string.test_password));
+            obj.put("username", tContext.getString(R.string.test_username));
+            obj.put("password", tContext.getString(R.string.test_password));
             CONNECTOR conn = new CONNECTOR();
             String result = conn.execute(obj).get();
             Log.e("Result", result);

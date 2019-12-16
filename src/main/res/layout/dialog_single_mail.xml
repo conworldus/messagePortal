@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:src="@drawable/ic_close_black_24dp"
+        android:background="@color/white"
+        android:tint="@color/red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/single_mail_cancel"
+        android:contentDescription="@string/place_holder" />
+    <LinearLayout
+        android:elevation="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="25dp"
+        android:background="#FFFFFF">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/place_holder"
+            style="@style/text_large_bold"
+            android:id="@+id/single_mail_subject"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/single_mail_brief_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/single_mail_sender_brief"
+                android:text="@string/place_holder"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/text_regular"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/single_mail_view_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_link"
+                android:text="@string/view_details"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TableLayout
+            android:visibility="gone"
+            android:id="@+id/single_mail_detail_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            >
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/from_detail"
+                    android:layout_weight="0.2"
+                    android:text="@string/from_prefix"
+                    style="@style/text_regular"
+                    android:layout_column="1"/>
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:id="@+id/from_content"
+                    android:text="@string/place_holder"
+                    android:layout_column="2"/>
+
+                <TextView
+                    android:id="@+id/single_mail_hide_detail"
+                    android:text="@string/hide_details"
+                    style="@style/text_link"
+                    android:layout_column="3"/>
+            </TableRow>
+
+
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/to_detail"
+                    android:layout_weight="0.2"
+                    android:text="@string/to_prefix"
+                    android:layout_column="1"/>
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:id="@+id/to_content"
+                    android:text="@string/place_holder"
+                    android:layout_column="2"/>
+
+                <TextView
+                    style="@style/text_link"
+                    android:layout_column="3"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/time_detail"
+                    android:layout_weight="0.2"
+                    android:text="@string/time_prefix"
+                    android:layout_column="1"/>
+
+                <TextView
+                    android:layout_weight="0.7"
+                    android:id="@+id/time_content"
+                    android:text="@string/place_holder"
+                    android:layout_column="2"/>
+
+                <TextView
+                    style="@style/text_link"
+                    android:layout_column="3"/>
+            </TableRow>
+        </TableLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="?attr/buttonBarStyle">
+            <ImageButton
+                android:contentDescription="@string/reply"
+                android:id="@+id/single_mail_reply"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_reply_black_24dp"
+                style="?attr/buttonBarButtonStyle"/>
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_delete_black_24dp"
+                android:id="@+id/single_mail_delete"
+                android:contentDescription="@string/delete"
+                style="?attr/buttonBarButtonStyle"/>
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_star_black_24dp"
+                android:id="@+id/single_mail_mark"
+                android:contentDescription="@string/mark"
+                style="?attr/buttonBarButtonStyle"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:text=""
+            android:gravity="top|start"
+            android:minLines="100"
+            android:maxLines="1000"
+            android:padding="5dp"
+            android:id="@+id/single_mail_body"
+            android:background="@drawable/border_horizontal"
+            style="?attr/buttonBarStyle"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

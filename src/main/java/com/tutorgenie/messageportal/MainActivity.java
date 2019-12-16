@@ -22,11 +22,15 @@ public class MainActivity extends AppCompatActivity
     private Button deleteButton;
     private Toolbar toolbar;
     private fragment_mailview inbox_frag, sent_frag;
+    private fragment_profile profile_frag;
+    private fragment_calendar frag2;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        GlobalData.initializeScreenSize(MainActivity.this);
+
         tabLayout = findViewById(R.id.ControlTab);
         viewPager = findViewById(R.id.mainPager);
         deleteButton = findViewById(R.id.delete_btn);
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity
                 context, deleteButton);
         sent_frag = new fragment_mailview(GlobalData.DataCache.getSent_messages(), context,
                 deleteButton);
+        profile_frag = new fragment_profile(context);
+        frag2 = new fragment_calendar(context);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener()
         {
@@ -56,8 +62,10 @@ public class MainActivity extends AppCompatActivity
                         else deleteButton.setVisibility(View.VISIBLE);
                         break;
                     case 2:
+                        deleteButton.setVisibility(View.INVISIBLE);
                         break;
                     case 3:
+                        deleteButton.setVisibility(View.INVISIBLE);
                         break;
                 }
             }
@@ -76,9 +84,13 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    public void setPagerMailFragment()
+    {
+        viewPager.setCurrentItem(4);
+    }
+
     public class viewPagerAdapter extends FragmentPagerAdapter
     {
-        private final int count = 4;
 
         viewPagerAdapter(FragmentManager fm)
         {
@@ -95,11 +107,9 @@ public class MainActivity extends AppCompatActivity
                 case 1:
                     return sent_frag;
                 case 2:
-                    return new fragment_mailview(GlobalData.DataCache.getInbox_messages(),
-                            context, deleteButton);
+                    return frag2;
                 case 3:
-                    return new fragment_mailview(GlobalData.DataCache.getInbox_messages(),
-                            context, deleteButton);
+                    return profile_frag;
                 default:
                     break;
             }
@@ -109,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public int getCount()
         {
-            return count;
+            return 4;
         }
 
         @Override
@@ -119,11 +129,11 @@ public class MainActivity extends AppCompatActivity
             {
                 case 0: return getString(R.string.inbox);
                 case 1: return getString(R.string.sent);
-                case 2: return getString(R.string.settings);
+                case 2: return getString(R.string.calendar);
                 case 3: return getString(R.string.profile);
             }
 
-            return "Pholder";
+            return null;
         }
     }
 }

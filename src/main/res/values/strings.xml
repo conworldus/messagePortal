@@ -4,21 +4,71 @@
     <string name="test_username">whiteboyrick@gmail.com</string>
     <string name="test_password">1234</string>
     <!-- System Values-->
-    <string name="accessURL">https://www.greatbayco.com/tutoraccess/index.php</string>
+    <string name="accessURL">https://www.greatbayco.com/appaccess/index.php</string>
+    <string name="uploadURL">https://www.greatbayco.com/appaccess/fileupload.php</string>
     <string name="dbusername">greatbc9_enduser</string>
     <string name="dbpassword">shenzhen1982</string>
     <string name="dbname">greatbc9_education</string>
     <string name="Asian_Date_Format">yyyy-MM-dd</string>
     <string name="DEFAULT_SQL_DATETIME_FORMAT">yyyy-MM-dd HH:mm:ss</string>
-    <!--System Constants-->
-    <integer name="MAX_TEXT_LENGTH">300</integer>
-    <!--DUMMY STRING-->
+        <!--System Constants-->
+
+        <!--DUMMY STRING-->
     <string name="place_holder">Place Holder</string>
     <string name="inbox">Inbox</string>
     <string name="sent">Sent</string>
     <string name="settings">Settings</string>
     <string name="calendar">Calendar</string>
     <string name="profile">Profile</string>
-    <string name="program_name">Tutor Portal</string>
+    <string name="program_name">Tutor Genie Provider Portal</string>
     <string name="from_label">From: %1$s</string>
+    <string name="confirm">Confirm</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="accept">Accept</string>
+    <string name="nationality">Nationality</string>
+    <string name="status_cancel">Lesson confirmed. Click to cancel</string>
+    <string name="decline">Decline</string>
+    <string name="edit_note">Edit Note</string>
+    <string name="show_map"><u>Show Map</u></string>
+    <string name="hide_map"><u>Hide Map</u></string>
+    <string name="add_note_header"><b>Note:</b>\n%1$s</string>
+    <string name="add_note_hint">Add your note here</string>
+    <string name="student_comment_header">Student Comment: \n%1$s</string>
+    <string name="upload_progress">Upload Progress</string>
+    <string name="done">Done</string>
+    <string name="month_view">Monthly View</string>
+    <string name="weekly_view">Weekly View</string>
+    <string name="date_view">Date View</string>
+    <string name="specific_date">Specific Date %1$s</string>
+    <string name="pick_a_date">Pick a date</string>
+    <string name="student_name">Student Name: </string>
+    <string name="status">Status: </string>
+    <string name="view_details">View Details</string>
+    <string name="hide_details">Hide Details</string>
+    <string name="from_prefix">From:</string>
+    <string name="to_prefix">To:</string>
+    <string name="time_prefix">Time:</string>
+    <string name="subject_prefix">Subject: %1$s</string>
+
+    <!--Longer Messages-->
+    <string name="image_exist">It appears that you already have a profile picture. Would
+        you like to replace it?  If so, please remember to center your face when taking the
+    picture as the it would be cropped to the largest possible square from the center</string>
+    <string name="reply">reply</string>
+    <string name="delete">delete</string>
+    <string name="mark">mark</string>
+    <string name="send">Send</string>
+    <string name="close">Close</string>
+    <string name="header_information">Header Information</string>
+    <string name="enter_your_reply_here">Enter your reply here</string>
+
+
+    <!-- Text With Headers-->
+    <string name="location_h">Location: %1$s\n</string>
+
+
+    <!--Float Values-->
+    <string name="golden_ratio">1.61803398875</string>
 </resources>

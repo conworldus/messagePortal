@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:1-36:12
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:1-53:12
+INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:1-53:12
+INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:1-53:12
+INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:1-53:12
 MERGED from [android.arch.navigation:navigation-ui:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\b54c1ad24f7ebe71ab621b14a3b2f83d\jetified-navigation-ui-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\25ef5e77ac16ef8ed5d98ce81c4fc9dd\material-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.facebook.android:facebook-login:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\829dafc020b304ce0d812d272b30f081\jetified-facebook-login-5.4.0\AndroidManifest.xml:21:1-31:12
@@ -16,6 +16,7 @@ MERGED from [org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\t
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\dd0f57ea5abc8fd9a8beff04f3e7fea5\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [de.hdodenhof:circleimageview:2.2.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5fb4e9cc9740cb7b0544d17c352769a8\jetified-circleimageview-2.2.0\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.volley:volley:1.1.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\daef49622e3bc4a7a556f10e7a1b9b9f\volley-1.1.0\AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android:flexbox:1.1.1] C:\Users\user\.gradle\caches\transforms-2\files-2.1\081d8cf42fc01ef59c662c00bdbb3817\flexbox-1.1.1\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\ebccd73d0737185f145a875133489833\fragment-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5a2ada301576ae53984de493d2d1794e\vectordrawable-animated-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.browser:browser:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\b3e2d5956095174f070e5c6c592e1414\browser-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -48,77 +49,79 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\user\.gradle\cac
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\d7de4789fe8152969d451afd302f7c04\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\10858cf84e83eb3f1065293d9c59ecc5\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\1d0a2353b99ff62c7efc7e31919ec9f4\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:1-36:12
-INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:1-36:12
+INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:1-53:12
+INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:1-53:12
+INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:1-53:12
 	package
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:5-43
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:5:5-43
 		INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:1-36:12
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:1-53:12
 		INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:4:5-51
 	android:versionCode
 		INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:1-36:12
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:1-53:12
 		INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:3:11-69
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:4:5-66
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:6:5-66
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:4:22-64
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:6:22-64
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:5:5-79
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:7:5-79
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:5:22-77
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:7:22-77
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:6:5-80
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:8:5-80
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:6:22-78
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:8:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:7:5-78
-	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:7:22-76
-uses-permission#android.permission.CAMERA
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:8:5-64
-	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:8:22-62
-uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:9:5-78
 	android:name
 		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:9:22-76
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:10:5-64
+	android:name
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:10:22-62
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:11:5-78
+	android:name
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:11:22-76
 uses-permission#android.permission.READ_SMS
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:10:5-66
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:12:5-66
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:10:22-64
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:12:22-64
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:11:5-80
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:13:5-80
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:11:22-78
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:13:22-78
 uses-permission#android.permission.READ_CALENDAR
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:12:5-71
-	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:12:22-69
-uses-permission#android.permission.WRITE_CALENDAR
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:13:5-72
-	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:13:22-70
-uses-permission#android.permission.USE_BIOMETRIC
 ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:14:5-71
 	android:name
 		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:14:22-69
+uses-permission#android.permission.WRITE_CALENDAR
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:15:5-72
+	android:name
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:15:22-70
+uses-permission#android.permission.USE_BIOMETRIC
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:16:5-71
+	android:name
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:16:22-69
 uses-permission#com.google.android.gm.permission.WRITE_GMAIL
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:15:5-84
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:17:5-84
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:15:22-81
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:17:22-81
 uses-permission#com.google.android.gm.permission.AUTO_SEND
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:16:5-82
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:18:5-82
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:16:22-79
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:18:22-79
 application
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:17:5-34:19
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:20:5-52:19
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\25ef5e77ac16ef8ed5d98ce81c4fc9dd\material-1.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\25ef5e77ac16ef8ed5d98ce81c4fc9dd\material-1.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.facebook.android:facebook-login:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\829dafc020b304ce0d812d272b30f081\jetified-facebook-login-5.4.0\AndroidManifest.xml:28:5-29:19
@@ -140,39 +143,65 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\us
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\93d975d05863dd9ef34306a1b041598b\core-1.0.0\AndroidManifest.xml:22:18-86
 	android:supportsRtl
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:22:9-35
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:25:9-35
 	android:label
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:20:9-41
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:23:9-41
+	tools:ignore
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:27:9-35
 	android:roundIcon
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:21:9-54
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:24:9-54
 	android:icon
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:19:9-43
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:22:9-43
 	android:allowBackup
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:18:9-35
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:21:9-35
 	android:theme
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:23:9-40
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:26:9-40
 activity#com.tutorgenie.messageportal.SplashActivity
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:24:9-30:20
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:29:9-37:20
+	android:screenOrientation
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:31:13-49
+	tools:ignore
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:32:13-53
 	android:theme
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:25:13-69
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:30:13-69
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:24:19-49
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:29:19-49
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:26:13-29:29
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:33:13-36:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:27:17-69
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:34:17-69
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:27:25-66
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:34:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:28:17-77
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:35:17-77
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:28:27-74
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:35:27-74
 activity#com.tutorgenie.messageportal.MainActivity
-ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:31:9-33:20
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:38:9-42:20
+	android:screenOrientation
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:40:13-49
+	tools:ignore
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:41:13-53
 	android:theme
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:32:13-69
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:39:13-69
 	android:name
-		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:31:19-47
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:38:19-47
+provider#androidx.core.content.FileProvider
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:43:9-51:20
+	android:grantUriPermissions
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:47:13-47
+	android:authorities
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:45:13-76
+	android:exported
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:46:13-37
+	android:name
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:44:13-62
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:48:13-50:58
+	android:resource
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:50:17-55
+	android:name
+		ADDED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:49:17-67
 uses-sdk
 INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
@@ -201,6 +230,8 @@ MERGED from [de.hdodenhof:circleimageview:2.2.0] C:\Users\user\.gradle\caches\tr
 MERGED from [de.hdodenhof:circleimageview:2.2.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5fb4e9cc9740cb7b0544d17c352769a8\jetified-circleimageview-2.2.0\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.volley:volley:1.1.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\daef49622e3bc4a7a556f10e7a1b9b9f\volley-1.1.0\AndroidManifest.xml:7:5-43
 MERGED from [com.android.volley:volley:1.1.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\daef49622e3bc4a7a556f10e7a1b9b9f\volley-1.1.0\AndroidManifest.xml:7:5-43
+MERGED from [com.google.android:flexbox:1.1.1] C:\Users\user\.gradle\caches\transforms-2\files-2.1\081d8cf42fc01ef59c662c00bdbb3817\flexbox-1.1.1\AndroidManifest.xml:22:5-24:41
+MERGED from [com.google.android:flexbox:1.1.1] C:\Users\user\.gradle\caches\transforms-2\files-2.1\081d8cf42fc01ef59c662c00bdbb3817\flexbox-1.1.1\AndroidManifest.xml:22:5-24:41
 MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\ebccd73d0737185f145a875133489833\fragment-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\ebccd73d0737185f145a875133489833\fragment-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\5a2ada301576ae53984de493d2d1794e\vectordrawable-animated-1.0.0\AndroidManifest.xml:20:5-44

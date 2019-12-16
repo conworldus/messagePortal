@@ -18,24 +18,36 @@ public class data_type_tutor_schedule_item
     private String location;
     private boolean booked = false;
     private boolean bookable = false;
-    private float lat=0, lng=0;
+    private String TutorNote;
+    private double lat=0;
+    private double lng=0;
 
-    public float getLat()
+    public double getLat()
     {
         return lat;
     }
 
-    public void setLat(float lat)
+    public String getTutorNote()
+    {
+        return TutorNote;
+    }
+
+    public void setTutorNote(String tutorNote)
+    {
+        TutorNote = tutorNote;
+    }
+
+    public void setLat(double lat)
     {
         this.lat = lat;
     }
 
-    public float getLng()
+    public double getLng()
     {
         return lng;
     }
 
-    public void setLng(float lng)
+    public void setLng(double lng)
     {
         this.lng = lng;
     }

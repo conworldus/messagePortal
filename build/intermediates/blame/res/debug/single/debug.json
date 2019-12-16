@@ -4,8 +4,12 @@
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\xml_provider_paths.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\xml\\provider_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_pic_upload.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\dialog_pic_upload.xml"
     },
     {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
@@ -16,48 +20,28 @@
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\fragment_mailview.xml"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_message.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\adapter_message.xml"
-    },
-    {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\menu_main_menu.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\menu\\main_menu.xml"
-    },
-    {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_menu_black_24dp.xml.flat",
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_menu_black_24dp.xml"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_clickable_textview.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\clickable_textview.xml"
     },
     {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_splash.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\activity_splash.xml"
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_profile.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\fragment_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_subtract_box_black_24dp.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_subtract_box_black_24dp.xml"
     },
     {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_delete_black_24dp.xml.flat",
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_delete_black_24dp.xml"
-    },
-    {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_activity.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\login_activity.xml"
     },
     {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
@@ -72,24 +56,32 @@
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_dummy.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\fragment_dummy.xml"
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_headbar.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\headbar.xml"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_add_box_black_24dp.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_add_box_black_24dp.xml"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_calendar.xml.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\fragment_calendar.xml"
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_edit.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\dialog_edit.xml"
     },
     {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable___circle_yellow.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\__circle_yellow.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_calendar_group.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\adapter_calendar_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_shadowborder.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\shadowborder.xml"
     },
     {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_star_black_24dp.xml.flat",
@@ -98,5 +90,141 @@
     {
         "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable___circle_blue.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\__circle_blue.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\font_robotoregular.ttf.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\font\\robotoregular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_shadow_border.9.png.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\shadow_border.9.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_mail_compose.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\dialog_mail_compose.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_message.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\adapter_message.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_calendar.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\adapter_calendar.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_photo_camera_black_24dp.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_photo_camera_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\menu_main_menu.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\menu\\main_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable___circle_green.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\__circle_green.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_blanklayout.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\blanklayout.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_border.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\border.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_schedule_view.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\dialog_schedule_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_blankbackground.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\blankbackground.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_profile.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\adapter_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_edittext.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\edittext.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_login_activity.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\login_activity.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_reply_black_24dp.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_reply_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_adapter_profile_subject.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\adapter_profile_subject.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_dummy.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\fragment_dummy.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_progress_background.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\progress_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable___circle_gray.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\__circle_gray.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_calendar.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\fragment_calendar.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_close_black_24dp.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\ic_close_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\layout_dialog_single_mail.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\layout\\dialog_single_mail.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_border_horizontal.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\border_horizontal.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\drawable_list_divider_regular.xml.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\drawable\\list_divider_regular.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\user\\Desktop\\Studio Projects\\messagePortal\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     }
 ]
