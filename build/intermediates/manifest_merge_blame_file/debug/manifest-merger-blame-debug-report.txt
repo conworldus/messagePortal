@@ -5,7 +5,7 @@
 5    android:versionName="1.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="21"
+8        android:minSdkVersion="24"
 8-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="28" />
 9-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml
@@ -85,130 +85,145 @@
 41-->[org.osmdroid:osmdroid-android:6.0.2] C:\Users\user\.gradle\caches\transforms-2\files-2.1\4b9e82d62976a8c8878896a198da58c7\osmdroid-android-6.0.2\AndroidManifest.xml:27:9-33
 42
 43    <application
-43-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:20:5-52:19
+43-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:20:5-58:19
 44        android:allowBackup="true"
 44-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:21:9-35
 45        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 45-->[androidx.core:core:1.0.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\93d975d05863dd9ef34306a1b041598b\core-1.0.0\AndroidManifest.xml:22:18-86
 46        android:debuggable="true"
-47        android:icon="@mipmap/ic_launcher"
-47-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:22:9-43
-48        android:label="@string/app_name"
-48-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:23:9-41
-49        android:roundIcon="@mipmap/ic_launcher_round"
-49-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:24:9-54
-50        android:supportsRtl="true"
-50-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:25:9-35
-51        android:testOnly="true"
-52        android:theme="@style/AppTheme" >
-52-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:26:9-40
-53        <activity
-53-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:29:9-37:20
-54            android:name="com.tutorgenie.messageportal.SplashActivity"
-54-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:29:19-49
-55            android:screenOrientation="portrait"
-55-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:31:13-49
-56            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-56-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:30:13-69
-57            <intent-filter>
-57-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:33:13-36:29
-58                <action android:name="android.intent.action.MAIN" />
-58-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:34:17-69
-58-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:34:25-66
-59
-60                <category android:name="android.intent.category.LAUNCHER" />
-60-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:35:17-77
-60-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:35:27-74
-61            </intent-filter>
-62        </activity>
-63        <activity
-63-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:38:9-42:20
-64            android:name="com.tutorgenie.messageportal.MainActivity"
-64-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:38:19-47
-65            android:screenOrientation="portrait"
-65-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:40:13-49
-66            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-66-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:39:13-69
-67        </activity>
-68
-69        <provider
-69-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:43:9-51:20
-70            android:name="androidx.core.content.FileProvider"
-70-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:44:13-62
-71            android:authorities="com.tutorgenie.messageportal.fileprovider"
-71-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:45:13-76
-72            android:exported="false"
-72-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:46:13-37
-73            android:grantUriPermissions="true" >
-73-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:47:13-47
-74            <meta-data
-74-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:48:13-50:58
-75                android:name="android.support.FILE_PROVIDER_PATHS"
-75-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:49:17-67
-76                android:resource="@xml/provider_paths" />
-76-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:50:17-55
-77        </provider>
-78
-79        <activity
-79-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:29:9-32:66
-80            android:name="com.facebook.FacebookActivity"
-80-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:30:13-57
-81            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-81-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:31:13-96
-82            android:theme="@style/com_facebook_activity_theme" />
-82-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:32:13-63
-83        <activity android:name="com.facebook.CustomTabMainActivity" />
-83-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:33:9-71
-83-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:33:19-68
-84        <activity android:name="com.facebook.CustomTabActivity" />
-84-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:34:9-67
-84-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:34:19-64
-85        <!--
-86         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
-87         with the application context. This config is merged in with the host app's manifest,
-88         but there can only be one provider with the same authority activated at any given
-89         point; so if the end user has two or more different apps that use Facebook SDK, only the
-90         first one will be able to use the provider. To work around this problem, we use the
-91         following placeholder in the authority to identify each host application as if it was
-92         a completely different provider.
-93        -->
-94        <provider
-94-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:39:9-42:40
-95            android:name="com.facebook.internal.FacebookInitProvider"
-95-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:40:13-70
-96            android:authorities="com.tutorgenie.messageportal.FacebookInitProvider"
-96-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:41:13-72
-97            android:exported="false" />
-97-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:42:13-37
-98
-99        <receiver
-99-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:44:9-50:20
-100            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
-100-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:45:13-86
-101            android:exported="false" >
-101-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:46:13-37
-102            <intent-filter>
-102-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:47:13-49:29
-103                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
-103-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:48:17-95
-103-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:48:25-92
-104            </intent-filter>
-105        </receiver>
-106        <receiver
-106-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:51:9-58:20
-107            android:name="com.facebook.CampaignTrackingReceiver"
-107-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:52:13-65
-108            android:exported="true"
-108-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:53:13-36
-109            android:permission="android.permission.INSTALL_PACKAGES" >
-109-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:54:13-69
-110            <intent-filter>
-110-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:55:13-57:29
-111                <action android:name="com.android.vending.INSTALL_REFERRER" />
-111-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:56:17-79
-111-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:56:25-76
-112            </intent-filter>
-113        </receiver>
-114    </application>
-115
-116</manifest>
+47        android:extractNativeLibs="false"
+48        android:icon="@mipmap/ic_launcher"
+48-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:22:9-43
+49        android:label="@string/app_name"
+49-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:23:9-41
+50        android:roundIcon="@mipmap/ic_launcher_round"
+50-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:24:9-54
+51        android:supportsRtl="true"
+51-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:25:9-35
+52        android:testOnly="true"
+53        android:theme="@style/AppTheme" >
+53-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:26:9-40
+54        <activity
+54-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:28:9-36:20
+55            android:name="com.tutorgenie.messageportal.SplashActivity"
+55-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:28:19-49
+56            android:screenOrientation="portrait"
+56-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:30:13-49
+57            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+57-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:29:13-69
+58            <intent-filter>
+58-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:32:13-35:29
+59                <action android:name="android.intent.action.MAIN" />
+59-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:33:17-69
+59-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:33:25-66
+60
+61                <category android:name="android.intent.category.LAUNCHER" />
+61-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:34:17-77
+61-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:34:27-74
+62            </intent-filter>
+63        </activity>
+64        <activity
+64-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:37:9-41:20
+65            android:name="com.tutorgenie.messageportal.MainActivity"
+65-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:37:19-47
+66            android:screenOrientation="portrait"
+66-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:39:13-49
+67            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+67-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:38:13-69
+68        </activity>
+69
+70        <receiver
+70-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:42:9-48:20
+71            android:name="com.tutorgenie.messageportal.message_update_receiver"
+71-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:43:13-52
+72            android:exported="false" >
+72-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:44:13-37
+73            <intent-filter>
+73-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:45:13-47:29
+74                <action android:name="com.tutorgenie.messageportal.mailnotification" />
+74-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:46:17-87
+74-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:46:25-85
+75            </intent-filter>
+76        </receiver>
+77
+78        <provider
+78-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:49:9-57:20
+79            android:name="androidx.core.content.FileProvider"
+79-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:50:13-62
+80            android:authorities="com.tutorgenie.messageportal.fileprovider"
+80-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:51:13-76
+81            android:exported="false"
+81-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:52:13-37
+82            android:grantUriPermissions="true" >
+82-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:53:13-47
+83            <meta-data
+83-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:54:13-56:58
+84                android:name="android.support.FILE_PROVIDER_PATHS"
+84-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:55:17-67
+85                android:resource="@xml/provider_paths" />
+85-->C:\Users\user\Desktop\Studio Projects\messagePortal\app\src\main\AndroidManifest.xml:56:17-55
+86        </provider>
+87
+88        <activity
+88-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:29:9-32:66
+89            android:name="com.facebook.FacebookActivity"
+89-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:30:13-57
+90            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+90-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:31:13-96
+91            android:theme="@style/com_facebook_activity_theme" />
+91-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:32:13-63
+92        <activity android:name="com.facebook.CustomTabMainActivity" />
+92-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:33:9-71
+92-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:33:19-68
+93        <activity android:name="com.facebook.CustomTabActivity" />
+93-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:34:9-67
+93-->[com.facebook.android:facebook-common:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\aae1eb97ebf24394e788d189ccc3a7a0\jetified-facebook-common-5.4.0\AndroidManifest.xml:34:19-64
+94        <!--
+95         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+96         with the application context. This config is merged in with the host app's manifest,
+97         but there can only be one provider with the same authority activated at any given
+98         point; so if the end user has two or more different apps that use Facebook SDK, only the
+99         first one will be able to use the provider. To work around this problem, we use the
+100         following placeholder in the authority to identify each host application as if it was
+101         a completely different provider.
+102        -->
+103        <provider
+103-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:39:9-42:40
+104            android:name="com.facebook.internal.FacebookInitProvider"
+104-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:40:13-70
+105            android:authorities="com.tutorgenie.messageportal.FacebookInitProvider"
+105-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:41:13-72
+106            android:exported="false" />
+106-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:42:13-37
+107
+108        <receiver
+108-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:44:9-50:20
+109            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+109-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:45:13-86
+110            android:exported="false" >
+110-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:46:13-37
+111            <intent-filter>
+111-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:47:13-49:29
+112                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+112-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:48:17-95
+112-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:48:25-92
+113            </intent-filter>
+114        </receiver>
+115        <receiver
+115-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:51:9-58:20
+116            android:name="com.facebook.CampaignTrackingReceiver"
+116-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:52:13-65
+117            android:exported="true"
+117-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:53:13-36
+118            android:permission="android.permission.INSTALL_PACKAGES" >
+118-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:54:13-69
+119            <intent-filter>
+119-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:55:13-57:29
+120                <action android:name="com.android.vending.INSTALL_REFERRER" />
+120-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:56:17-79
+120-->[com.facebook.android:facebook-core:5.4.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\50a99d2cc95a5ac6637283a7ab053af1\jetified-facebook-core-5.4.0\AndroidManifest.xml:56:25-76
+121            </intent-filter>
+122        </receiver>
+123    </application>
+124
+125</manifest>

@@ -25,7 +25,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-
         <activity android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait"
@@ -40,6 +39,13 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
         </activity>
+        <receiver
+            android:name=".message_update_receiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.tutorgenie.messageportal.mailnotification"/>
+            </intent-filter>
+        </receiver>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.tutorgenie.messageportal.fileprovider"

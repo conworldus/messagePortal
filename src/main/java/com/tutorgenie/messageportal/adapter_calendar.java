@@ -1,69 +1,50 @@
 package com.tutorgenie.messageportal;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.pm.PackageManager;
 import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.os.Build;
-import android.provider.Settings;
 import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
-import java.util.zip.Inflater;
 
 public class adapter_calendar implements ExpandableListAdapter
 {
     //use data schedule
     ArrayList<data_type_tutor_schedule_item> schedule_list = new ArrayList<>();
-    Context context;
+    private Context context;
     public final  static int BYDATE=0;
     public final static int BYMONTH=2;
     public final static int BYWEEK=1;
     public final static int ALL=3;
     boolean note_shown = false;
     boolean map_shown = false;
-    LinearLayout response_control;
-    Button accept, reject, cancel;
-    TextView status_final, status_group;
+    private LinearLayout response_control;
+    private Button accept, reject, cancel;
+    private TextView status_final, status_group;
     adapter_calendar(Context context)
     {
         this.context =context;
@@ -93,7 +74,7 @@ public class adapter_calendar implements ExpandableListAdapter
 
 
 
-    public void setScheduleList(int METHOD, Long... params)
+    void setScheduleList(int METHOD, Long... params)
     {
         schedule_list.clear();
         switch (METHOD)
@@ -363,9 +344,9 @@ public class adapter_calendar implements ExpandableListAdapter
         setStatus(item.getStatus());
 
         cancel.setOnClickListener(new scheduleButtonListener(item.getScheduleID(),
-                constants.cancelBtn, response_control, cancel, status_final));
-        accept.setOnClickListener(new scheduleButtonListener(item.getScheduleID(), constants.acceptBtn, response_control, cancel, status_final));
-        reject.setOnClickListener(new scheduleButtonListener(item.getScheduleID(), constants.declineBtn, response_control, cancel, status_final));
+                CONST.cancelBtn, response_control, cancel, status_final));
+        accept.setOnClickListener(new scheduleButtonListener(item.getScheduleID(), CONST.acceptBtn, response_control, cancel, status_final));
+        reject.setOnClickListener(new scheduleButtonListener(item.getScheduleID(), CONST.declineBtn, response_control, cancel, status_final));
         return view;
     }
 
@@ -394,17 +375,17 @@ public class adapter_calendar implements ExpandableListAdapter
             String new_status="";
             switch (whichButton)
             {
-                case constants.acceptBtn:
-                        new_status = constants.status_accepted;
+                case CONST.acceptBtn:
+                        new_status = CONST.status_accepted;
                         break;
-                case constants.cancelBtn:
-                        new_status = constants.status_cancelled;
+                case CONST.cancelBtn:
+                        new_status = CONST.status_cancelled;
                         break;
-                case constants.declineBtn:
-                        new_status =constants.status_declined;
+                case CONST.declineBtn:
+                        new_status = CONST.status_declined;
                         break;
                 default:
-                    new_status = constants.status_pending;
+                    new_status = CONST.status_pending;
             }
 
             item.setStatus(new_status);

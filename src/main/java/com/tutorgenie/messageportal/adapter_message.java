@@ -83,6 +83,8 @@ public class adapter_message extends ArrayAdapter<data_type_message>
     @Override
     public int getViewTypeCount()
     {
+        if(getCount()==0)
+            return 1;
         return getCount();
     }
 

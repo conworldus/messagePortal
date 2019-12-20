@@ -81,7 +81,7 @@ public class SplashActivity extends AppCompatActivity
                     CONNECTOR conn = new CONNECTOR();
                     conn.retriever = retriever;
 
-                    JSONArray messageArray;
+                    JSONArray messageArray = null;
                     JSONObject temp;
                     JSONObject queryData;
 
@@ -118,6 +118,7 @@ public class SplashActivity extends AppCompatActivity
 
                     status_mutable.postValue("Loading Inbox Messages");
                     //===Load Inbox Messages
+                    data_type_message m;
                     conn = new CONNECTOR();
                     conn.retriever = retriever;
 
@@ -126,32 +127,33 @@ public class SplashActivity extends AppCompatActivity
                     queryData.put("password", getString(R.string.test_password));
                     queryData.put("query_type", "INBOX_MESSAGES");
 
-
-
-                    messageArray =
-                            new JSONArray(conn.execute(queryData).get());
-                    Log.e("Message", messageArray.toString());
-
-                    data_type_message m;
-                    for (int i = 0; i < messageArray.length(); i++)
+                    String resp = conn.execute(queryData).get();
+                    if(!resp.trim().equals(CONST.NO_MESSAGE))
                     {
-                        m = new data_type_message();
-                        temp = messageArray.getJSONObject(i);
-                        m.setDate(temp.getString("date"));
-                        m.setMessage(temp.getString("message"));
-                        m.setFrom(temp.getString("from_id"));
-                        m.setTo(temp.getString("to_id"));
-                        m.setMessageID(temp.getInt("message_id"));
-                        m.setSubject(temp.getString("subject"));
-                        m.setFrom_name(temp.getString("from_name"));
-                        m.setTo_name(temp.getString("to_name"));
-                        m.setTime(temp.getString("time"));
-                        m.setLabel(temp.getString("label"));
-                        int r = temp.getInt("is_read");
-                        if (r == 0)
-                            m.setRead(false);
-                        else m.setRead(true);
-                        GlobalData.DataCache.getInbox_messages().add(m);
+                        messageArray =
+                                new JSONArray(resp);
+                        Log.e("Message", messageArray.toString());
+
+                        for (int i = 0; i < messageArray.length(); i++)
+                        {
+                            m = new data_type_message();
+                            temp = messageArray.getJSONObject(i);
+                            m.setDate(temp.getString("date"));
+                            m.setMessage(temp.getString("message"));
+                            m.setFrom(temp.getString("from_id"));
+                            m.setTo(temp.getString("to_id"));
+                            m.setMessageID(temp.getInt("message_id"));
+                            m.setSubject(temp.getString("subject"));
+                            m.setFrom_name(temp.getString("from_name"));
+                            m.setTo_name(temp.getString("to_name"));
+                            m.setTime(temp.getString("time"));
+                            m.setLabel(temp.getString("label"));
+                            int r = temp.getInt("is_read");
+                            if (r == 0)
+                                m.setRead(false);
+                            else m.setRead(true);
+                            GlobalData.DataCache.getInbox_messages().add(m);
+                        }
                     }
 
                     status_mutable.postValue("Loading Sent Messages");
@@ -164,28 +166,33 @@ public class SplashActivity extends AppCompatActivity
                     queryData.put("password", getString(R.string.test_password));
                     queryData.put("query_type", "SENT_MESSAGES");
                     conn = new CONNECTOR();
-                    messageArray =
-                            new JSONArray(conn.execute(queryData).get());
-                    Log.e("Executed", "Done");
-                    for (int i = 0; i < messageArray.length(); i++)
+                    resp = conn.execute(queryData).get();
+
+                    if(!resp.trim().equals(CONST.NO_MESSAGE))
                     {
-                        m = new data_type_message();
-                        temp = messageArray.getJSONObject(i);
-                        m.setDate(temp.getString("date"));
-                        m.setMessage(temp.getString("message"));
-                        m.setFrom(temp.getString("from_id"));
-                        m.setTo(temp.getString("to_id"));
-                        m.setMessageID(temp.getInt("message_id"));
-                        m.setSubject(temp.getString("subject"));
-                        m.setFrom_name(temp.getString("from_name"));
-                        m.setTo_name(temp.getString("to_name"));
-                        m.setTime(temp.getString("time"));
-                        m.setLabel(temp.getString("label"));
-                        int r = temp.getInt("is_read");
-                        if (r == 0)
-                            m.setRead(false);
-                        else m.setRead(true);
-                        GlobalData.DataCache.getSent_messages().add(m);
+                        messageArray =
+                                new JSONArray(resp);
+                        Log.e("Executed", "Done");
+                        for (int i = 0; i < messageArray.length(); i++)
+                        {
+                            m = new data_type_message();
+                            temp = messageArray.getJSONObject(i);
+                            m.setDate(temp.getString("date"));
+                            m.setMessage(temp.getString("message"));
+                            m.setFrom(temp.getString("from_id"));
+                            m.setTo(temp.getString("to_id"));
+                            m.setMessageID(temp.getInt("message_id"));
+                            m.setSubject(temp.getString("subject"));
+                            m.setFrom_name(temp.getString("from_name"));
+                            m.setTo_name(temp.getString("to_name"));
+                            m.setTime(temp.getString("time"));
+                            m.setLabel(temp.getString("label"));
+                            int r = temp.getInt("is_read");
+                            if (r == 0)
+                                m.setRead(false);
+                            else m.setRead(true);
+                            GlobalData.DataCache.getSent_messages().add(m);
+                        }
                     }
 
                     Log.e("Mark", "Sent Done");
@@ -200,72 +207,77 @@ public class SplashActivity extends AppCompatActivity
                     queryData.put("password", getString(R.string.test_password));
                     queryData.put("query_type", "TUTOR_SCHEDULE_COMPLETE");
                     conn = new CONNECTOR();
-                    messageArray =
-                            new JSONArray(conn.execute(queryData).get());
-                    @SuppressLint("SimpleDateFormat")
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    for (int i = 0; i < messageArray.length(); i++)
+
+                    resp = conn.execute(queryData).get();
+                    if(!resp.trim().equals(CONST.NO_MESSAGE))
                     {
-                        data_type_tutor_schedule_item s = new data_type_tutor_schedule_item();
-                        temp = messageArray.getJSONObject(i); //not message, schedule here
+                        messageArray =
+                                new JSONArray(resp);
+                        @SuppressLint("SimpleDateFormat")
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        for (int i = 0; i < messageArray.length(); i++)
+                        {
+                            data_type_tutor_schedule_item s = new data_type_tutor_schedule_item();
+                            temp = messageArray.getJSONObject(i); //not message, schedule here
                        /* String topLine = HELPER.timeToString(obj.getInt("schedule_hour")) + "-" +
                                 HELPER.timeToString(HELPER.timeAddition(obj.getInt("schedule_hour"),
                                         obj.getInt("session_length")));*/
-                        String status = temp.getString("schedule_status");
-                        String duration = temp.getString("session_length");
-                        String tutorname = temp.getString("schedule_owner_name");
-                        String subject = temp.getString("subject");
-                        String date = temp.getString("schedule_date");
-                        Date numericDate = dateFormat.parse(date);
-                        String location = temp.getString("location");
-                        String studentNote = temp.getString("student_note");
-                        String studentName = temp.getString("student_name");
-                        String tutorNote = temp.getString("tutor_note");
-                        double lat = temp.getDouble("latitude");
-                        double lng = temp.getDouble("longitude");
-                        String comment = temp.getString("comment_content");
+                            String status = temp.getString("schedule_status");
+                            String duration = temp.getString("session_length");
+                            String tutorname = temp.getString("schedule_owner_name");
+                            String subject = temp.getString("subject");
+                            String date = temp.getString("schedule_date");
+                            Date numericDate = dateFormat.parse(date);
+                            String location = temp.getString("location");
+                            String studentNote = temp.getString("student_note");
+                            String studentName = temp.getString("student_name");
+                            String tutorNote = temp.getString("tutor_note");
+                            double lat = temp.getDouble("latitude");
+                            double lng = temp.getDouble("longitude");
+                            String comment = temp.getString("comment_content");
 
-                        String timeStamp;
-                        {
-                            int start = temp.getInt("schedule_hour");
-                            int length = temp.getInt("session_length");
-                            int minute = start%100; //this is minute marker
-                            int hour = (start-minute)/100;  // this the hour marker
-                            //start hour string = hour+":"+minute
-                            int terminal = (hour*60+minute+length)%1440; //this so it does not
-                            // exceed the date end
-                            int terminalMin = terminal%60;
-                            int terminalHour = (terminal-terminalMin)/60;
+                            String timeStamp;
+                            {
+                                int start = temp.getInt("schedule_hour");
+                                int length = temp.getInt("session_length");
+                                int minute = start % 100; //this is minute marker
+                                int hour = (start - minute) / 100;  // this the hour marker
+                                //start hour string = hour+":"+minute
+                                int terminal = (hour * 60 + minute + length) % 1440; //this so it does not
+                                // exceed the date end
+                                int terminalMin = terminal % 60;
+                                int terminalHour = (terminal - terminalMin) / 60;
 
-                            timeStamp = hour+":"+minute+" - "+terminalHour+":"+terminalMin;
-                            s.setTimeStamp(timeStamp);
+                                timeStamp = hour + ":" + minute + " - " + terminalHour + ":" + terminalMin;
+                                s.setTimeStamp(timeStamp);
+                            }
+
+                            s.setStudentname(studentName);
+                            s.setStatus(status);
+                            s.setComment(comment);
+                            s.setStudentNote(studentNote);
+                            s.setLocation(location);
+                            s.setHourInt(temp.getInt("schedule_hour"));
+                            s.setDateInt(Integer.parseInt(date.replace("-", "")));
+                            s.setDateStr(date);
+                            s.setSubject(subject);
+                            s.setDuration(duration);
+                            s.setTutorname(tutorname);
+                            s.setTutorNote(tutorNote);
+                            s.setLat(lat);
+                            s.setLng(lng);
+                            s.setScheduleID(temp.getInt("schedule_entry_id"));
+                            String student_id = temp.getString("student_id");
+                            if (!GlobalData.DataCache.getSchedule_map().containsKey(date))
+                                GlobalData.DataCache.getSchedule_map().put(date,
+                                        new ArrayList<data_type_tutor_schedule_item>());
+                            GlobalData.DataCache.getSchedule_map().get(date).add(s);
+
+                            if (!GlobalData.DataCache.getSchedule_map_date().containsKey(numericDate.getTime()))
+                                GlobalData.DataCache.getSchedule_map_date().put(numericDate.getTime(),
+                                        new ArrayList<data_type_tutor_schedule_item>());
+                            Objects.requireNonNull(GlobalData.DataCache.getSchedule_map_date().get(numericDate.getTime())).add(s);
                         }
-
-                        s.setStudentname(studentName);
-                        s.setStatus(status);
-                        s.setComment(comment);
-                        s.setStudentNote(studentNote);
-                        s.setLocation(location);
-                        s.setHourInt(temp.getInt("schedule_hour"));
-                        s.setDateInt(Integer.parseInt(date.replace("-", "")));
-                        s.setDateStr(date);
-                        s.setSubject(subject);
-                        s.setDuration(duration);
-                        s.setTutorname(tutorname);
-                        s.setTutorNote(tutorNote);
-                        s.setLat(lat);
-                        s.setLng(lng);
-                        s.setScheduleID(temp.getInt("schedule_entry_id"));
-                        String student_id = temp.getString("student_id");
-                        if(!GlobalData.DataCache.getSchedule_map().containsKey(date))
-                            GlobalData.DataCache.getSchedule_map().put(date,
-                                    new ArrayList<data_type_tutor_schedule_item>());
-                        GlobalData.DataCache.getSchedule_map().get(date).add(s);
-
-                        if(!GlobalData.DataCache.getSchedule_map_date().containsKey(numericDate.getTime()))
-                            GlobalData.DataCache.getSchedule_map_date().put(numericDate.getTime(),
-                                    new ArrayList<data_type_tutor_schedule_item>());
-                        Objects.requireNonNull(GlobalData.DataCache.getSchedule_map_date().get(numericDate.getTime())).add(s);
                     }
 
                     status_mutable.postValue("Loading Profile");

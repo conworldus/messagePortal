@@ -6,7 +6,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="21"
+        android:minSdkVersion="24"
         android:targetSdkVersion="28" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -45,6 +45,7 @@
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
+        android:extractNativeLibs="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -66,6 +67,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
+
+        <receiver
+            android:name="com.tutorgenie.messageportal.message_update_receiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.tutorgenie.messageportal.mailnotification" />
+            </intent-filter>
+        </receiver>
 
         <provider
             android:name="androidx.core.content.FileProvider"

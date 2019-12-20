@@ -7,9 +7,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="1dp"
+        android:padding="5dp"
         android:src="@drawable/ic_close_black_24dp"
-        android:background="@color/white"
-        android:tint="@color/red"
+        android:background="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/single_mail_cancel"
@@ -19,13 +19,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="25dp"
+        android:padding="20dp"
         android:background="#FFFFFF">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            style="?attr/buttonBarStyle">
+            <ImageButton
+                android:contentDescription="@string/reply"
+                android:id="@+id/single_mail_reply"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_reply_black_24dp"
+                style="?attr/buttonBarButtonStyle"/>
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_delete_black_24dp"
+                android:id="@+id/single_mail_delete"
+                android:contentDescription="@string/delete"
+                style="?attr/buttonBarButtonStyle"/>
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_star_black_24dp"
+                android:id="@+id/single_mail_mark"
+                android:contentDescription="@string/mark"
+                style="?attr/buttonBarButtonStyle"/>
+        </LinearLayout>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/place_holder"
-            style="@style/text_large_bold"
+            style="@style/text_large"
             android:id="@+id/single_mail_subject"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +69,7 @@
                 android:id="@+id/single_mail_sender_brief"
                 android:text="@string/place_holder"
                 app:layout_constraintStart_toStartOf="parent"
-                style="@style/text_regular"
+                style="@style/text_large"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
@@ -132,45 +162,16 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            style="?attr/buttonBarStyle">
-            <ImageButton
-                android:contentDescription="@string/reply"
-                android:id="@+id/single_mail_reply"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_reply_black_24dp"
-                style="?attr/buttonBarButtonStyle"/>
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_delete_black_24dp"
-                android:id="@+id/single_mail_delete"
-                android:contentDescription="@string/delete"
-                style="?attr/buttonBarButtonStyle"/>
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_star_black_24dp"
-                android:id="@+id/single_mail_mark"
-                android:contentDescription="@string/mark"
-                style="?attr/buttonBarButtonStyle"/>
-        </LinearLayout>
+
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="match_parent"
             android:text=""
             android:gravity="top|start"
             android:minLines="100"
             android:maxLines="1000"
-            android:padding="5dp"
+            android:paddingTop="10dp"
             android:id="@+id/single_mail_body"
             android:background="@drawable/border_horizontal"
             style="?attr/buttonBarStyle"/>

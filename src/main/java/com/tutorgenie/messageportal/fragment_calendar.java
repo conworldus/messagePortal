@@ -47,6 +47,7 @@ public class fragment_calendar extends Fragment
     private ExpandableListView entryList;
     private Spinner method;
     private TextView date_display;
+
     @SuppressLint("SimpleDateFormat")
     fragment_calendar(Context context)
     {
@@ -61,7 +62,7 @@ public class fragment_calendar extends Fragment
         weekPair = getWeekRange(yearNumber, weekNumber);
     }
 
-    public Pair<Long, Long> getWeekRange(int year, int week_no)
+    private Pair<Long, Long> getWeekRange(int year, int week_no)
     {
         Log.e(year+"", week_no+"");
         Calendar cal = Calendar.getInstance();
@@ -111,6 +112,7 @@ public class fragment_calendar extends Fragment
         dateView = view.findViewById(R.id.schedule_select_date);
         method = view.findViewById(R.id.calendar_display_method);
         dateView.setText(Util.changeDateStringLocale(dateStr));
+        final TextView replaceText = view.findViewById(R.id.calendarReplaceText);
         ArrayList<String> method_list = new ArrayList<>();
         method_list.add(getString(R.string.date_view));
         method_list.add(getString(R.string.weekly_view));
@@ -185,9 +187,11 @@ public class fragment_calendar extends Fragment
                                 dateView.setText(display_m);
                                 break;
                         }
-
                         entryList.setAdapter(adapter);
                         entryList.invalidateViews();
+
+                        setReplaceText(replaceText);
+
                         dialog.dismiss();
                     }
                 });
@@ -198,6 +202,10 @@ public class fragment_calendar extends Fragment
         entryList = view.findViewById(R.id.schedule_list);
         adapter = new adapter_calendar(context);
         adapter.setSchedule_list(dateStr);
+
+        //set alternative view
+        setReplaceText(replaceText);
+
         entryList.setAdapter(adapter);
         entryList.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
         {
@@ -254,6 +262,10 @@ public class fragment_calendar extends Fragment
                 {
                     e.printStackTrace();
                 }
+                finally
+                {
+                    setReplaceText(replaceText);
+                }
             }
 
 
@@ -265,5 +277,26 @@ public class fragment_calendar extends Fragment
         });
 
         return view;
+    }
+    private void setReplaceText(TextView replaceText)
+    {
+        if (adapter.schedule_list == null || adapter.schedule_list.size() <= 0)
+        {
+            //schedule is empty
+            replaceText.setVisibility(View.VISIBLE); //default is "GONE"
+            String filling = context.getString(R.string.word_date);
+
+            switch (method.getSelectedItemPosition())
+            {
+                case 0: break;
+                case 1: filling = context.getString(R.string.word_week); break;
+                case 2: filling = context.getString(R.string.word_month); break;
+            }
+            replaceText.setText(context.getString(R.string.schedule_empty, filling));
+        }
+        else
+        {
+            replaceText.setVisibility(View.GONE);
+        }
     }
 }

@@ -38,9 +38,9 @@
     <string name="student_comment_header">Student Comment: \n%1$s</string>
     <string name="upload_progress">Upload Progress</string>
     <string name="done">Done</string>
-    <string name="month_view">Monthly View</string>
-    <string name="weekly_view">Weekly View</string>
-    <string name="date_view">Date View</string>
+    <string name="month_view">View a whole month</string>
+    <string name="weekly_view">View a whole week</string>
+    <string name="date_view">View a single day</string>
     <string name="specific_date">Specific Date %1$s</string>
     <string name="pick_a_date">Pick a date</string>
     <string name="student_name">Student Name: </string>
@@ -49,13 +49,24 @@
     <string name="hide_details">Hide Details</string>
     <string name="from_prefix">From:</string>
     <string name="to_prefix">To:</string>
+    <string name="to_prefix_fill">To: %1$s</string>
     <string name="time_prefix">Time:</string>
     <string name="subject_prefix">Subject: %1$s</string>
+    <string name="schedule_empty">Nothing is scheduled for your chosen %1$s.</string>
+    <string name="word_date">date</string>
+    <string name="word_week">week</string>
+    <string name="word_month">month</string>
+    <string name="word_year">year</string>
+    <string name="word_delete">Delete</string>
+    <string name="word_reply">Reply</string>
 
     <!--Longer Messages-->
     <string name="image_exist">It appears that you already have a profile picture. Would
         you like to replace it?  If so, please remember to center your face when taking the
     picture as the it would be cropped to the largest possible square from the center</string>
+
+    <string name="confirm_delete">Are you sure you want to delete the selected message(s)?</string>
+
     <string name="reply">reply</string>
     <string name="delete">delete</string>
     <string name="mark">mark</string>
@@ -65,10 +76,13 @@
     <string name="enter_your_reply_here">Enter your reply here</string>
 
 
+
     <!-- Text With Headers-->
     <string name="location_h">Location: %1$s\n</string>
 
 
     <!--Float Values-->
     <string name="golden_ratio">1.61803398875</string>
+    <string name="no_message">You Have No Message</string>
+    <string name="nodescription">no description</string>
 </resources>

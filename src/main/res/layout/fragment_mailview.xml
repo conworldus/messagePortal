@@ -3,22 +3,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/controlBar"
+        android:orientation="horizontal"
+        style="@style/Widget.AppCompat.ButtonBar"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/mailRefresh"
+            android:src="@drawable/ic_refresh_black_24dp"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:contentDescription="@string/nodescription"
+            style="@style/Widget.AppCompat.Button"/>
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/mailDelete"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:contentDescription="@string/delete"
+            style="@style/Widget.AppCompat.Button"/>
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/mailCompose"
+            android:src="@drawable/ic_compose_black_24dp"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:contentDescription="@string/delete"
+            style="@style/Widget.AppCompat.Button"/>
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/mailShare"
+            android:src="@drawable/ic_share_black_24dp"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:contentDescription="@string/delete"
+            style="@style/Widget.AppCompat.Button"/>
+    </LinearLayout>
     <ListView
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/controlBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/messageList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="?attr/actionBarSize"/>
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:elevation="0dp"/>
     <TextView
+        android:id="@+id/mailreplace_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="You Have No Message"
+        android:text="@string/no_message"
         android:textStyle="bold"
         android:textSize="15sp"
         android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        android:elevation="1dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
