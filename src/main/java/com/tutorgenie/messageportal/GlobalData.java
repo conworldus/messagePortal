@@ -3,9 +3,12 @@ package com.tutorgenie.messageportal;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.ViewGroup;
+
+import androidx.lifecycle.MutableLiveData;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -38,4 +41,6 @@ public class GlobalData
         screenHeight = point.y;
         screenWidth = point.x;
     }
+
+    public static String username="", password="";
 }

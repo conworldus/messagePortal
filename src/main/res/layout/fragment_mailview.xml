@@ -9,7 +9,8 @@
         android:id="@+id/controlBar"
         android:orientation="horizontal"
         style="@style/Widget.AppCompat.ButtonBar"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/border_horizontal_bottom">
         <ImageButton
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -55,7 +56,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/controlBar"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/messageList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +65,6 @@
         android:id="@+id/mailreplace_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:text="@string/no_message"
         android:textStyle="bold"
         android:textSize="15sp"

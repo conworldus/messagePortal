@@ -6,13 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <TextView
+        android:id="@+id/calendar_badge"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:elevation="10dp"
+        android:background="@drawable/border_badge"
+        android:text="@string/number_zero"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         app:layout_constraintTop_toTopOf="parent"
         app:tabTextAppearance="@style/tabItemText"
+        app:tabTextColor="@color/white"
         app:tabPadding="0dp"
+        app:tabIndicatorColor="@color/Primary1"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorGravity="center"
+        app:tabIndicatorHeight="80dp"
         android:background="@drawable/shadowborder"
         android:backgroundTint="@color/Primary5"
         android:id="@+id/ControlTab">
@@ -27,12 +42,15 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/calendarTab"
             android:text="@string/calendar"/>
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/profile"/>
     </com.google.android.material.tabs.TabLayout>
+
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/mainPager"

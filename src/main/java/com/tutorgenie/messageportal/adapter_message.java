@@ -35,6 +35,13 @@ public class adapter_message extends ArrayAdapter<data_type_message>
     private ArrayList<data_type_message> delete_list;
     private int ResourcePoint;
     private Context context;
+    private fragment_mailview.mailType type;
+
+    public void setType(fragment_mailview.mailType type)
+    {
+        this.type = type;
+    }
+
     public adapter_message(Context context, int ResourcePoint, ArrayList<data_type_message> data)
     {
         super(context, ResourcePoint, data);
@@ -121,7 +128,7 @@ public class adapter_message extends ArrayAdapter<data_type_message>
         final data_type_message m = data.get(position);
 
         if(m.getLabel().equals("Marked"))
-            img.setColorFilter(Color.YELLOW);
+            img.setColorFilter(context.getColor(R.color.yellow_mild));
         else
             img.setColorFilter(Color.GRAY);
 
@@ -133,7 +140,7 @@ public class adapter_message extends ArrayAdapter<data_type_message>
                 if(m.getLabel().equals("Inbox"))
                 {
                     m.setLabel("Marked");
-                    img.setColorFilter(Color.YELLOW);
+                    img.setColorFilter(context.getColor(R.color.yellow_mild));
                     //send a code to online
                     updateLabel(m.getMessageID(), "Marked", context);
                 }
@@ -147,7 +154,9 @@ public class adapter_message extends ArrayAdapter<data_type_message>
             }
         });
 
-        from.setText(m.getFrom_name());
+        if(type== fragment_mailview.mailType.INBOX)
+            from.setText(m.getFrom_name());
+        else from.setText(m.getTo_name());
         //m.setFull_date(m.getDate(), m.getTime());
         DateFormat format = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault());
         date_time.setText(format.format(m.getFull_date()));

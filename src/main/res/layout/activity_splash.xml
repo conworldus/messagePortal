@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/Primary5">
     <TextView
         android:id="@+id/SplashTitle"
         android:layout_width="match_parent"
@@ -12,8 +13,11 @@
         app:layout_constraintVertical_bias="0.381966"
         android:layout_marginHorizontal="20dp"
         android:gravity="center"
+        android:fontFamily="@font/brookeshappel"
+        android:textStyle="bold"
+        android:textColor="@color/white"
         android:text="@string/program_name"
-        android:textSize="20sp"/>
+        android:textSize="30sp"/>
     <androidx.core.widget.ContentLoadingProgressBar
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
@@ -31,6 +35,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/splashProgress"
         android:text="@string/place_holder"
+        android:fontFamily="@font/robotoregular"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

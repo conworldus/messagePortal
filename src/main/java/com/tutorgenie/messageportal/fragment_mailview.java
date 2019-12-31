@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -46,14 +47,36 @@ public class fragment_mailview extends Fragment
     private adapter_message adapter;
     private View view;
     private ListView mailList;
+    private TextView replaceText;
+
+    public enum mailType
+    {
+        INBOX,
+        SENT
+    }
+
+    private mailType type;
+
+    public void setType(mailType type)
+    {
+        this.type = type;
+    }
 
     void updateMailList()
     {
+        setReplaceText();
         if(adapter!=null)
         {
             mailList.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
+    }
+
+    private void setReplaceText()
+    {
+        if(data.size()<=0)
+            replaceText.setVisibility(View.VISIBLE);
+        else replaceText.setVisibility(View.INVISIBLE);
     }
 
 
@@ -72,19 +95,22 @@ public class fragment_mailview extends Fragment
         view = inflater.inflate(R.layout.fragment_mailview, container, false);
         mailList = view.findViewById(R.id.messageList);
         adapter = new adapter_message(context, R.layout.adapter_message, data);
+        adapter.setType(type);
         mailList.setAdapter(adapter);
         mailList.setOnItemClickListener(onItemClickListener);
         mailList.setOnItemLongClickListener(onItemLongClickListener);
       //  deleteButton.setOnClickListener(deleteListener);
         setButtonBarFunctions();
-        mailList.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
+        replaceText = view.findViewById(R.id.mailreplace_text);
+        mailList.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver
+       .OnGlobalLayoutListener()
         {
             @Override
             public void onGlobalLayout()
             {
                 int height = mailList.getHeight();
                 int actionbarHeight = Util.getActionBarHeight(context);
-                int finalHeight = height - actionbarHeight - 80;
+                int finalHeight = height - actionbarHeight;
                 ConstraintLayout.LayoutParams params =
                         (ConstraintLayout.LayoutParams)mailList.getLayoutParams();
                 params.height = finalHeight;
@@ -95,6 +121,7 @@ public class fragment_mailview extends Fragment
                 mailList.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
+        setReplaceText();
         return view;
     }
 
@@ -120,6 +147,7 @@ public class fragment_mailview extends Fragment
             public void onClick(View v)
             {
                 //contact the server for updated list, then refresh
+                setReplaceText();
                 mailList.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
@@ -141,26 +169,20 @@ public class fragment_mailview extends Fragment
                     JSONObject sentData = Util.connectionObject(context);
                     sentData.put(CONST.query_type, "DELETE_MESSAGE");
                     sentData.put(CONST.data, listData);
+                    GlobalData.DataCache.getSent_messages().removeAll(delete_list);
+                    GlobalData.DataCache.getInbox_messages().removeAll(delete_list);
+                    delete_list.clear();
+                    adapter.notifyDataSetChanged();
+                    for(Integer p:delete_position)
+                    {
+                        if(p<mailList.getChildCount())
+                            mailList.getChildAt(p).setBackgroundColor(Color.TRANSPARENT);
+                    }
+                    delete_position.clear();
 
+                    //send to server last to ensure app executes faster
                     GlobalData.connector = new CONNECTOR();
                     String result = GlobalData.connector.execute(sentData).get();
-                    Log.d("Result", result);
-                    if(result.trim().equals(CONST.SUCCESS))
-                    {
-                        //clear the list view of all background changes
-                        GlobalData.DataCache.getSent_messages().removeAll(delete_list);
-                        GlobalData.DataCache.getInbox_messages().removeAll(delete_list);
-                        delete_list.clear();
-                        adapter.notifyDataSetChanged();
-                        for(Integer p:delete_position)
-                        {
-                            if(p<mailList.getChildCount())
-                                mailList.getChildAt(p).setBackgroundColor(Color.TRANSPARENT);
-                        }
-                        delete_position.clear();
-                        //clear all background
-
-                    }
                 } catch (JSONException|ExecutionException|InterruptedException e)
                 {
                     e.printStackTrace();
@@ -176,22 +198,35 @@ public class fragment_mailview extends Fragment
             dialog.show();
         });
 
-        composeBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
+        composeBtn.setOnClickListener(new ComposeListner(null, null));
 
+        shareBtn.setOnClickListener(v ->
+        {
+            if(delete_list.size()<=0)
+            {
+                Toast.makeText(context, "No Text Selected", Toast.LENGTH_SHORT).show();
             }
-        });
-
-        shareBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
+            else
             {
-                //pop up app list to be shared
-                //wechat, whatsapp, gmail
+                StringBuilder data = new StringBuilder();
+                for(data_type_message m:delete_list)
+                {
+                    data.append(m.getFrom()).append("\n");
+                    data.append(m.getTo()).append("\n");
+                    data.append(m.getFull_date()).append("\n");
+                    data.append(m.getSubject()).append("\n");
+                    data.append(m.getMessage()).append("\n\n\n");
+                }
+                Util.sendDataToOtherApps(context, data.toString());
+                delete_list.clear();
+                for(Integer p:delete_position)
+                {
+                    if(p<mailList.getChildCount())
+                        mailList.getChildAt(p).setBackgroundColor(Color.TRANSPARENT);
+                }
+                delete_position.clear();
+                //clear selection
+
             }
         });
     }
@@ -268,7 +303,7 @@ public class fragment_mailview extends Fragment
                     content.setText(iMessage.getMessage());
 
                     if(iMessage.getLabel().equals(CONST.label_marked))
-                        mark.setColorFilter(Color.YELLOW);
+                        mark.setColorFilter(context.getColor(R.color.yellow_mild));
 
                     final AlertDialog dialog = builder.create();
                     close.setOnClickListener(new View.OnClickListener()
@@ -402,61 +437,73 @@ public class fragment_mailview extends Fragment
                         }
                     });
 
-                    delete.setOnClickListener(new View.OnClickListener()
+                    delete.setOnClickListener(v ->
                     {
-                        @Override
-                        public void onClick(View v)
+                        try
                         {
-                            try
+                            JSONObject obj = Util.connectionObject(context);
+                            obj.put("query_type", "DELETE_MESSAGE");
+                            //construct the data part
+                            JSONArray deleteList = new JSONArray();
+                            deleteList.put(iMessage.getMessageID());
+                            obj.put("data", deleteList);
+                            CONNECTOR conn = new CONNECTOR();
+                            String result = conn.execute(obj).get();
+                            Log.e("DeleteResult", result);
+                            data.remove(iMessage);
+                            delete_list.remove(iMessage);
+                            //now update the delete position
+                            for(int i=0; i<delete_position.size(); i++)
                             {
-                                JSONObject obj = Util.connectionObject(context);
-                                obj.put("query_type", "DELETE_MESSAGE");
-                                //construct the data part
-                                JSONArray deleteList = new JSONArray();
-                                deleteList.put(iMessage.getMessageID());
-                                obj.put("data", deleteList);
-                                CONNECTOR conn = new CONNECTOR();
-                                String result = conn.execute(obj).get();
-                                Log.e("DeleteResult", result);
-
-                                //clean data list, delete list
-                                data.remove(iMessage);
-                                delete_list.remove(iMessage);
-                                GlobalData.DataCache.getSent_messages().remove(iMessage);
-                                GlobalData.DataCache.getInbox_messages().remove(iMessage);
-                                adapter.notifyDataSetChanged();
-                                dialog.dismiss();
-                            }catch (JSONException| ExecutionException|InterruptedException e)
-                            {
-                                e.printStackTrace();
+                                if(delete_position.get(i) == position)
+                                {
+                                    delete_position.remove(i);
+                                    mailList.getChildAt(position).setBackgroundColor(Color.TRANSPARENT);
+                                    break;
+                                }
                             }
+                            for(int i=0; i<delete_position.size(); i++)
+                            {
+                                //second loop up update the list
+                                if(delete_position.get(i)>position)
+                                {
+                                    //first change the view
+                                    mailList.getChildAt(delete_position.get(i)).setBackgroundColor(Color.TRANSPARENT);
+                                    mailList.getChildAt(delete_position.get(i)-1).setBackgroundColor(context.getColor(R.color.DeleteMarkColor));
+                                    delete_position.set(i, delete_position.get(i)-1);
+                                    //this is the new value
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                            dialog.dismiss();
+                            GlobalData.DataCache.getSent_messages().remove(iMessage);
+                            GlobalData.DataCache.getInbox_messages().remove(iMessage);
+                        }catch (JSONException| ExecutionException|InterruptedException e)
+                        {
+                            e.printStackTrace();
                         }
                     });
 
-                    mark.setOnClickListener(new View.OnClickListener()
+                    mark.setOnClickListener(v ->
                     {
-                        @Override
-                        public void onClick(View v)
+                        //unmark it
+                        String newStatus= CONST.label_inbox;
+                        if(iMessage.getLabel().equals(CONST.label_inbox))
+                            newStatus= CONST.label_marked;
+                        adapter_message.updateLabel(iMessage.getMessageID(), newStatus,
+                                context);
+                        if(newStatus.equals(CONST.label_inbox))
                         {
-                            //unmark it
-                            String newStatus= CONST.label_inbox;
-                            if(iMessage.getLabel().equals(CONST.label_inbox))
-                                newStatus= CONST.label_marked;
-                            adapter_message.updateLabel(iMessage.getMessageID(), newStatus,
-                                    context);
-                            if(newStatus.equals(CONST.label_inbox))
-                            {
-                                mark.setColorFilter(Color.GRAY);
-                                listItemMark.setColorFilter(Color.GRAY);
-                            }
-                            else
-                            {
-                                mark.setColorFilter(Color.YELLOW);
-                                listItemMark.setColorFilter(Color.YELLOW);
-
-                            }
-                            iMessage.setLabel(newStatus);
+                            mark.setColorFilter(Color.GRAY);
+                            listItemMark.setColorFilter(Color.GRAY);
                         }
+                        else
+                        {
+                            mark.setColorFilter(R.color.yellow_mild);
+                            listItemMark.setColorFilter(context.getColor(R.color.yellow_mild));
+
+                        }
+                        iMessage.setLabel(newStatus);
                     });
 
                     dialog.show();
@@ -484,15 +531,13 @@ public class fragment_mailview extends Fragment
             {
                 delete_list.add(data.get(position));
                 delete_position.add(position);
-                view.setBackgroundColor(Color.GRAY);
+                view.setBackgroundColor(context.getColor(R.color.DeleteMarkColor));
               //  deleteButton.setVisibility(View.VISIBLE);
             }
-            return false;
+            return true;
         }
     };
 
-
-    private final int ComposeType_Compose = 100, ComposeType_Reply = 101, ComposeType_Forward = 102;
 
     private void deleteMessages()
     {
@@ -524,5 +569,122 @@ public class fragment_mailview extends Fragment
     public int getDeleteListSize()
     {
         return delete_list.size();
+    }
+
+    private class ComposeListner implements View.OnClickListener
+    {
+        data_type_message Message = null;
+        AlertDialog prevDialog = null;
+
+        public ComposeListner(data_type_message Message, AlertDialog prevDialog)
+        {
+            this.Message = Message;
+            this.prevDialog = prevDialog;
+        }
+        @SuppressLint("SimpleDateFormat")
+        @Override
+        public void onClick(View v)
+        {
+            if(prevDialog!=null)
+                prevDialog.dismiss();
+            View view =
+                    LayoutInflater.from(context).inflate(R.layout.dialog_mail_compose_revised, null);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context,
+                    R.style.BottomOptionsDialogTheme);
+            //full screen dialog
+            builder.setView(view);
+            final AlertDialog cdialog = builder.create();
+            ImageButton send = view.findViewById(R.id.compose_send_button),
+                    cancel = view.findViewById(R.id.compose_cancel_button);
+            TextView title = view.findViewById(R.id.compose_title);
+            final EditText header = view.findViewById(R.id.compose_dialog_header);
+            EditText toField = view.findViewById(R.id.compose_dialog_to_field);
+
+            if(Message!=null)
+            {
+                title.setText(context.getString(R.string.word_reply));
+                header.setText(Message.getSubject());
+                String to_name = Message.getFrom_name();
+                if(Message.getFrom().equals(GlobalData.DataCache.getLogin_info().get(
+                        "username")))
+                {
+                    to_name = Message.getTo_name();
+                }
+                toField.setText(context.getString(R.string.to_prefix_fill,
+                        to_name));
+            }
+
+            final EditText content = view.findViewById(R.id.compose_dialog_text);
+            cancel.setOnClickListener(v1 -> cdialog.dismiss());
+            send.setOnClickListener(v12 ->
+            {
+                CONNECTOR conn = new CONNECTOR();
+                CONNECTOR connector = new CONNECTOR();
+                try
+                {
+                    String to_id, from_id;
+                    String to_name, from_name;
+                    to_id = toField.getEditableText().toString();
+                    JSONObject fObj = new JSONObject();
+                    fObj.put("function_name", "GET_STUDENT_NAME");
+                    fObj.put("email", to_id);
+                    connector.setAccessURL("https://www.greatbayco" +
+                            ".com/appaccess/nonloginfunctions.php");
+                    to_name = connector.execute(fObj).get().trim();
+                    Log.e("Result", to_name);
+                    if(to_name.equals(CONST.NOT_FOUND))
+                    {
+                        //give out an error message
+                        Toast.makeText(context, "User Not Found", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    from_id = GlobalData.DataCache.getLogin_info().get(
+                            "username");
+                    from_name =
+                            (String)GlobalData.DataCache.getProfileData().get(1).getContent()+(String)GlobalData.DataCache.getProfileData().get(2).getContent();  //first name + last name
+
+                    JSONObject obj = Util.connectionObject(context);
+                    obj.put("query_type", "SEND_MESSAGE_TUTOR");
+                    obj.put("from_id", from_id);
+                    obj.put("to_id", to_id);
+                    obj.put("subject", header.getText().toString());
+                    obj.put("message", content.getText().toString());
+
+                    String result = conn.execute(obj).get();
+
+                    //now add the message to Data
+                    //==============================================================================================
+                    data_type_message m = new data_type_message();
+                    m.setLabel(CONST.label_inbox);
+                    Date cur = Calendar.getInstance().getTime();
+                    m.setDate((new SimpleDateFormat("yyyy-MM-dd")).format(cur)); //this sets the date
+                    m.setTime((new SimpleDateFormat("HH:mm:ss")).format(cur));
+                    m.setFrom(from_id);
+                    m.setTo(to_id);
+                    m.setFrom_name(from_name);
+                    m.setTo_name(to_name);
+                    m.setMessageID(Integer.parseInt(result.trim()));
+                    m.setRead(false);
+                    m.setSubject(header.getText().toString());
+                    m.setMessage(content.getText().toString());
+                    m.setToDelete(false);
+                    Log.e("Size Pre",
+                            GlobalData.DataCache.getSent_messages().size()+"");
+                    GlobalData.DataCache.getSent_messages().add(0, m);
+                    Log.e("Size Post",
+                            GlobalData.DataCache.getSent_messages().size()+"");
+                    Intent i = new Intent();
+                    i.putExtra("Update", 1);
+                    i.setAction(CONST.mailUpdateAction);
+                    Objects.requireNonNull(getActivity()).sendBroadcast(i);
+                    //================================================================================================
+                    cdialog.dismiss();
+                }catch (JSONException| ExecutionException|InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+            });
+            cdialog.show();
+        }
     }
 }

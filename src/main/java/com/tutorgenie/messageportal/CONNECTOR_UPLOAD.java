@@ -100,6 +100,7 @@ public class CONNECTOR_UPLOAD extends AsyncTask<JSONObject, Integer, String>
                 outputStream.write(buffer, 0, size_buffer);
                 TotalBytesRead += size_buffer;
                 //now publishProgress
+                Log.e("Bytes", TotalBytesRead+"/"+BytesCount);
                 publishProgress(Math.round(100 * (float)TotalBytesRead /BytesCount));
                 size_buffer = Math.min((BytesCount-BytesRead), 64);
                 BytesRead = bs.read(buffer, 0, size_buffer);
@@ -173,7 +174,7 @@ public class CONNECTOR_UPLOAD extends AsyncTask<JSONObject, Integer, String>
     protected void onProgressUpdate(Integer... values)
     {
         super.onProgressUpdate(values);
-        Log.e("updating", values[0]+"");
         handle.pub_progress(values[0]);
+        Log.e("updating", values[0]+"");
     }
 }

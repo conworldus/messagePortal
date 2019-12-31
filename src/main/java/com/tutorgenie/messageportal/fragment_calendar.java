@@ -48,6 +48,8 @@ public class fragment_calendar extends Fragment
     private Spinner method;
     private TextView date_display;
 
+    private int lastExpanded = -1;
+
     @SuppressLint("SimpleDateFormat")
     fragment_calendar(Context context)
     {
@@ -74,8 +76,6 @@ public class fragment_calendar extends Fragment
         cal.set(Calendar.YEAR, year);
         cal.set(Calendar.WEEK_OF_YEAR, week_no);
         Date sunday = cal.getTime();
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        //return new Pair<>(sdf.format(sunday), sdf.format(saturday));
         return new Pair<>(sunday.getTime(), saturday.getTime());
     }
 
@@ -117,12 +117,11 @@ public class fragment_calendar extends Fragment
         method_list.add(getString(R.string.date_view));
         method_list.add(getString(R.string.weekly_view));
         method_list.add(getString(R.string.month_view));
+        method_list.add(getString(R.string.pending_view));
 
         method.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,
                 method_list
                 ));
-
-
 
         dateView.setOnClickListener(new View.OnClickListener()
         {
@@ -185,6 +184,9 @@ public class fragment_calendar extends Fragment
                                 adapter.setScheduleList(adapter_calendar.BYMONTH,
                                         monthRange.first, monthRange.second);
                                 dateView.setText(display_m);
+                                break;
+                            case 3: //pending view
+                                adapter.setSchedule_list(GlobalData.DataCache.getPendingList());
                                 break;
                         }
                         entryList.setAdapter(adapter);
@@ -254,6 +256,9 @@ public class fragment_calendar extends Fragment
                                     monthRange.first, monthRange.second);
                             dateView.setText(display_m);
                             break;
+                        case 3: //available view
+                            adapter.setSchedule_list(GlobalData.DataCache.getPendingList());
+                            break;
                     }
 
                     entryList.setAdapter(adapter);
@@ -276,8 +281,43 @@ public class fragment_calendar extends Fragment
             }
         });
 
+        //check Calendar Permission
+        if(context.checkSelfPermission(Manifest.permission.WRITE_CALENDAR)==PackageManager.PERMISSION_GRANTED
+            &&context.checkSelfPermission(Manifest.permission.READ_CALENDAR)==PackageManager.PERMISSION_GRANTED)
+            adapter.calendarPermission=true;
+
+        else
+        {
+            int PermissionId = 200;
+            Util.checkPermissions(context, PermissionId,
+                    Manifest.permission.READ_CALENDAR,
+                    Manifest.permission.WRITE_CALENDAR);
+        }
+
+        entryList.setOnGroupExpandListener(groupPosition ->
+        {
+            if(lastExpanded == -1)
+                lastExpanded = groupPosition;
+            else
+            {
+                entryList.collapseGroup(lastExpanded);
+                lastExpanded = groupPosition;
+            }
+        });
+
         return view;
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], @NonNull int[] grantResults)
+    {
+        if(requestCode==200)
+        {
+            adapter.calendarPermission= grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+        }
+    }
+
     private void setReplaceText(TextView replaceText)
     {
         if (adapter.schedule_list == null || adapter.schedule_list.size() <= 0)

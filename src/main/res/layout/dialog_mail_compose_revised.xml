@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="#FFFFFF"
     android:padding="20dp"
-    tools:ignore="ContentDescription,HardcodedText">
+    tools:ignore="ContentDescription">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/compose_top_bar"
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/compose_cancel_button"
-            android:text="Title Here"
+            android:text="@string/compose_message"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             style="@style/text_large_bold"
@@ -49,14 +49,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
     </LinearLayout>
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/header_information"
+        android:hint="@string/student_email_here"
         android:id="@+id/compose_dialog_to_field"
         style="@style/text_large"
+        android:background="@null"
         android:layout_marginVertical="10dp"
-        />
+        android:autofillHints="Email"
+        android:inputType="textEmailAddress" />
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -64,13 +66,13 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/header_information"
         android:id="@+id/compose_dialog_header"
         style="@style/text_large"
         android:inputType="text"
         android:background="@null"
         android:layout_marginVertical="10dp"
-        tools:ignore="Autofill,LabelFor" />
+        tools:ignore="Autofill,LabelFor"
+        android:hint="@string/subject_here"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

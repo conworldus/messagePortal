@@ -1,18 +1,29 @@
 package com.tutorgenie.messageportal;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.android.material.tabs.TabLayout;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -24,8 +35,19 @@ public class MainActivity extends AppCompatActivity
     private fragment_mailview inbox_frag, sent_frag;
     private fragment_profile profile_frag;
     private fragment_calendar Schedule_frag;
+    private TextView calendarBadge;
+
+    public static MutableLiveData<Integer> pendingCount = new MutableLiveData<>();
 
     message_update_receiver receiver;
+
+    private int[] tabIcons =
+            {
+            R.drawable.ic_inbox_black_24dp,
+            R.drawable.ic_send_black_24dp,
+            R.drawable.ic_date_range_black_24dp,
+            R.drawable.ic_person_outline_black_24dp
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,13 +58,51 @@ public class MainActivity extends AppCompatActivity
 
         tabLayout = findViewById(R.id.ControlTab);
         viewPager = findViewById(R.id.mainPager);
-     //   deleteButton = findViewById(R.id.delete_btn);
+        calendarBadge = findViewById(R.id.calendar_badge);
         viewPager.setAdapter(new viewPagerAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
 
+        //=======UI Adjustment for calendarBadge======================
+        tabLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
+        {
+            @Override
+            public void onGlobalLayout()
+            {
+                LinearLayout tabItem =
+                        (LinearLayout)((LinearLayout)tabLayout.getChildAt(0)).getChildAt(2);
+                Log.i("TabChildren", tabLayout.getChildCount()+"");
+                Log.i("TabSubChildren", ((LinearLayout) tabLayout.getChildAt(0)).getChildCount()+
+                        "");
+                int childCount = tabItem.getChildCount();
+                View tabItemText = (tabItem.getChildAt(0));
+                tabItemText.setBackgroundColor(Color.GREEN);
+
+                int textWidth = tabItemText.getWidth();
+                int textHeight = tabItemText.getHeight();
+                int w = tabLayout.getWidth(), h = tabLayout.getHeight();
+                float absoluteX =
+                        tabItemText.getX()+(float)tabItemText.getWidth()+(float)w/2+(float)calendarBadge.getWidth()/2,
+                        absoluteY =
+                        tabItemText.getY()-(float)calendarBadge.getHeight()/2;
+                //10 is the badge displacement
+
+                calendarBadge.setX(absoluteX); calendarBadge.setY(absoluteY);
+                tabLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
+
+
+        for(int i = 0; i<4; i++)
+        {
+            Objects.requireNonNull(tabLayout.getTabAt(i)).setIcon(tabIcons[i]);
+            Objects.requireNonNull(Objects.requireNonNull(tabLayout.getTabAt(i)).getIcon()).setTint(Color.WHITE);
+        }
+
         inbox_frag = new fragment_mailview(GlobalData.DataCache.getInbox_messages(),
                 context);
+        inbox_frag.setType(fragment_mailview.mailType.INBOX);
         sent_frag = new fragment_mailview(GlobalData.DataCache.getSent_messages(), context);
+        sent_frag.setType(fragment_mailview.mailType.SENT);
         profile_frag = new fragment_profile(context);
         Schedule_frag = new fragment_calendar(context);
 
@@ -68,25 +128,30 @@ public class MainActivity extends AppCompatActivity
         });
 
         receiver = new message_update_receiver();
-        receiver.setAction(new message_update_receiver.action()
+        receiver.setAction(() ->
         {
-            @Override
-            public void execute()
+            Log.e("Receiver", "Activated");
+            if(inbox_frag!=null)
             {
-                Log.e("Receiver", "Activated");
-                if(inbox_frag!=null)
-                {
-                    inbox_frag.updateMailList();
-                }
-                if(sent_frag!=null)
-                {
-                    sent_frag.updateMailList();
-                }
+                inbox_frag.updateMailList();
+            }
+            if(sent_frag!=null)
+            {
+                sent_frag.updateMailList();
             }
         });
         IntentFilter filter = new IntentFilter();
         filter.addAction(CONST.mailUpdateAction);
         registerReceiver(receiver, filter);
+
+        //Other Data Initialization
+        pendingCount.setValue(GlobalData.DataCache.getPendingList().size());
+        pendingCount.observe(this, integer ->
+        {
+            //update UI
+            //Objects.requireNonNull(tabLayout.getTabAt(2)).setText(Objects.requireNonNull
+            // (viewPager.getAdapter()).getPageTitle(2)+"("+pendingCount.getValue()+")");
+        });
     }
 
     public void setPagerMailFragment()

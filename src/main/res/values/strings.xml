@@ -31,8 +31,8 @@
     <string name="status_cancel">Lesson confirmed. Click to cancel</string>
     <string name="decline">Decline</string>
     <string name="edit_note">Edit Note</string>
-    <string name="show_map"><u>Show Map</u></string>
-    <string name="hide_map"><u>Hide Map</u></string>
+    <string name="show_map"><u>+Show Map</u></string>
+    <string name="hide_map"><u>-Hide Map</u></string>
     <string name="add_note_header"><b>Note:</b>\n%1$s</string>
     <string name="add_note_hint">Add your note here</string>
     <string name="student_comment_header">Student Comment: \n%1$s</string>
@@ -41,6 +41,7 @@
     <string name="month_view">View a whole month</string>
     <string name="weekly_view">View a whole week</string>
     <string name="date_view">View a single day</string>
+    <string name="pending_view">View only pending class requests</string>
     <string name="specific_date">Specific Date %1$s</string>
     <string name="pick_a_date">Pick a date</string>
     <string name="student_name">Student Name: </string>
@@ -53,12 +54,18 @@
     <string name="time_prefix">Time:</string>
     <string name="subject_prefix">Subject: %1$s</string>
     <string name="schedule_empty">Nothing is scheduled for your chosen %1$s.</string>
+
+
     <string name="word_date">date</string>
     <string name="word_week">week</string>
     <string name="word_month">month</string>
     <string name="word_year">year</string>
     <string name="word_delete">Delete</string>
     <string name="word_reply">Reply</string>
+
+
+    <string name="share_via">Shared via:</string>
+    <string name="compose_title">Compose Message</string>
 
     <!--Longer Messages-->
     <string name="image_exist">It appears that you already have a profile picture. Would
@@ -73,16 +80,130 @@
     <string name="send">Send</string>
     <string name="close">Close</string>
     <string name="header_information">Header Information</string>
-    <string name="enter_your_reply_here">Enter your reply here</string>
+    <string name="enter_your_reply_here">Enter your message here</string>
 
 
 
     <!-- Text With Headers-->
-    <string name="location_h">Location: %1$s\n</string>
+    <string name="location_h">Location:\n %1$s</string>
 
 
     <!--Float Values-->
     <string name="golden_ratio">1.61803398875</string>
     <string name="no_message">You Have No Message</string>
     <string name="nodescription">no description</string>
+    <string name="title_here">Title Here</string>
+    <string name="student_email_here">Student Email Here</string>
+    <string name="subject_here">Subject here</string>
+    <string name="hide_profile_image">Hide Profile Image</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="show_profile_picture">Show Profile Picture</string>
+
+
+    <!--SYSTEM VALUES-->
+    <string name="file_path">login.txt</string>
+    <string name="register_url">https://www.tutor-genie.com/tutoraccess/register.php</string>
+
+    <!--Other-->
+    <string name="username_email">Username (Email)</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="if_you_have_not_registered_please_to_go_tutor_genie_com_to_register_as_a_tutor">If you have not registered, please to go Tutor-genie.com to register as a tutor</string>
+    <string name="Login_Prompt">It appears that you have already logged in as <b>%1$s</b> last
+        time.  Would you like to continue as <b>%1$s</b>?</string>
+    <string name="save_login_info_for_autologin">Save Login Info For Autologin</string>
+    <string name="register">Register</string>
+    <string name="todo">TODO</string>
+    <string name="compose_message">Compose Message</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="hourly_price">Hourly Price ($HKD)</string>
+    <string name="share_to_phone_calendar">Share to Phone Calendar</string>
+    <string name="share_to_other_apps">Share to other apps</string>
+    <string name="number_zero">0</string>
+
+    <string-array name="tutor_education_level">
+        <item>Primary</item>
+        <item>Secondary</item>
+        <item>Bachelors</item>
+        <item>Graduate</item>
+        <item>Doctorate</item>
+        <item>Postdoctorate</item>
+    </string-array>
+
+    <string-array name="tutor_search_languageList">
+        <item>Any</item>
+        <item>Afrikanns</item>
+        <item>Albanian</item>
+        <item>Arabic</item>
+        <item>Armenian</item>
+        <item>Basque</item>
+        <item>Bengali</item>
+        <item>Bulgarian</item>
+        <item>Catalan</item>
+        <item>Cambodian</item>
+        <item>Chinese (Mandarin)</item>
+        <item>Chinese (Cantonese)</item>
+        <item>Croation</item>
+        <item>Czech</item>
+        <item>Danish</item>
+        <item>Dutch</item>
+        <item>English</item>
+        <item>Estonian</item>
+        <item>Fiji</item>
+        <item>Finnish</item>
+        <item>French</item>
+        <item>Georgian</item>
+        <item>German</item>
+        <item>Greek</item>
+        <item>Gujarati</item>
+        <item>Hebrew</item>
+        <item>Hindi</item>
+        <item>Hungarian</item>
+        <item>Icelandic</item>
+        <item>Indonesian</item>
+        <item>Irish</item>
+        <item>Italian</item>
+        <item>Japanese</item>
+        <item>Javanese</item>
+        <item>Korean</item>
+        <item>Latin</item>
+        <item>Latvian</item>
+        <item>Lithuanian</item>
+        <item>Macedonian</item>
+        <item>Malay</item>
+        <item>Malayalam</item>
+        <item>Maltese</item>
+        <item>Maori</item>
+        <item>Marathi</item>
+        <item>Mongolian</item>
+        <item>Nepali</item>
+        <item>Norwegian</item>
+        <item>Persian</item>
+        <item>Polish</item>
+        <item>Portuguese</item>
+        <item>Punjabi</item>
+        <item>Quechua</item>
+        <item>Romanian</item>
+        <item>Russian</item>
+        <item>Samoan</item>
+        <item>Serbian</item>
+        <item>Slovak</item>
+        <item>Slovenian</item>
+        <item>Spanish</item>
+        <item>Swahili</item>
+        <item>Swedish </item>
+        <item>Tamil</item>
+        <item>Tatar</item>
+        <item>Telugu</item>
+        <item>Thai</item>
+        <item>Tibetan</item>
+        <item>Tonga</item>
+        <item>Turkish</item>
+        <item>Ukrainian</item>
+        <item>Urdu</item>
+        <item>Uzbek</item>
+        <item>Vietnamese</item>
+        <item>Welsh</item>
+        <item>Xhosa</item>
+    </string-array>
 </resources>

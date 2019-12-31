@@ -35,16 +35,26 @@
             android:background="#00000000"
              />
     </RelativeLayout>
-    <Button
-        android:id="@+id/upload_btn"
-        android:layout_width="match_parent"
-        android:text="@string/confirm"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/green_mild"/>
 
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/cancel_btn"
-        android:text="@string/cancel"/>
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/upload_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="@string/confirm"
+            android:layout_height="50dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/green_mild"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="50dp"
+            android:id="@+id/cancel_btn"
+            android:text="@string/cancel"/>
+    </LinearLayout>
+
 </LinearLayout>

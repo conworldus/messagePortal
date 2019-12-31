@@ -1,52 +1,48 @@
 package com.tutorgenie.messageportal;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.ref.WeakReference;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class CONNECTOR extends AsyncTask<JSONObject, Integer, String>
 {
-    private int Request_Code = -1;  //what type of request
-    private final String accessURL = "https://www.greatbayco.com/appaccess/index.php";
-    private HttpsURLConnection connection;
+    private String accessURL = "https://www.greatbayco.com/appaccess/index.php";  //default
     private StringBuilder builder = new StringBuilder();
-    public progressRetriever retriever;
-    private String currentState="";
-    private String result="";
+    progressRetriever retriever;
 
-    public CONNECTOR()
+    CONNECTOR()
     {
 
     }
-    public void ResetConnector()
+    void setAccessURL(String newURL)
     {
-        Request_Code = -1;
+        accessURL = newURL;
     }
+
+    public void setRetriever(progressRetriever sRetriever)
+    {
+        this.retriever = sRetriever;
+    }
+
     @Override
     public String doInBackground(JSONObject... objects)
     {
         try
         {
             URL obj = new URL(accessURL);
-            connection = (HttpsURLConnection) obj.openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) obj.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
             //connection.setDoInput(true);
@@ -81,10 +77,9 @@ public class CONNECTOR extends AsyncTask<JSONObject, Integer, String>
                     publishProgress(p);
                 }
             }
-            result = builder.toString();
+            String result = builder.toString();
             if(result.trim().length()==0)
             {
-                Log.e("e", "bad request");
                 return "Bad Request";
             }
             Log.e("e", result);
@@ -106,37 +101,22 @@ public class CONNECTOR extends AsyncTask<JSONObject, Integer, String>
         return null;
     }
 
-    @Override
-    protected void onPreExecute()
-    {
-        super.onPreExecute();
-    }
-
-    @Override
-    protected void onPostExecute(String aString)
-    {
-        super.onPostExecute(aString);
-    }
 
     @Override
     protected void onProgressUpdate(Integer... values)
     {
         super.onProgressUpdate(values);
+        Log.d("Publish", values[0]+"");
         if(retriever!=null)
         {
+            Log.d("Calling", "Retriever");
             retriever.writeProgress(values[0]);
-            retriever.writeCurrentState(currentState);
         }
+        else Log.i("Retrieve", "IS NULL!");
     }
 
     public interface progressRetriever
     {
         void writeProgress(int p);
-        void writeCurrentState(String s);
-    }
-
-    public String getResult()
-    {
-        return result;
     }
 }

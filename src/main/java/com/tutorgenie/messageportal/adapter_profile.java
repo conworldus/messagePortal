@@ -9,12 +9,15 @@ import android.graphics.Bitmap;
 import android.provider.Settings;
 import android.text.InputType;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -40,6 +43,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -114,6 +118,9 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
             case "latitude":
             case "longitude":
             case "service_radius":
+            case "testonly":
+            case "referral":
+            case "referral_extra":
             {
                 view = LayoutInflater.from(context).inflate(R.layout.blanklayout, null);
                 break;
@@ -154,7 +161,7 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
                         currentArray.put(s);
                         final TextView t = new TextView(context);
                         t.setLayoutParams(tParams);
-                        t.setPadding(10, 3, 10, 3);
+                        t.setPadding(15, 10, 15, 10);
                         t.setBackgroundResource(R.drawable.clickable_textview);
                         t.setText(s);
                         subjectBox.addView(t);
@@ -165,51 +172,47 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
                             {
                                 android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
                                 builder.setMessage("Are you sure you want to remove "+t.getText()+"?");
-                                builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener()
+                                builder.setPositiveButton(R.string.confirm, (dialog, which) ->
                                 {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which)
+                                    String subText = ((TextView)v).getText().toString();
+                                    try
                                     {
-                                        String subText = ((TextView)v).getText().toString();
-                                        try
+                                        for (int i = 0; i < currentArray.length(); i++)
                                         {
-                                            for (int i = 0; i < currentArray.length(); i++)
+                                            if (currentArray.get(i).toString().trim().equals(subText.trim()))
                                             {
-                                                if (currentArray.get(i).toString().trim().equals(subText.trim()))
-                                                {
-                                                    currentArray.remove(i);
-                                                    list.remove(i);
-                                                    break;
-                                                }
+                                                currentArray.remove(i);
+                                                list.remove(i);
+                                                break;
                                             }
-                                            JSONObject queryData =
-                                                    new JSONObject();
-                                            queryData.put("username",
-                                                    context.getString(R.string.test_username));
-                                            queryData.put("password",
-                                                    context.getString(R.string.test_password));
-                                            queryData.put("query_type",
-                                                    "UPDATE_SUBJECT");
-                                            queryData.put("data",
-                                                    currentArray.toString());
-                                            String res =
-                                                    (new CONNECTOR()).execute(queryData).get();
-                                            if(res.trim().equals("OK"))
-                                            {
-                                                Toast.makeText(context,
-                                                        "res",
-                                                        Toast.LENGTH_SHORT).show();
-
-                                                GlobalData.DataCache.getProfileData().get(position).setContent(currentArray.toString());
-                                                //finally, update the view
-                                                subjectBox.removeView(v);
-                                            }
-                                            else Log.e("ER"
-                                                    , res);
-                                        }catch (JSONException |ExecutionException|InterruptedException e)
-                                        {
-                                            e.printStackTrace();
                                         }
+                                        JSONObject queryData =
+                                                new JSONObject();
+                                        queryData.put("username",
+                                                context.getString(R.string.test_username));
+                                        queryData.put("password",
+                                                context.getString(R.string.test_password));
+                                        queryData.put("query_type",
+                                                "UPDATE_SUBJECT");
+                                        queryData.put("data",
+                                                currentArray.toString());
+                                        String res =
+                                                (new CONNECTOR()).execute(queryData).get();
+                                        if(res.trim().equals("OK"))
+                                        {
+                                            Toast.makeText(context,
+                                                    "res",
+                                                    Toast.LENGTH_SHORT).show();
+
+                                            GlobalData.DataCache.getProfileData().get(position).setContent(currentArray.toString());
+                                            //finally, update the view
+                                            subjectBox.removeView(v);
+                                        }
+                                        else Log.e("ER"
+                                                , res);
+                                    }catch (JSONException |ExecutionException|InterruptedException e)
+                                    {
+                                        e.printStackTrace();
                                     }
                                 });
 
@@ -275,7 +278,7 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
                                                                       //finally, update the view
                                                                       TextView t = new TextView(context);
                                                                       t.setLayoutParams(tParams);
-                                                                      t.setPadding(10, 3, 10, 3);
+                                                                      t.setPadding(15, 10, 15, 10);
                                                                       t.setBackgroundResource(R.drawable.clickable_textview);
                                                                       t.setText(item.getTitle());
                                                                       subjectBox.addView(t,
@@ -377,77 +380,88 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
                 contentText.setLayoutParams(GlobalData.params);
                 contentText.setPadding(20, 5, 10, 5);
                 contentText.setGravity(Gravity.END);
+                contentText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 if(!data.get(position).getContent().toString().trim().equals("null"))
                 {
-                    if (!title.equals("nationality"))
+                    if (!title.equals("nationality")&&!title.equals("date_of_birth"))
                         contentText.setText(data.get(position).getContent().toString());
+                    else if(title.equals("date_of_birth"))
+                        contentText.setText(Util.changeDateStringLocale(data.get(position).getContent().toString()));
                     else
                         contentText.setText(GlobalData.DataCache.getNationality_map().inverse().get(data.get(position).getContent().toString()));
                 }
                 layout.addView(contentText);
-                contentText.setOnClickListener(new View.OnClickListener()
+                contentText.setOnClickListener(v ->
                 {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        //popup edit box
-                        //do another switch to determine type
-                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        @SuppressLint("InflateParams") View editDialog = LayoutInflater.from(context).inflate(R.layout.dialog_edit,
-                                null);
+                    //popup edit box
+                    //do another switch to determine type
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    @SuppressLint("InflateParams") View editDialog = LayoutInflater.from(context).inflate(R.layout.dialog_edit,
+                            null);
 
-                        final EditText edit = editDialog.findViewById(R.id.edit_field);
-                        switch (title)
-                        {
-                            case "username":
-                            case "gender":
-                            case "first_name":
-                            case "last_name":
-                                return;
-                            case "date_of_birth":
-                                edit.setFocusable(false);
-                                edit.setOnClickListener(new View.OnClickListener()
-                                {
-                                    @Override
-                                    public void onClick(View v)
+                    final EditText edit = editDialog.findViewById(R.id.edit_field);
+                    switch (title)
+                    {
+                        case "username":
+                        case "first_name":
+                        case "last_name":
+                            return;
+                        case "date_of_birth":
+                            edit.setFocusable(false);
+                            edit.setOnClickListener(v1 ->
+                            {
+                                DatePickerDialog pickerDialog =
+                                        new DatePickerDialog(context, (view1, year, month,
+                                                                       dayOfMonth) -> edit.setText(Util.changeDateStringLocale(year+"-"+month+"-"+dayOfMonth)), 2000, 0, 1); //default date set
+                                pickerDialog.show();
+                            });
+                            break;
+                        default:
+                            switch (data.get(position).getType())
+                            {
+                                case MULTISELECT:
+                                    edit.setFocusable(false);
+                                    edit.setOnClickListener(v12 ->
                                     {
-                                        DatePickerDialog pickerDialog =
-                                                new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener()
-                                                {
-                                                    @SuppressLint("SetTextI18n")
-                                                    @Override
-                                                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
-                                                    {
-                                                        edit.setText(year+"-"+month+"-"+dayOfMonth);
-                                                    }
-                                                }, 2000, 0, 1); //default date set
-                                        pickerDialog.show();
-                                    }
-                                });
-                                break;
-                            case "nationality":
-                                edit.setFocusable(false);
-                                edit.setOnClickListener(new View.OnClickListener()
-                                {
-                                    @Override
-                                    public void onClick(View v)
-                                    {
-                                        AlertDialog.Builder builder =
+                                        AlertDialog.Builder builder1 =
                                                 new AlertDialog.Builder(context);
 
-                                        Spinner spinner = new Spinner(context);
-                                        builder.setView(spinner);
-                                        final AlertDialog dialog = builder.create();
-                                        spinner.setLayoutParams(GlobalData.params);
-                                        spinner.setAdapter((new ArrayAdapter<String>(context,
-                                                android.R.layout.simple_spinner_item,
-                                                GlobalData.DataCache.getNationality_list())));
+                                        @SuppressLint("InflateParams") View sView =
+                                                LayoutInflater.from(context).inflate(R.layout.popupspinner, null);
+
+                                        Spinner spinner =
+                                                sView.findViewById(R.id.multiselectSpinner);
+
+                                        builder1.setView(sView);
+                                        final AlertDialog dialog = builder1.create();
+                                        switch (title)
+                                        {
+                                            case "gender":
+
+                                                spinner.setAdapter((new ArrayAdapter<>(context,
+                                                        R.layout.simple_spinner_item,
+                                                        cache.gender_list)));
+                                                break;
+                                            case "nationality":
+                                                spinner.setAdapter((new ArrayAdapter<>(context,
+                                                        android.R.layout.simple_spinner_item,
+                                                        GlobalData.DataCache.getNationality_list())));
+                                                break;
+                                            case "native_language":
+                                            case "second_language":
+                                                spinner.setAdapter(ArrayAdapter.createFromResource(context, R.array.tutor_search_languageList, R.layout.simple_spinner_item));
+                                                break;
+                                            case "education_level":
+                                                spinner.setAdapter(ArrayAdapter.createFromResource(context, R.array.tutor_education_level, R.layout.simple_spinner_item));
+                                            default:
+                                        }
+
                                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
                                         {
                                             @Override
                                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                                             {
-                                                edit.setText(GlobalData.DataCache.getNationality_list().get(position));
+                                                edit.setText(spinner.getSelectedItem().toString());
                                             }
 
                                             @Override
@@ -456,87 +470,86 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
 
                                             }
                                         });
+
                                         dialog.show();
-                                    }
-                                });
-
-                                break;
-                            case "price_min":
-                            case "phone_number":
-                                edit.setInputType(InputType.TYPE_CLASS_NUMBER);
-                                break;
-                            default:
-                                edit.setInputType(InputType.TYPE_CLASS_TEXT);
-                                break;
-                        }
-                        edit.setHint(Util.CapsFirst(title.replace("_", " ")));
-                        builder.setView(editDialog);
-                        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                String data="";
-                                if(title.equals("nationality"))
-                                {
-                                    //change data
-                                    String full=edit.getText().toString();
-                                    if(!GlobalData.DataCache.getNationality_map().containsKey(full))
-                                    {
-                                        Toast.makeText(context, "Nationality Doesn't Exist",
-                                                Toast.LENGTH_SHORT).show();
-                                        return;
-                                    }
-                                    else data =
-                                            GlobalData.DataCache.getNationality_map().get(full);
-                                    //the short version of nationality
-                                }
-                                else
-                                    data = edit.getText().toString();
-
-                                try
-                                {
-                                    JSONObject queryData =
-                                            new JSONObject();
-                                    queryData.put("username",
-                                            context.getString(R.string.test_username));
-                                    queryData.put("password",
-                                            context.getString(R.string.test_password));
-                                    queryData.put("query_type",
-                                            "UPDATE_PROFILE");
-                                    queryData.put("field",
-                                            title);
-                                    queryData.put("value", data);
-                                    String response = (new CONNECTOR()).execute(queryData).get();
-                                    if(response.trim().equals("OK")) //update success
-                                    {
-                                        if(title.equals("nationality"))
-                                            contentText.setText(GlobalData.DataCache.getNationality_map().inverse().get(data));
-                                        else contentText.setText(data);
-                                    }
-                                }catch (JSONException |ExecutionException|InterruptedException e)
-                                {
-                                    e.printStackTrace();
-                                }
+                                    });
+                                    break;
+                                case NUMBER:
+                                    edit.setInputType(InputType.TYPE_CLASS_NUMBER);
+                                    break;
+                                default:    edit.setInputType(InputType.TYPE_CLASS_TEXT);
                             }
-                        });
-
-                        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-
-                            }
-                        });
-
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
+                            break;
                     }
+                    edit.setHint(Util.CapsFirst(title.replace("_", " ")));
+                    builder.setView(editDialog);
+                    builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            String data="";
+                            if(title.equals("nationality"))
+                            {
+                                //change data
+                                String full=edit.getText().toString();
+                                if(!GlobalData.DataCache.getNationality_map().containsKey(full))
+                                {
+                                    Toast.makeText(context, "Nationality Doesn't Exist",
+                                            Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                else data =
+                                        GlobalData.DataCache.getNationality_map().get(full);
+                                //the short version of nationality
+                            }
+                            else
+                                data = edit.getText().toString();
+
+                            try
+                            {
+                                JSONObject queryData =
+                                        new JSONObject();
+                                queryData.put("username",
+                                        context.getString(R.string.test_username));
+                                queryData.put("password",
+                                        context.getString(R.string.test_password));
+                                queryData.put("query_type",
+                                        "UPDATE_PROFILE");
+                                queryData.put("field",
+                                        title);
+                                queryData.put("value", data);
+                                String response = (new CONNECTOR()).execute(queryData).get();
+                                if(response.trim().equals("OK")) //update success
+                                {
+                                    if(title.equals("nationality"))
+                                        contentText.setText(GlobalData.DataCache.getNationality_map().inverse().get(data));
+                                    else contentText.setText(data);
+                                }
+                            }catch (JSONException |ExecutionException|InterruptedException e)
+                            {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                    builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                 });
             }
         }
         titleText.setText(Util.CapsFirst(title.replace("_", " "))); //format
+        if(title.equals("price_min"))
+            titleText.setText(R.string.hourly_price);
         return view;
     }
 

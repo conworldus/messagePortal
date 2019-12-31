@@ -21,4 +21,6 @@ public class CONST
     public static final String data = "data";
     public static final String SUCCESS = "success";
     public static final String NO_MESSAGE = "NO MESSAGES";
+    public static final String NOT_FOUND = "NOT_FOUND";
+    public static final String OK = "OK";
 }

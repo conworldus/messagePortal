@@ -9,19 +9,26 @@
         android:orientation="vertical"
         android:elevation="0dp">
         <Button
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/schedule_select_date"
                 android:text="@string/pick_a_date"
+                android:layout_marginHorizontal="20dp"
                 android:gravity="center"
-                android:backgroundTint="#ffffff"/>
+                android:background="@drawable/border_rounded"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/Primary1"
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="3dp">
+            android:padding="3dp"
+            android:background="@drawable/border_horizontal_bottom">
             <Spinner
+                style="@android:style/Widget.Spinner"
                 android:id="@+id/calendar_display_method"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,9 +38,13 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <ExpandableListView
+            style="@android:style/Widget.ExpandableListView"
             android:id="@+id/schedule_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:divider="@drawable/list_divider_regular"
+            android:dividerHeight="1dp"
+            android:groupIndicator="@null"
             android:layout_marginBottom="?attr/actionBarSize"/>
     </LinearLayout>
     <TextView

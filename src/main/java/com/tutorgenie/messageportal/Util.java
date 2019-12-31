@@ -1,11 +1,16 @@
 package com.tutorgenie.messageportal;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.TypedValue;
 import android.view.ViewGroup;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
+
+import static androidx.core.content.PermissionChecker.PERMISSION_GRANTED;
 
 class Util
 {
@@ -79,8 +86,8 @@ class Util
     static JSONObject connectionObject(Context context) throws JSONException
     {
         JSONObject queryData = new JSONObject();
-        queryData.put("username", context.getString(R.string.test_username));
-        queryData.put("password", context.getString(R.string.test_password));
+        queryData.put("username", GlobalData.username);
+        queryData.put("password", GlobalData.password);
         return queryData;
     }
 
@@ -95,4 +102,31 @@ class Util
         return 0;
     }
 
+    static void sendDataToOtherApps(Context context, String data)
+    {
+        String dummySubject = "From Tutor-Genie";
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, dummySubject);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, data.trim());
+        context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.share_via)));
+    }
+
+    static void checkPermissions(Context context, int callbackId, String... permissionsId) {
+        boolean permissions = true;
+        for (String p : permissionsId) {
+            permissions =
+                    permissions && ContextCompat.checkSelfPermission(context, p) == PERMISSION_GRANTED;
+        }
+
+        if (!permissions)
+            ActivityCompat.requestPermissions((Activity)context, permissionsId, callbackId);
+    }
+
+    static void removePending(data_type_tutor_schedule_item item)
+    {
+        GlobalData.DataCache.getPendingList().remove(item);
+        MainActivity.pendingCount.setValue(GlobalData.DataCache.getPendingList().size());
+    }
 }

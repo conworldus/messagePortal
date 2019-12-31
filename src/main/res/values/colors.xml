@@ -16,6 +16,14 @@
     <color name="Primary3">#6F256F</color>
     <color name="Primary4">#8A458A</color>
     <color name="Primary5">#A66FA6</color>
+    <color name="cPrimary1">#c8ffc8</color>
+    <color name="cPrimary2">#acf1ac</color>
+    <color name="cPrimary3">#90da90</color>
+    <color name="cPrimary4">#75ba75</color>
+    <color name="cPrimary5">#599059</color>
     <color name="Cream">#fffdd0</color>
+    <color name="DeleteMarkColor">#fffdd0</color>
     <color name="Gray_Cement">#e3dfd6</color>
+    <color name="WhiteSemiTransParent">#90FFFFFF</color>
+    <color name="WhiteSemiTransParent2">#C0FFFFFF</color>
 </resources>

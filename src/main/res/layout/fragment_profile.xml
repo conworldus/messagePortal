@@ -1,45 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:elevation="0dp">
+        android:id="@+id/imagePane"
+        app:layout_constraintTop_toTopOf="parent">
+        <Button
+            android:id="@+id/show_pic_button"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:text="@string/show_profile_picture"
+            android:background="@drawable/border_rounded_white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"/>
         <ImageView
+            app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/profile"
             android:id="@+id/profile_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
             android:src="@drawable/ic_photo_camera_black_24dp"
+            android:elevation="0dp"
             android:minHeight="80dp"
-            android:paddingBottom="10dp"/>
+            android:foregroundTint="@color/WhiteSemiTransParent"
+            android:background="@android:drawable/picture_frame"/>
 
-        <View
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imageOptionPane"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/colorPrimary"
-            />
+            android:layout_height="match_parent"
+            android:background="@color/WhiteSemiTransParent"
+            android:elevation="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <Button
+                android:id="@+id/take_pic_button"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="@drawable/border_rounded_white"
+                android:text="@string/take_picture"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/hide_pic_button"
+                android:textColor="@color/Carbon_Gray"/>
+            <Button
+                android:id="@+id/hide_pic_button"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:background="@drawable/border_rounded_white"
+                android:text="@string/hide_profile_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/take_pic_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/Carbon_Gray"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:elevation="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/imagePane">
         <ListView
+            style="@android:style/Widget.Material.ListView"
             android:id="@+id/entryList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="?attr/actionBarSize"
             android:divider="@null"
-            android:dividerHeight="0dp"/>
+            android:layout_marginBottom="?attr/actionBarSize"/>
     </LinearLayout>
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/uploadProgress"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:elevation="1dp"
-        android:visibility="gone"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

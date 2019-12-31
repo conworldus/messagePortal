@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="tabItemText">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -69,6 +69,15 @@
 
     <style name="text_large_bold" parent="text_base">
         <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_xlarge" parent="text_base">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="text_xlarge_bold" parent="text_base">
+        <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

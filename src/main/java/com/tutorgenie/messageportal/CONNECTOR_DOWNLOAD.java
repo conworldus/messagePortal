@@ -22,10 +22,8 @@ import javax.net.ssl.HttpsURLConnection;
 public class CONNECTOR_DOWNLOAD extends AsyncTask<JSONObject, Integer, String>
 {
     private final String accessURL = "https://www.greatbayco.com/appaccess/index.php";
-    private StringBuilder builder = new StringBuilder();
-    public CONNECTOR.progressRetriever retriever;
-    private String currentState="";
-    private String result="";
+    CONNECTOR.progressRetriever retriever;
+
     @Override
     protected String doInBackground(JSONObject... params)
     {
@@ -55,6 +53,7 @@ public class CONNECTOR_DOWNLOAD extends AsyncTask<JSONObject, Integer, String>
             while (true)
             {
                 int p = Math.round(100 * (float)BytesRead / BytesAvailable);
+                publishProgress(p);
                 int n = in.read(buffer);
                 if (n < 0) break;
                 byteOut.write(buffer, 0, n);

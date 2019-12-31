@@ -9,10 +9,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -49,7 +52,11 @@ public class fragment_profile extends Fragment
     private Context context;
     private String tempPath; //temporary path for picture files
     private ImageView profileImage;
+    private ConstraintLayout imageOptionPane, imagePane;
     private final static int REQUEST_CAMERA=101;
+    private Button take_pic, hide_pic, show_pic;
+    private int finalHeight;
+    private ListView entryList;
 
     private final static int REQUEST_TAKE_PHOTO = 100;
 
@@ -67,12 +74,49 @@ public class fragment_profile extends Fragment
         profileImage = view.findViewById(R.id.profile_image);
 
         if(GlobalData.DataCache.getProfileImg()!=null)
-            profileImage.setImageBitmap(Bitmap.createScaledBitmap(GlobalData.DataCache.getProfileImg(), 500, 500, true));
+            //profileImage.setImageBitmap(Bitmap.createScaledBitmap(GlobalData.DataCache
+            // .getProfileImg(), 500, 500, true));
+        {
+            profileImage.setLayoutParams(new ConstraintLayout.LayoutParams(GlobalData.getScreenWidth(),
+                    GlobalData.getScreenWidth()));
+            profileImage.setImageBitmap(GlobalData.DataCache.getProfileImg());
+        }
         else profileImage.setImageResource(R.drawable.ic_photo_camera_black_24dp);
+        profileImage.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if(imageOptionPane.getVisibility()==View.VISIBLE)
+                    imageOptionPane.setVisibility(View.INVISIBLE);
+                else
+                    imageOptionPane.setVisibility(View.VISIBLE);
+            }
+        });
+        imagePane = view.findViewById(R.id.imagePane);
+        imageOptionPane = view.findViewById(R.id.imageOptionPane);
+        imageOptionPane.setLayoutParams(new ConstraintLayout.LayoutParams(profileImage.getLayoutParams()));
+        imageOptionPane.setVisibility(View.INVISIBLE);
+        take_pic = view.findViewById(R.id.take_pic_button);
+        hide_pic = view.findViewById(R.id.hide_pic_button);
+        show_pic = view.findViewById(R.id.show_pic_button);
+        take_pic.setOnClickListener(cameraListner);
+        hide_pic.setOnClickListener(v ->
+        {
+            profileImage.setVisibility(View.GONE);
+            imageOptionPane.setVisibility(View.GONE);
+            show_pic.setVisibility(View.VISIBLE);
+            setListHeight(true);
+        });
+        show_pic.setOnClickListener(v->
+        {
+            setListHeight(false);
+            profileImage.setVisibility(View.VISIBLE);
+            imageOptionPane.setVisibility(View.INVISIBLE);
+            show_pic.setVisibility(View.GONE);
+        });
 
-        profileImage.setOnClickListener(cameraListner);
-
-        final ListView entryList = view.findViewById(R.id.entryList);
+        entryList = view.findViewById(R.id.entryList);
         //adjust
         adapter_profile adapter = new adapter_profile(context);
         entryList.setAdapter(adapter);
@@ -83,12 +127,26 @@ public class fragment_profile extends Fragment
             {
                 int height = entryList.getHeight();
                 int actionbarHeight = Util.getActionBarHeight(context);
-                int finalHeight = height - actionbarHeight;
-                entryList.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, finalHeight));
+                finalHeight = height - actionbarHeight;
+                setListHeight(false);
                 entryList.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
+
+
         return view;
+    }
+
+    void setListHeight(boolean fullScreen)
+    {
+        if(fullScreen)
+        {
+            entryList.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, finalHeight));
+        }
+        else
+        {
+            entryList.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, finalHeight - profileImage.getHeight()));
+        }
     }
 
     private View.OnClickListener cameraListner = new View.OnClickListener()
@@ -278,32 +336,32 @@ public class fragment_profile extends Fragment
                                 @Override
                                 public void fin_progress()
                                 {
+                                    confirmBtn.setText(R.string.done);
+                                    confirmBtn.setEnabled(true);
+                                    confirmBtn.setFocusable(true);
+                                    confirmBtn.setTextColor(Color.WHITE);
+                                    confirmBtn.setOnClickListener(new View.OnClickListener()
+                                    {
+                                        @Override
+                                        public void onClick(View v)
+                                        {
+                                            dialog.dismiss();
+                                        }
+                                    });
                                 }
 
                                 @Override
                                 public void start_progress()
                                 {
+                                    cancelBtn.setFocusable(false);
+                                    cancelBtn.setEnabled(false);
+                                    confirmBtn.setEnabled(false);
+                                    confirmBtn.setFocusable(false);
+                                    confirmBtn.setTextColor(Color.GRAY);
+                                    cancelBtn.setTextColor(Color.GRAY);
                                 }
                             });
-                            try
-                            {
-                                String response = upload.execute().get();
-                                if(response!=null)
-                                    Log.e("Server Response", response);
-                            }catch (ExecutionException|InterruptedException e)
-                            {
-                                e.printStackTrace();
-                            }
-                            confirmBtn.setText(R.string.done);
-                            confirmBtn.setOnClickListener(new View.OnClickListener()
-                            {
-                                @Override
-                                public void onClick(View v)
-                                {
-                                    cancelBtn.setVisibility(View.INVISIBLE);
-                                    dialog.dismiss();
-                                }
-                            });
+                            upload.execute();
                         }
                     });
                     dialog.show();
