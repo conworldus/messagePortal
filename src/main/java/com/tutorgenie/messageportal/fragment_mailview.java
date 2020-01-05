@@ -494,12 +494,13 @@ public class fragment_mailview extends Fragment
                                 context);
                         if(newStatus.equals(CONST.label_inbox))
                         {
-                            mark.setColorFilter(Color.GRAY);
+                            mark.setColorFilter(Color.BLACK);
                             listItemMark.setColorFilter(Color.GRAY);
                         }
                         else
                         {
-                            mark.setColorFilter(R.color.yellow_mild);
+                            Log.e("Executing: ", "Color");
+                            mark.setColorFilter(context.getColor(R.color.yellow_mild));
                             listItemMark.setColorFilter(context.getColor(R.color.yellow_mild));
 
                         }

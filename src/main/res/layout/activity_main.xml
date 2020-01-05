@@ -13,6 +13,7 @@
         android:elevation="10dp"
         android:background="@drawable/border_badge"
         android:text="@string/number_zero"
+        android:textColor="@color/white"
         android:gravity="center"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

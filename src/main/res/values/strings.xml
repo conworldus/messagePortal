@@ -120,6 +120,7 @@
     <string name="share_to_phone_calendar">Share to Phone Calendar</string>
     <string name="share_to_other_apps">Share to other apps</string>
     <string name="number_zero">0</string>
+    <string name="from">From</string>
 
     <string-array name="tutor_education_level">
         <item>Primary</item>

@@ -273,7 +273,6 @@ public class fragment_calendar extends Fragment
                 }
             }
 
-
             @Override
             public void onNothingSelected(AdapterView<?> parent)
             {
@@ -298,12 +297,14 @@ public class fragment_calendar extends Fragment
         {
             if(lastExpanded == -1)
                 lastExpanded = groupPosition;
-            else
+            else if(lastExpanded!=groupPosition)
             {
                 entryList.collapseGroup(lastExpanded);
                 lastExpanded = groupPosition;
             }
         });
+
+
 
         return view;
     }

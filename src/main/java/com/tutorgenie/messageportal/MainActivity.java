@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity
                         "");
                 int childCount = tabItem.getChildCount();
                 View tabItemText = (tabItem.getChildAt(0));
-                tabItemText.setBackgroundColor(Color.GREEN);
-
                 int textWidth = tabItemText.getWidth();
                 int textHeight = tabItemText.getHeight();
                 int w = tabLayout.getWidth(), h = tabLayout.getHeight();
@@ -148,9 +146,17 @@ public class MainActivity extends AppCompatActivity
         pendingCount.setValue(GlobalData.DataCache.getPendingList().size());
         pendingCount.observe(this, integer ->
         {
-            //update UI
-            //Objects.requireNonNull(tabLayout.getTabAt(2)).setText(Objects.requireNonNull
-            // (viewPager.getAdapter()).getPageTitle(2)+"("+pendingCount.getValue()+")");
+            calendarBadge.setText(String.valueOf(pendingCount.getValue()));
+            if(pendingCount.getValue()>0)
+            {
+                calendarBadge.getBackground().setTint(Color.RED);
+                calendarBadge.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                calendarBadge.setVisibility(View.INVISIBLE);
+            }
+
         });
     }
 

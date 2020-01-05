@@ -64,18 +64,14 @@ public class adapter_message extends ArrayAdapter<data_type_message>
 
     private void sortData()
     {
-        Collections.sort(data, new Comparator<data_type_message>()
+        Collections.sort(data, (o1, o2) ->
         {
-            @Override
-            public int compare(data_type_message o1, data_type_message o2)
-            {
-                if(o1.getFull_date().getTime()<o2.getFull_date().getTime())
-                    return 1;
-                else if(o1.getFull_date().getTime()>o2.getFull_date().getTime())
-                    return -1;
-                else return 0;
-                //return o1.getFull_date().getTime()>o2.getFull_date().getTime();
-            }
+            if(o1.getFull_date().getTime()<o2.getFull_date().getTime())
+                return 1;
+            else if(o1.getFull_date().getTime()>o2.getFull_date().getTime())
+                return -1;
+            else return 0;
+            //return o1.getFull_date().getTime()>o2.getFull_date().getTime();
         });
     }
 
@@ -128,29 +124,27 @@ public class adapter_message extends ArrayAdapter<data_type_message>
         final data_type_message m = data.get(position);
 
         if(m.getLabel().equals("Marked"))
-            img.setColorFilter(context.getColor(R.color.yellow_mild));
-        else
-            img.setColorFilter(Color.GRAY);
-
-        img.setOnClickListener(new View.OnClickListener()
         {
-            @Override
-            public void onClick(View v)
+            img.setColorFilter(context.getColor(R.color.yellow_mild));
+        }
+        else
+            img.setColorFilter(Color.BLACK);
+
+        img.setOnClickListener(v ->
+        {
+            if(m.getLabel().equals("Inbox"))
             {
-                if(m.getLabel().equals("Inbox"))
-                {
-                    m.setLabel("Marked");
-                    img.setColorFilter(context.getColor(R.color.yellow_mild));
-                    //send a code to online
-                    updateLabel(m.getMessageID(), "Marked", context);
-                }
-                else
-                {
-                    m.setLabel("Inbox");
-                    img.setColorFilter(Color.GRAY);
-                    //send a code to online db
-                    updateLabel(m.getMessageID(), "Inbox", context);
-                }
+                m.setLabel("Marked");
+                img.setColorFilter(context.getColor(R.color.yellow_mild));
+                //send a code to online
+                updateLabel(m.getMessageID(), "Marked", context);
+            }
+            else
+            {
+                m.setLabel("Inbox");
+                img.setColorFilter(Color.BLACK);
+                //send a code to online db
+                updateLabel(m.getMessageID(), "Inbox", context);
             }
         });
 

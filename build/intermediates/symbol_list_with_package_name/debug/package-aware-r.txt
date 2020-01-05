@@ -630,6 +630,7 @@ color Carbon_Gray
 color Cream
 color DeleteMarkColor
 color Gray_Cement
+color Ivory
 color Primary1
 color Primary2
 color Primary3
@@ -1816,6 +1817,7 @@ string format_distance_kilometers
 string format_distance_meters
 string format_distance_miles
 string format_distance_nautical_miles
+string from
 string from_label
 string from_prefix
 string golden_ratio

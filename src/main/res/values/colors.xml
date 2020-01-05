@@ -9,8 +9,9 @@
     <color name="green">#00ff00</color>
     <color name="green_mild">#00a000</color>
     <color name="yellow">#ffff00</color>
-    <color name="yellow_mild">#a0a000</color>
+    <color name="yellow_mild">#c0c000</color>
     <color name="Carbon_Gray">#36454f</color>
+    <color name="Ivory">#F0EAD6</color>
     <color name="Primary1">#370037</color>
     <color name="Primary2">#530E53</color>
     <color name="Primary3">#6F256F</color>

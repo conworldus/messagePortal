@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
@@ -46,7 +47,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
-public class adapter_calendar implements ExpandableListAdapter
+public class adapter_calendar extends BaseExpandableListAdapter
 {
     //use data schedule
     ArrayList<data_type_tutor_schedule_item> schedule_list = new ArrayList<>();
@@ -54,17 +55,18 @@ public class adapter_calendar implements ExpandableListAdapter
     private final  static int BYDATE=0;
     final static int BYMONTH=2;
     final static int BYWEEK=1;
-    final static int BYPENDING=4;
     private final static int ALL=3;
     private LinearLayout response_control;
     private Button cancel;
     private TextView status_final, status_group;
+
     adapter_calendar(Context context)
     {
         this.context =context;
     }
+
     private data_type_tutor_schedule_item item = null;
-    public boolean calendarPermission = false;
+    boolean calendarPermission = false;
 
     void setSchedule_list(String dateStr)
     {
@@ -121,28 +123,24 @@ public class adapter_calendar implements ExpandableListAdapter
     }
 
     private Comparator<data_type_tutor_schedule_item> comp =
-            new Comparator<data_type_tutor_schedule_item>()
-    {
-        @Override
-        public int compare(data_type_tutor_schedule_item o1, data_type_tutor_schedule_item o2)
-        {
-            @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-            try
+            (o1, o2) ->
             {
-                int c = format.parse(o1.getDateStr()).compareTo(format.parse(o2.getDateStr()));
-                if (c == 0)
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+                try
                 {
-                    if(o1.getHourInt()<o2.getHourInt())
-                        return 1;
-                    else return -1;
-                }
-                return -c;
-            }catch (ParseException e)
-            {e.printStackTrace();}
-            return 0;
-        }
-    };
+                    int c = format.parse(o1.getDateStr()).compareTo(format.parse(o2.getDateStr()));
+                    if (c == 0)
+                    {
+                        if(o1.getHourInt()<o2.getHourInt())
+                            return 1;
+                        else return -1;
+                    }
+                    return -c;
+                }catch (ParseException e)
+                {e.printStackTrace();}
+                return 0;
+            };
 
     @Override
     public void registerDataSetObserver(DataSetObserver observer)
@@ -154,6 +152,7 @@ public class adapter_calendar implements ExpandableListAdapter
             public void onChanged()
             {
                 super.onChanged();
+               // child
             }
 
             @Override
@@ -531,10 +530,13 @@ public class adapter_calendar implements ExpandableListAdapter
                     new_status = CONST.status_pending;
             }
             mItem.setStatus(new_status);
-            Parent.setStatus(new_status);
+            //Parent.setStatus(new_status);
 
-            Util.removePending(mItem);
-
+            if(whichButton==CONST.acceptBtn)
+                Util.removePending(mItem);
+            else
+                Parent.setStatus(new_status);
+            notifyDataSetChanged();
             try
             {
                 JSONObject queryObj = Util.connectionObject(context);
@@ -549,6 +551,9 @@ public class adapter_calendar implements ExpandableListAdapter
             {
                 e.printStackTrace();
             }
+
+            //notify data set changed
+
         }
     }
 
@@ -585,6 +590,7 @@ public class adapter_calendar implements ExpandableListAdapter
                 break;
             }
         }
+
     }
 
 
