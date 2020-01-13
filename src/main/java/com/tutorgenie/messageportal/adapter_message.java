@@ -37,12 +37,12 @@ public class adapter_message extends ArrayAdapter<data_type_message>
     private Context context;
     private fragment_mailview.mailType type;
 
-    public void setType(fragment_mailview.mailType type)
+    void setType(fragment_mailview.mailType type)
     {
         this.type = type;
     }
 
-    public adapter_message(Context context, int ResourcePoint, ArrayList<data_type_message> data)
+    adapter_message(Context context, int ResourcePoint, ArrayList<data_type_message> data)
     {
         super(context, ResourcePoint, data);
         this.data = data;
@@ -57,10 +57,6 @@ public class adapter_message extends ArrayAdapter<data_type_message>
         sortData();
     }
 
-    private void deleteMessage()
-    {
-
-    }
 
     private void sortData()
     {
@@ -104,13 +100,13 @@ public class adapter_message extends ArrayAdapter<data_type_message>
     }
 
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint({"SimpleDateFormat", "SetTextI18n"})
     @NonNull
     @Override
     public View getView(final int position, @Nullable final View convertView, @NonNull ViewGroup parent)
     {
         View view = convertView;
-        TextView from, date_time, subject, time;
+        TextView from, date_time, subject, time, preview;
         final ImageView img;
         if(view==null)
         {
@@ -121,6 +117,7 @@ public class adapter_message extends ArrayAdapter<data_type_message>
         date_time = view.findViewById(R.id.date_time);
         subject = view.findViewById(R.id.subject);
         time = view.findViewById(R.id.time);
+        preview = view.findViewById(R.id.message_preview);
         final data_type_message m = data.get(position);
 
         if(m.getLabel().equals("Marked"))
@@ -157,10 +154,27 @@ public class adapter_message extends ArrayAdapter<data_type_message>
         format = new SimpleDateFormat("HH:mm:ss");
         time.setText(format.format(m.getFull_date()));
         subject.setText(m.getSubject());
+        subject.setTextAppearance(R.style.text_base_italic);
+        if(!m.isRead())
+        {
+            from.setTextAppearance(R.style.text_base_bold);
+            preview.setTextAppearance(R.style.text_base_bold);
+            subject.setTextAppearance(R.style.text_base_bold_italic);
+        }
+        else
+        {
+            from.setTextAppearance(R.style.text_base);
+            preview.setTextAppearance(R.style.text_base);
+            subject.setTextAppearance(R.style.text_base_italic);
+        }
+        if(m.getMessage().length()<CONST.PREVIEW_MESSAGE_LENGTH)
+            preview.setText(m.getMessage());
+        else
+            preview.setText(m.getMessage().subSequence(0, CONST.PREVIEW_MESSAGE_LENGTH-1)+CONST.PREVIEW_ENDING);
         return view;
     }
 
-    public static void updateLabel(int ID, String status, Context tContext)
+    static void updateLabel(int ID, String status, Context tContext)
     {
         try
         {
@@ -168,8 +182,8 @@ public class adapter_message extends ArrayAdapter<data_type_message>
             obj.put("query_type", "UPDATE_LABEL");
             obj.put("message_id", String.valueOf(ID));
             obj.put("label", status);
-            obj.put("username", tContext.getString(R.string.test_username));
-            obj.put("password", tContext.getString(R.string.test_password));
+            obj.put("username", GlobalData.username);
+            obj.put("password", GlobalData.password);
             CONNECTOR conn = new CONNECTOR();
             String result = conn.execute(obj).get();
             Log.e("Result", result);

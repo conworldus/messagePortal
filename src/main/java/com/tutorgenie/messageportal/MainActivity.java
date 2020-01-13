@@ -35,23 +35,30 @@ public class MainActivity extends AppCompatActivity
     private fragment_mailview inbox_frag, sent_frag;
     private fragment_profile profile_frag;
     private fragment_calendar Schedule_frag;
+    private fragment_directory directory_frag;
     private TextView calendarBadge;
-
     public static MutableLiveData<Integer> pendingCount = new MutableLiveData<>();
-
     message_update_receiver receiver;
-
     private int[] tabIcons =
             {
             R.drawable.ic_inbox_black_24dp,
             R.drawable.ic_send_black_24dp,
             R.drawable.ic_date_range_black_24dp,
-            R.drawable.ic_person_outline_black_24dp
+            R.drawable.ic_person_outline_black_24dp,
+            R.drawable.ic_contact_mail_black_24dp
             };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        /*
+        * Give MainActivityAccess to GlobalData
+        */
+        GlobalData.mainActivityAccess = this;
+
+        /*
+        * Now perform the normal start up
+        */
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         GlobalData.initializeScreenSize(MainActivity.this);
@@ -90,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-        for(int i = 0; i<4; i++)
+        for(int i = 0; i<5; i++)
         {
             Objects.requireNonNull(tabLayout.getTabAt(i)).setIcon(tabIcons[i]);
             Objects.requireNonNull(Objects.requireNonNull(tabLayout.getTabAt(i)).getIcon()).setTint(Color.WHITE);
@@ -99,10 +106,12 @@ public class MainActivity extends AppCompatActivity
         inbox_frag = new fragment_mailview(GlobalData.DataCache.getInbox_messages(),
                 context);
         inbox_frag.setType(fragment_mailview.mailType.INBOX);
+
         sent_frag = new fragment_mailview(GlobalData.DataCache.getSent_messages(), context);
         sent_frag.setType(fragment_mailview.mailType.SENT);
         profile_frag = new fragment_profile(context);
         Schedule_frag = new fragment_calendar(context);
+        directory_frag = new fragment_directory(GlobalData.DataCache.getContact_list(), context);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener()
         {
@@ -147,7 +156,10 @@ public class MainActivity extends AppCompatActivity
         pendingCount.observe(this, integer ->
         {
             calendarBadge.setText(String.valueOf(pendingCount.getValue()));
-            if(pendingCount.getValue()>0)
+            int newCount=0;
+            if(pendingCount.getValue()!=null)
+               newCount = pendingCount.getValue();
+            if(newCount>0)
             {
                 calendarBadge.getBackground().setTint(Color.RED);
                 calendarBadge.setVisibility(View.VISIBLE);
@@ -164,6 +176,15 @@ public class MainActivity extends AppCompatActivity
     {
         viewPager.setCurrentItem(4);
     }
+
+    public void updateContactList()
+    {
+        if(directory_frag.getAdapter()!=null)
+        {
+            directory_frag.getAdapter().notifyDataSetChanged();
+        }
+    }
+
 
     public class viewPagerAdapter extends FragmentPagerAdapter
     {
@@ -186,6 +207,8 @@ public class MainActivity extends AppCompatActivity
                     return Schedule_frag;
                 case 3:
                     return profile_frag;
+                case 4:
+                    return directory_frag;
                 default:
                     break;
             }
@@ -195,7 +218,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public int getCount()
         {
-            return 4;
+            return 5;
         }
 
         @Override
@@ -207,6 +230,7 @@ public class MainActivity extends AppCompatActivity
                 case 1: return getString(R.string.sent);
                 case 2: return getString(R.string.calendar);
                 case 3: return getString(R.string.profile);
+                case 4: return getString(R.string.directory);
             }
 
             return null;

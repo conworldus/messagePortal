@@ -12,6 +12,7 @@ import com.google.common.collect.HashBiMap;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +21,25 @@ public class cache
 {
     private ArrayList<data_type_message> inbox_messages = new ArrayList<>();
     private ArrayList<data_type_message> sent_messages = new ArrayList<>();
+    private ArrayList<data_type_student> contact_list = new ArrayList<>();
+
+    public void SortContactList()
+    {
+        contact_list.sort(new Comparator<data_type_student>()
+        {
+            @Override
+            public int compare(data_type_student o1, data_type_student o2)
+            {
+                return o1.getLastname().compareTo(o2.getLastname());
+            }
+        });
+    }
+
+
+    public ArrayList<data_type_student> getContact_list()
+    {
+        return contact_list;
+    }
 
     //two hashmaps are same except one uses string as key, and the other one uses long
     private HashMap<String, ArrayList<data_type_tutor_schedule_item>> schedule_map =

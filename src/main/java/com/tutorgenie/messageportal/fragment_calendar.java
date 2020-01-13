@@ -3,9 +3,7 @@ package com.tutorgenie.messageportal;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +18,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -46,7 +43,7 @@ public class fragment_calendar extends Fragment
     private adapter_calendar adapter;
     private ExpandableListView entryList;
     private Spinner method;
-    private TextView date_display;
+    private ArrayList<data_type_tutor_schedule_item> tempRepliedList = new ArrayList<>();
 
     private int lastExpanded = -1;
 
@@ -94,6 +91,7 @@ public class fragment_calendar extends Fragment
     }
 
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
@@ -119,97 +117,99 @@ public class fragment_calendar extends Fragment
         method_list.add(getString(R.string.month_view));
         method_list.add(getString(R.string.pending_view));
 
-        method.setAdapter(new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,
+        method.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,
                 method_list
-                ));
+        ));
 
-        dateView.setOnClickListener(new View.OnClickListener()
+        dateView.setOnClickListener(v ->
         {
-            @Override
-            public void onClick(View v)
+            final DatePicker picker = new DatePicker(context);
+            picker.updateDate(/*year, month, day*/calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setView(picker);
+            AlertDialog dialog;
+            builder.setPositiveButton(R.string.confirm, (dialog1, which) ->
             {
-                final DatePicker picker = new DatePicker(context);
-                picker.updateDate(/*year, month, day*/calendar.get(Calendar.YEAR),
-                        calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setView(picker);
-                AlertDialog dialog;
-                builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener()
+                //clear temp list right now
+                if(tempRepliedList.size()>0)
                 {
-                    @SuppressLint("SimpleDateFormat")
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        //set date
-                        @SuppressLint("DefaultLocale")
-                        String d_str =
-                                picker.getYear()+"-"+String.format("%02d", (picker.getMonth()+1))+"-"+picker.getDayOfMonth();
-                        //dateView.setText(Util.changeDateStringLocale(d_str));
-                        dateStr = d_str;
-                        calendar.set(picker.getYear(), picker.getMonth(), picker.getDayOfMonth());
-                        monthStr = new SimpleDateFormat("MMMM").format(calendar.getTime());
-                        int yearNum = picker.getYear();
-                        if(calendar.get(Calendar.WEEK_OF_YEAR)==1)
-                        {
-                            if(picker.getMonth()==11)
-                                yearNum+=1; //account for the last week of the year.
-                        }
-                        weekPair = getWeekRange(yearNum,
+                    GlobalData.DataCache.getPendingList().removeAll(tempRepliedList);
+                    tempRepliedList.clear();
+                }
+
+
+
+                //set date
+                @SuppressLint("DefaultLocale")
+                String d_str =
+                        picker.getYear()+"-"+String.format("%02d", (picker.getMonth()+1))+"-"+picker.getDayOfMonth();
+                //dateView.setText(Util.changeDateStringLocale(d_str));
+                dateStr = d_str;
+                calendar.set(picker.getYear(), picker.getMonth(), picker.getDayOfMonth());
+                monthStr = new SimpleDateFormat("MMMM").format(calendar.getTime());
+                int yearNum = picker.getYear();
+                if(calendar.get(Calendar.WEEK_OF_YEAR)==1)
+                {
+                    if(picker.getMonth()==11)
+                        yearNum+=1; //account for the last week of the year.
+                }
+                weekPair = getWeekRange(yearNum,
+                        calendar.get(Calendar.WEEK_OF_YEAR));
+
+                //now check method
+                adapter = new adapter_calendar(context);
+                adapter.setTempList(tempRepliedList);
+                switch (method.getSelectedItemPosition())
+                {
+                    case 0: //date view
+                        dateView.setText(Util.changeDateStringLocale(dateStr));
+                        adapter.setSchedule_list(dateStr);
+                        break;
+                    case 1: //week view
+                        String display =
+                                Util.changeDateStringLocale(sdf.format(new Date((long)weekPair.first)))+
+                                        " " +
+                                        "- "+Util.changeDateStringLocale(sdf.format(new Date((long)weekPair.second)));
+                        dateView.setText(display);
+                        Pair<Long, Long> weekRange = getWeekRange(yearNum,
                                 calendar.get(Calendar.WEEK_OF_YEAR));
-
-                        //now check method
-                        adapter = new adapter_calendar(context);
-                        switch (method.getSelectedItemPosition())
-                        {
-                            case 0: //date view
-                                dateView.setText(Util.changeDateStringLocale(dateStr));
-                                adapter.setSchedule_list(dateStr);
-                                break;
-                            case 1: //week view
-                                String display =
-                                        Util.changeDateStringLocale(sdf.format(new Date((long)weekPair.first)))+
-                                                " " +
-                                                "- "+Util.changeDateStringLocale(sdf.format(new Date((long)weekPair.second)));
-                                dateView.setText(display);
-                                Pair<Long, Long> weekRange = getWeekRange(yearNum,
-                                        calendar.get(Calendar.WEEK_OF_YEAR));
-                                adapter.setScheduleList(adapter_calendar.BYWEEK, weekRange.first,
-                                        weekRange.second);
-                                break;
-                            case 2: //month view
-                                String display_m = monthStr + ", " + picker.getYear();
-                                Pair<Long, Long> monthRange =
-                                        getMonthRange(calendar.getTimeInMillis());
-                                adapter.setScheduleList(adapter_calendar.BYMONTH,
-                                        monthRange.first, monthRange.second);
-                                dateView.setText(display_m);
-                                break;
-                            case 3: //pending view
-                                adapter.setSchedule_list(GlobalData.DataCache.getPendingList());
-                                break;
-                        }
-                        entryList.setAdapter(adapter);
-                        entryList.invalidateViews();
-
-                        setReplaceText(replaceText);
-
-                        dialog.dismiss();
-                    }
-                });
-                dialog = builder.create();
-                dialog.show();
-            }
+                        adapter.setScheduleList(adapter_calendar.BYWEEK, weekRange.first,
+                                weekRange.second);
+                        break;
+                    case 2: //month view
+                        String display_m = monthStr + ", " + picker.getYear();
+                        Pair<Long, Long> monthRange =
+                                getMonthRange(calendar.getTimeInMillis());
+                        adapter.setScheduleList(adapter_calendar.BYMONTH,
+                                monthRange.first, monthRange.second);
+                        dateView.setText(display_m);
+                        break;
+                    case 3: //pending view
+                        adapter.setSchedule_list(GlobalData.DataCache.getPendingList());
+                        break;
+                }
+                entryList.setAdapter(adapter);
+                entryList.invalidateViews();
+                setReplaceText(replaceText);
+                dialog1.dismiss();
+            });
+            dialog = builder.create();
+            dialog.show();
         });
         entryList = view.findViewById(R.id.schedule_list);
         adapter = new adapter_calendar(context);
+        adapter.setTempList(tempRepliedList);
         adapter.setSchedule_list(dateStr);
 
         //set alternative view
         setReplaceText(replaceText);
 
         entryList.setAdapter(adapter);
-        entryList.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
+        entryList.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver
+        .OnGlobalLayoutListener()
+
         {
             @Override
             public void onGlobalLayout()
@@ -227,10 +227,18 @@ public class fragment_calendar extends Fragment
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
+                //first clear anything in the tempList
+                if(tempRepliedList.size()>0)
+                {
+                    GlobalData.DataCache.getPendingList().removeAll(tempRepliedList);
+                    tempRepliedList.clear();
+                }
+
                 try
                 {
                     calendar.setTimeInMillis(sdf.parse(dateStr).getTime());
                     adapter = new adapter_calendar(context);
+                    adapter.setTempList(tempRepliedList);
                     switch (method.getSelectedItemPosition())
                     {
                         case 0: //date view

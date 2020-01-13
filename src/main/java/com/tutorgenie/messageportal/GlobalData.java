@@ -1,5 +1,6 @@
 package com.tutorgenie.messageportal;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Point;
@@ -8,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.ViewGroup;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
 
 import java.lang.reflect.Array;
@@ -18,10 +20,10 @@ public class GlobalData
 {
     static cache DataCache = new cache();
     public static CONNECTOR connector = new CONNECTOR();
-    public static ViewGroup.LayoutParams params=null;
+    static ViewGroup.LayoutParams params=null;
     private static int screenWidth;
 
-    public static int getScreenWidth()
+    static int getScreenWidth()
     {
         return screenWidth;
     }
@@ -33,6 +35,10 @@ public class GlobalData
 
     private static int screenHeight;
 
+    @SuppressLint("StaticFieldLeak")
+    /*This is not a memory leak because MainActivity must always be alive*/
+    static MainActivity mainActivityAccess;
+
     static void initializeScreenSize(Activity activity)
     {
         Display display = activity.getWindowManager().getDefaultDisplay();
@@ -42,5 +48,5 @@ public class GlobalData
         screenWidth = point.x;
     }
 
-    public static String username="", password="";
+    static String username="", password="";
 }

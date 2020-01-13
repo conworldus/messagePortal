@@ -6,9 +6,7 @@ import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.net.Uri;
@@ -16,17 +14,14 @@ import android.os.Build;
 import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.PopupMenu;
 
@@ -68,6 +63,13 @@ public class adapter_calendar extends BaseExpandableListAdapter
     private data_type_tutor_schedule_item item = null;
     boolean calendarPermission = false;
 
+    //A pointer to the tempList in the hosting Fragment
+    private ArrayList<data_type_tutor_schedule_item> tempList = null;
+
+    void setTempList(ArrayList<data_type_tutor_schedule_item> tempList)
+    {
+        this.tempList = tempList;
+    }
     void setSchedule_list(String dateStr)
     {
         dateStr = dateStr.trim();
@@ -244,6 +246,36 @@ public class adapter_calendar extends BaseExpandableListAdapter
         time.setText(item.getTimeStamp());
         subject.setText(context.getString(R.string.subject_prefix, item.getSubject()));
         studentName.setText(item.getStudentname());
+
+        studentName.setOnClickListener(v->
+        {
+            PopupMenu sPopup = new PopupMenu(context,  studentName);
+            //Inflating the Popup using xml file
+            sPopup.getMenuInflater()
+                    .inflate(R.menu.calendar_action_menu, sPopup.getMenu());
+
+            //registering popup with OnMenuItemClickListener
+            sPopup.setOnMenuItemClickListener(mItem ->
+            {
+                Log.e("Selected", mItem.getOrder() + "");
+                String sEmail = item.getStudentUsername();
+                switch (mItem.getOrder())
+                {
+                    case 1:
+                        Util.addContactByEmail(context, sEmail);
+                        break;
+                    case 2:
+                        Util.composeMessage(null, null, context, sEmail);
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            });
+
+            sPopup.show();
+        });
+
         status_group.setText(item.getStatus());
         switch (item.getStatus())
         {
@@ -252,7 +284,7 @@ public class adapter_calendar extends BaseExpandableListAdapter
                 status_group.setTextColor(Color.BLACK);
                 break;
             case "accepted":
-                status_group.setTextColor(context.getResources().getColor(R.color.green_mild));
+                status_group.setTextColor(context.getResources().getColor(R.color.cPrimary5));
                 break;
             case "pending":
                 status_group.setTextColor(context.getResources().getColor(R.color.yellow_mild));
@@ -532,11 +564,15 @@ public class adapter_calendar extends BaseExpandableListAdapter
             mItem.setStatus(new_status);
             //Parent.setStatus(new_status);
 
-            if(whichButton==CONST.acceptBtn)
-                Util.removePending(mItem);
-            else
+            if(whichButton==CONST.acceptBtn||whichButton==CONST.declineBtn)
+            {
+                if(!tempList.contains(mItem))
+                    tempList.add(mItem); //add item to tempList
+                Util.removePending(tempList); //post value to the calendar badge
+            }
                 Parent.setStatus(new_status);
             notifyDataSetChanged();
+
             try
             {
                 JSONObject queryObj = Util.connectionObject(context);
@@ -551,6 +587,7 @@ public class adapter_calendar extends BaseExpandableListAdapter
             {
                 e.printStackTrace();
             }
+
 
             //notify data set changed
 
@@ -576,7 +613,7 @@ public class adapter_calendar extends BaseExpandableListAdapter
                 response_control.setVisibility(View.GONE);
                 cancel.setVisibility(View.VISIBLE);
                 status_final.setVisibility(View.GONE);
-                status_group.setTextColor(context.getColor(R.color.green_mild));
+                status_group.setTextColor(context.getColor(R.color.cPrimary5));
                 break;
             }
             case "declined":
@@ -590,7 +627,6 @@ public class adapter_calendar extends BaseExpandableListAdapter
                 break;
             }
         }
-
     }
 
 
@@ -605,7 +641,7 @@ public class adapter_calendar extends BaseExpandableListAdapter
     @Override
     public boolean areAllItemsEnabled()
     {
-        return false;
+        return true;
     }
 
     @Override

@@ -3,9 +3,10 @@ package com.tutorgenie.messageportal;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,15 +17,16 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,13 @@ public class fragment_mailview extends Fragment
     private ListView mailList;
     private TextView replaceText;
 
+
+    private MutableLiveData<Integer> uiController = new MutableLiveData<>();
+
+    //Loading Constants
+    private String QUERY_TYPE = CONST.QUERY_TYPE, MARK_READ = CONST.QUERY_MARK_READ;
+
+
     public enum mailType
     {
         INBOX,
@@ -57,7 +66,7 @@ public class fragment_mailview extends Fragment
 
     private mailType type;
 
-    public void setType(mailType type)
+    void setType(mailType type)
     {
         this.type = type;
     }
@@ -108,20 +117,25 @@ public class fragment_mailview extends Fragment
             @Override
             public void onGlobalLayout()
             {
-                int height = mailList.getHeight();
-                int actionbarHeight = Util.getActionBarHeight(context);
-                int finalHeight = height - actionbarHeight;
+                Log.w("Height", Util.getActionBarHeight(context)+"");
+                int remainHeight = Util.getScreenHeight((AppCompatActivity)context)-
+                        Util.getRemainingScreenHeight(context)-Util.getActionBarHeight(context);
                 ConstraintLayout.LayoutParams params =
-                        (ConstraintLayout.LayoutParams)mailList.getLayoutParams();
-                params.height = finalHeight;
-                //mailList.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout
-                // .LayoutParams.MATCH_PARENT, finalHeight));
-
+                        (ConstraintLayout.LayoutParams) mailList.getLayoutParams();
+                params.height = remainHeight;
                 mailList.setLayoutParams(params);
                 mailList.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
         setReplaceText();
+
+        //set UI controller for threads
+        uiController.setValue(0);
+        uiController.observe((AppCompatActivity)context, integer ->
+        {
+            adapter.notifyDataSetChanged();
+        });
+
         return view;
     }
 
@@ -167,7 +181,7 @@ public class fragment_mailview extends Fragment
                         listData.put(m.getMessageID());
                     }
                     JSONObject sentData = Util.connectionObject(context);
-                    sentData.put(CONST.query_type, "DELETE_MESSAGE");
+                    sentData.put(CONST.QUERY_TYPE, "DELETE_MESSAGE");
                     sentData.put(CONST.data, listData);
                     GlobalData.DataCache.getSent_messages().removeAll(delete_list);
                     GlobalData.DataCache.getInbox_messages().removeAll(delete_list);
@@ -198,7 +212,7 @@ public class fragment_mailview extends Fragment
             dialog.show();
         });
 
-        composeBtn.setOnClickListener(new ComposeListner(null, null));
+        composeBtn.setOnClickListener(new compose_listener(null, null, context));
 
         shareBtn.setOnClickListener(v ->
         {
@@ -244,19 +258,19 @@ public class fragment_mailview extends Fragment
     private AdapterView.OnItemClickListener onItemClickListener =
             new AdapterView.OnItemClickListener()
             {
-                @SuppressLint("SetTextI18n")
+                @SuppressLint({"SetTextI18n", "ObsoleteSdkInt"})
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, final int position, long id)
                 {
                     final data_type_message iMessage = data.get(position);
 
+                    //this is so we can update the marked UI from within the dialog
                     final ImageView listItemMark = view.findViewById(R.id.mark);
 
                     AlertDialog.Builder builder =
                             new AlertDialog.Builder(context, R.style.BottomOptionsDialogTheme);
                     View mailview = getLayoutInflater().inflate(R.layout.dialog_single_mail, null);
                     builder.setView(mailview);
-
                     TextView from_brief = mailview.findViewById(R.id.single_mail_sender_brief);
                     TextView from = mailview.findViewById(R.id.from_content);
                     TextView to = mailview.findViewById(R.id.to_content);
@@ -266,32 +280,23 @@ public class fragment_mailview extends Fragment
                     ImageButton close = mailview.findViewById(R.id.single_mail_cancel);
                     final ImageButton reply = mailview.findViewById(R.id.single_mail_reply),
                             delete = mailview.findViewById(R.id.single_mail_delete),
-                            mark = mailview.findViewById(R.id.single_mail_mark);
-
+                            mark = mailview.findViewById(R.id.single_mail_mark),
+                            addContact = mailview.findViewById(R.id.single_mail_add_contact);
                     TextView view_detail = mailview.findViewById(R.id.single_mail_view_detail);
                     final TableLayout detail_table = mailview.findViewById(R.id.single_mail_detail_panel);
                     final ConstraintLayout brief_table =
                             mailview.findViewById(R.id.single_mail_brief_panel);
                     TextView hide_detail = mailview.findViewById(R.id.single_mail_hide_detail);
-
-                    view_detail.setOnClickListener(new View.OnClickListener()
+                    view_detail.setOnClickListener(v ->
                     {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            detail_table.setVisibility(View.VISIBLE);
-                            brief_table.setVisibility(View.GONE);
-                        }
+                        detail_table.setVisibility(View.VISIBLE);
+                        brief_table.setVisibility(View.GONE);
                     });
 
-                    hide_detail.setOnClickListener(new View.OnClickListener()
+                    hide_detail.setOnClickListener(v ->
                     {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            detail_table.setVisibility(View.GONE);
-                            brief_table.setVisibility(View.VISIBLE);
-                        }
+                        detail_table.setVisibility(View.GONE);
+                        brief_table.setVisibility(View.VISIBLE);
                     });
 
 
@@ -306,135 +311,140 @@ public class fragment_mailview extends Fragment
                         mark.setColorFilter(context.getColor(R.color.yellow_mild));
 
                     final AlertDialog dialog = builder.create();
-                    close.setOnClickListener(new View.OnClickListener()
+                    close.setOnClickListener(v -> dialog.dismiss());
+                    addContact.setOnClickListener(z->
                     {
-                        @Override
-                        public void onClick(View v)
+                        String sEmail;
+                        if (!iMessage.getFrom().equals(GlobalData.username))
+                            sEmail = iMessage.getFrom();
+                        else
+                            sEmail = iMessage.getTo();
+
+                        try
                         {
-                            dialog.dismiss();
+                            boolean result;
+
+                            result=Util.addToContactOnline(context, sEmail);
+                            /*
+                            * TRUE = Contact will be added
+                            * FALSE = Contact already exists or Database error
+                            * */
+                            if(result)
+                            {
+                                //Retrieve the student information
+                                data_type_student s = Util.getSingleStudentInformation(context, sEmail);
+                                GlobalData.DataCache.getContact_list().add(s);
+                                GlobalData.mainActivityAccess.updateContactList();
+                            }
+                        }catch (JSONException|ExecutionException|InterruptedException e)
+                        {
+                            e.printStackTrace();
                         }
                     });
-
-                    reply.setOnClickListener(new View.OnClickListener()
+                    reply.setOnClickListener(v ->
                     {
-                        @Override
-                        public void onClick(View v)
+                        dialog.dismiss();
+                        //composeDialog().show();
+                        @SuppressLint("InflateParams") View view1 =
+                                LayoutInflater.from(context).inflate(R.layout.dialog_mail_compose_revised, null);
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(context,
+                                R.style.BottomOptionsDialogTheme);
+                        //full screen dialog
+                        builder1.setView(view1);
+
+                        final AlertDialog cdialog = builder1.create();
+                        ImageButton send = view1.findViewById(R.id.compose_send_button),
+                                cancel = view1.findViewById(R.id.compose_cancel_button);
+                        TextView title = view1.findViewById(R.id.compose_title);
+                        title.setText(context.getString(R.string.word_reply));
+                        final EditText header = view1.findViewById(R.id.compose_dialog_header);
+                        TextView toField = view1.findViewById(R.id.compose_dialog_to_field);
                         {
-                            dialog.dismiss();
-                            //composeDialog().show();
-                            View view =
-                                    LayoutInflater.from(context).inflate(R.layout.dialog_mail_compose_revised, null);
-                            AlertDialog.Builder builder = new AlertDialog.Builder(context,
-                                    R.style.BottomOptionsDialogTheme);
-                            //full screen dialog
-                            builder.setView(view);
+                            //set up the header information
+                            header.setText(iMessage.getSubject());
 
-                            final AlertDialog cdialog = builder.create();
-                            ImageButton send = view.findViewById(R.id.compose_send_button),
-                                    cancel = view.findViewById(R.id.compose_cancel_button);
-                            TextView title = view.findViewById(R.id.compose_title);
-                            title.setText(context.getString(R.string.word_reply));
-                            final EditText header = view.findViewById(R.id.compose_dialog_header);
-                            TextView toField = view.findViewById(R.id.compose_dialog_to_field);
+                            String to_name = iMessage.getFrom_name();
+                            if(iMessage.getFrom().equals(GlobalData.DataCache.getLogin_info().get(
+                                    "username")))
                             {
-                                //set up the header information
-                                header.setText(iMessage.getSubject());
-
-                                String to_name = iMessage.getFrom_name();
-                                if(iMessage.getFrom().equals(GlobalData.DataCache.getLogin_info().get(
-                                        "username")))
-                                {
-                                    to_name = iMessage.getTo_name();
-                                }
-
-                                toField.setText(context.getString(R.string.to_prefix_fill,
-                                        to_name));
+                                to_name = iMessage.getTo_name();
                             }
-                            final EditText content = view.findViewById(R.id.compose_dialog_text);
-                            cancel.setOnClickListener(new View.OnClickListener()
-                            {
-                                @Override
-                                public void onClick(View v)
-                                {
-                                    cdialog.dismiss();
-                                }
-                            });
-                            send.setOnClickListener(new View.OnClickListener()
-                            {
-                                @SuppressLint("SimpleDateFormat")
-                                @Override
-                                public void onClick(View v)
-                                {
-                                    CONNECTOR conn = new CONNECTOR();
-                                    try
-                                    {
-                                        String self = GlobalData.DataCache.getLogin_info().get(
-                                                "username");
 
-                                        Log.e("Login Retrieved", self);
-                                        String to_id;
-                                        String to_name, from_name;
-                                        if(iMessage.getFrom().equals(self))
-                                        {
-                                            to_id = iMessage.getTo();
-                                            to_name = iMessage.getTo_name();
-                                            from_name = iMessage.getFrom_name();
-                                        }
-                                        else
-                                        {
-                                            to_id = iMessage.getFrom();
-                                            to_name = iMessage.getFrom_name();
-                                            from_name = iMessage.getTo_name();
-                                        }
-
-                                        JSONObject obj = Util.connectionObject(context);
-                                        obj.put("query_type", "SEND_MESSAGE_TUTOR");
-                                        obj.put("from_id", self);
-                                        obj.put("to_id", to_id);
-                                                GlobalData.DataCache.getLogin_info().get(
-                                                        "username");
-                                        obj.put("subject", header.getText().toString());
-                                        obj.put("message", content.getText().toString());
-
-                                        String result = conn.execute(obj).get();
-
-                                        //now add the message to Data
-                                        data_type_message m = new data_type_message();
-                                        m.setLabel(CONST.label_inbox);
-                                        Date cur = Calendar.getInstance().getTime();
-                                        m.setDate((new SimpleDateFormat("yyyy-MM-dd")).format(cur)); //this sets the date
-                                        m.setTime((new SimpleDateFormat("HH:mm:ss")).format(cur));
-                                        m.setFrom(self);
-                                        m.setTo(to_id);
-                                        m.setFrom_name(from_name);
-                                        m.setTo_name(to_name);
-                                        m.setMessageID(Integer.parseInt(result.trim()));
-                                        m.setRead(false);
-                                        m.setSubject(header.getText().toString());
-                                        m.setMessage(content.getText().toString());
-                                        m.setToDelete(false);
-                                        Log.e("Size Pre",
-                                                GlobalData.DataCache.getSent_messages().size()+"");
-                                        GlobalData.DataCache.getSent_messages().add(0, m);
-                                        Log.e("Size Post",
-                                                GlobalData.DataCache.getSent_messages().size()+"");
-
-                                        Intent i = new Intent();
-                                        i.putExtra("Update", 1);
-                                        i.setAction(CONST.mailUpdateAction);
-                                        Objects.requireNonNull(getActivity()).sendBroadcast(i);
-                                        Log.e("Broadcast", "Sent");
-                                        cdialog.dismiss();
-
-
-                                    }catch (JSONException| ExecutionException|InterruptedException e)
-                                    {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-                            cdialog.show();
+                            toField.setText(context.getString(R.string.to_prefix_fill,
+                                    to_name));
                         }
+                        final EditText content1 = view1.findViewById(R.id.compose_dialog_text);
+                        cancel.setOnClickListener(v12 -> cdialog.dismiss());
+                        send.setOnClickListener(v1 ->
+                        {
+                            CONNECTOR conn = new CONNECTOR();
+                            try
+                            {
+                                String self = GlobalData.DataCache.getLogin_info().get(
+                                        "username");
+
+                                Log.e("Login Retrieved", self);
+                                String to_id;
+                                String to_name, from_name;
+                                if(iMessage.getFrom().equals(self))
+                                {
+                                    to_id = iMessage.getTo();
+                                    to_name = iMessage.getTo_name();
+                                    from_name = iMessage.getFrom_name();
+                                }
+                                else
+                                {
+                                    to_id = iMessage.getFrom();
+                                    to_name = iMessage.getFrom_name();
+                                    from_name = iMessage.getTo_name();
+                                }
+
+                                JSONObject obj = Util.connectionObject(context);
+                                obj.put("query_type", "SEND_MESSAGE_TUTOR");
+                                obj.put("from_id", self);
+                                obj.put("to_id", to_id);
+                                        GlobalData.DataCache.getLogin_info().get(
+                                                "username");
+                                obj.put("subject", header.getText().toString());
+                                obj.put("message", content1.getText().toString());
+
+                                String result = conn.execute(obj).get();
+
+                                //now add the message to Data
+                                data_type_message m = new data_type_message();
+                                m.setLabel(CONST.label_inbox);
+                                Date cur = Calendar.getInstance().getTime();
+                                m.setDate((new SimpleDateFormat("yyyy-MM-dd")).format(cur)); //this sets the date
+                                m.setTime((new SimpleDateFormat("HH:mm:ss")).format(cur));
+                                m.setFrom(self);
+                                m.setTo(to_id);
+                                m.setFrom_name(from_name);
+                                m.setTo_name(to_name);
+                                m.setMessageID(Integer.parseInt(result.trim()));
+                                m.setRead(false);
+                                m.setSubject(header.getText().toString());
+                                m.setMessage(content1.getText().toString());
+                                m.setToDelete(false);
+                                Log.e("Size Pre",
+                                        GlobalData.DataCache.getSent_messages().size()+"");
+                                GlobalData.DataCache.getSent_messages().add(0, m);
+                                Log.e("Size Post",
+                                        GlobalData.DataCache.getSent_messages().size()+"");
+
+                                Intent i = new Intent();
+                                i.putExtra("Update", 1);
+                                i.setAction(CONST.mailUpdateAction);
+                                Objects.requireNonNull(getActivity()).sendBroadcast(i);
+                                Log.e("Broadcast", "Sent");
+                                cdialog.dismiss();
+
+
+                            }catch (JSONException| ExecutionException|InterruptedException e)
+                            {
+                                e.printStackTrace();
+                            }
+                        });
+                        cdialog.show();
                     });
 
                     delete.setOnClickListener(v ->
@@ -506,8 +516,48 @@ public class fragment_mailview extends Fragment
                         }
                         iMessage.setLabel(newStatus);
                     });
-
                     dialog.show();
+
+                    //After the dialog is show, check the read status, and try to update it.  If
+                    // successful, update the listview
+
+                    //first update read status
+                    if(!iMessage.isRead())
+                    {
+                        Thread thread = new Thread()
+                        {
+                            public void run()
+                            {
+                                CONNECTOR notifyRead = new CONNECTOR();
+                                try
+                                {
+                                    JSONObject rNotify = Util.connectionObject(context);
+                                    rNotify.put(QUERY_TYPE, MARK_READ);
+                                    rNotify.put("message_id",
+                                            String.valueOf(iMessage.getMessageID()));
+                                    String response;
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+                                        response =
+                                                notifyRead.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, rNotify).get();
+                                    else
+                                        response = notifyRead.execute(rNotify).get();
+                                    if (response.trim().equals(CONST.SUCCESS))
+                                    {
+                                        iMessage.setRead(true);
+                                        Integer check = uiController.getValue();
+                                        if(check!=null)
+                                            uiController.postValue(check+1);
+                                    }
+                                } catch (JSONException | InterruptedException |
+                                        ExecutionException e)
+
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                        };
+                        thread.start();
+                    }
                 }
             };
 
@@ -560,24 +610,19 @@ public class fragment_mailview extends Fragment
         } catch (JSONException e)
         {
             e.printStackTrace();
-            return;
         } catch (Exception e)
         {
             Log.e(e.getClass().getSimpleName(), e.getMessage());
         }
 
     }
-    public int getDeleteListSize()
-    {
-        return delete_list.size();
-    }
-
-    private class ComposeListner implements View.OnClickListener
+/*
+    private class ComposeListener implements View.OnClickListener
     {
         data_type_message Message = null;
         AlertDialog prevDialog = null;
 
-        public ComposeListner(data_type_message Message, AlertDialog prevDialog)
+        ComposeListener(data_type_message Message, AlertDialog prevDialog)
         {
             this.Message = Message;
             this.prevDialog = prevDialog;
@@ -588,7 +633,7 @@ public class fragment_mailview extends Fragment
         {
             if(prevDialog!=null)
                 prevDialog.dismiss();
-            View view =
+            @SuppressLint("InflateParams") View view =
                     LayoutInflater.from(context).inflate(R.layout.dialog_mail_compose_revised, null);
             AlertDialog.Builder builder = new AlertDialog.Builder(context,
                     R.style.BottomOptionsDialogTheme);
@@ -630,7 +675,7 @@ public class fragment_mailview extends Fragment
                     fObj.put("function_name", "GET_STUDENT_NAME");
                     fObj.put("email", to_id);
                     connector.setAccessURL("https://www.greatbayco" +
-                            ".com/appaccess/nonloginfunctions.php");
+                            getString(R.string.utility_function_url));
                     to_name = connector.execute(fObj).get().trim();
                     Log.e("Result", to_name);
                     if(to_name.equals(CONST.NOT_FOUND))
@@ -688,4 +733,5 @@ public class fragment_mailview extends Fragment
             cdialog.show();
         }
     }
+    */
 }

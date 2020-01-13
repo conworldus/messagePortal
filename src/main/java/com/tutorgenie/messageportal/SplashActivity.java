@@ -1,25 +1,22 @@
 package com.tutorgenie.messageportal;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,15 +24,14 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Objects;
@@ -92,20 +88,24 @@ public class SplashActivity extends AppCompatActivity
                         else
                         {
                             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                            builder.setMessage(getString(R.string.Login_Prompt, lp[0]));
-                            builder.setPositiveButton(R.string.confirm, (dialog, which) ->
+                            @SuppressLint("InflateParams") View view = LayoutInflater.from(context).inflate(R.layout.dialog_opening, null);
+                            TextView title = view.findViewById(R.id.open_title);
+                            title.setText(lp[0]);
+                            Button yes = view.findViewById(R.id.open_btn_yes), no = view.findViewById(R.id.open_btn_no);
+                            builder.setView(view);
+                            AlertDialog dialog = builder.create();
+                            yes.setOnClickListener(v->
                             {
                                 GlobalData.username = lp[0];
                                 GlobalData.password = lp[1];
                                 dialog.dismiss();
                                 loadUserdata();
                             });
-                            builder.setNegativeButton(R.string.cancel, (dialog, which) ->
+                            no.setOnClickListener(v->
                             {
                                 dialog.dismiss();
                                 setLogin();
                             });
-                            AlertDialog dialog = builder.create();
                             dialog.show();
                         }
                     }
@@ -217,14 +217,7 @@ public class SplashActivity extends AppCompatActivity
                         GlobalData.DataCache.getSchedule_map().clear();
                         GlobalData.DataCache.getProfileData().clear();
                         CONNECTOR conn = new CONNECTOR();
-                        conn.retriever = new CONNECTOR.progressRetriever()
-                        {
-                            @Override
-                            public void writeProgress(int p)
-                            {
-                                bar.setProgress(p);
-                            }
-                        };
+                        conn.retriever = p -> bar.setProgress(p);
 
                         JSONArray messageArray = null;
                         JSONObject temp;
@@ -389,6 +382,7 @@ public class SplashActivity extends AppCompatActivity
                                 double lat = temp.getDouble("latitude");
                                 double lng = temp.getDouble("longitude");
                                 String comment = temp.getString("comment_content");
+                                String studentusername = temp.getString("student_id");
 
                                 String timeStamp;
                                 {
@@ -402,7 +396,12 @@ public class SplashActivity extends AppCompatActivity
                                     int terminalMin = terminal % 60;
                                     int terminalHour = (terminal - terminalMin) / 60;
 
-                                    timeStamp = hour + ":" + minute + " - " + terminalHour + ":" + terminalMin;
+                                    DecimalFormat doubleFormat = new DecimalFormat("00");
+
+
+                                    timeStamp =
+                                            hour + ":" + doubleFormat.format(minute) + " - " + terminalHour +
+                                                    ":" + doubleFormat.format(terminalMin);
                                     s.setTimeStamp(timeStamp);
                                 }
 
@@ -420,6 +419,7 @@ public class SplashActivity extends AppCompatActivity
                                 s.setTutorNote(tutorNote);
                                 s.setLat(lat);
                                 s.setLng(lng);
+                                s.setStudentUsername(studentusername);
                                 s.setScheduleID(temp.getInt("schedule_entry_id"));
                                 String student_id = temp.getString("student_id");
                                 if (!GlobalData.DataCache.getSchedule_map().containsKey(date))
@@ -479,6 +479,32 @@ public class SplashActivity extends AppCompatActivity
                             }
                             GlobalData.DataCache.getProfileData().add(entry);
                         }
+
+
+                        status_mutable.postValue("Loading Directory");
+                        conn = new CONNECTOR();
+                        conn.retriever = retriever;
+
+                        //===Load Schedules
+                        queryData = new JSONObject();
+                        queryData.put("username", GlobalData.username);
+                        queryData.put("password", GlobalData.password);
+                        queryData.put("query_type", "GET_CONTACT_LIST");
+                        conn = new CONNECTOR();
+                        String contactResp =
+                                conn.execute(queryData).get();
+                        if(!contactResp.trim().equals(CONST.CONTACT_LIST_EMPTY))
+                        {
+                            messageArray = new JSONArray(contactResp);
+                            for (int i = 0; i < messageArray.length(); i++)
+                            {
+                                temp = messageArray.getJSONObject(i);
+                                Util.addToContactCache(temp);
+                            }
+                        }
+
+
+
 
                         status_mutable.postValue("Loading System Data");
                         conn = new CONNECTOR();
@@ -542,6 +568,7 @@ public class SplashActivity extends AppCompatActivity
                         Log.e("Schedule Size", GlobalData.DataCache.getSchedule_map().size()+"");
                         Log.e("Profile Size", GlobalData.DataCache.getProfileData().size()+"");
                         Log.e("Nationality Size", GlobalData.DataCache.getNationality_map().size()+"");
+                        Log.e("Contact Size", GlobalData.DataCache.getContact_list().size()+"");
                     }
 
                     startActivity(new Intent(context, MainActivity.class));

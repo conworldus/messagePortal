@@ -11,6 +11,7 @@ public class data_type_tutor_schedule_item
     private String duration;
     private String DateStr;
     private String StudentNote;
+    private String StudentUsername;
     private int DateInt;
     private int HourInt;
     private boolean owned = false;
@@ -21,6 +22,16 @@ public class data_type_tutor_schedule_item
     private String TutorNote;
     private double lat=0;
     private double lng=0;
+
+    public String getStudentUsername()
+    {
+        return StudentUsername;
+    }
+
+    public void setStudentUsername(String studentUsername)
+    {
+        StudentUsername = studentUsername;
+    }
 
     public double getLat()
     {
