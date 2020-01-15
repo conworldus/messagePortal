@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="15dp"
-    android:background="@android:drawable/dialog_holo_light_frame">
+    android:paddingHorizontal="15dp"
+    android:background="@color/offwhite"
+    android:paddingVertical="10dp">
     <TextView
         android:id="@+id/from"
         app:layout_constraintStart_toEndOf="@id/mark"
@@ -21,19 +22,25 @@
         android:id="@+id/mark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_star_black_24dp"
+        android:src="@drawable/ic_flag_black_24dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="TODO" />
+        android:tint="@color/Gray_Cement"
+        android:tintMode="src_over"
+        android:contentDescription="@string/todo" />
 
     <TextView
+        android:textColor="@color/TERTIARY"
         android:id="@+id/date_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/time"
+        app:layout_constraintStart_toStartOf="@id/time"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/place_holder"/>
+        android:text="@string/place_holder"
+        android:textStyle="bold"
+        android:gravity="center"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,8 +48,15 @@
         android:id="@+id/time"
         app:layout_constraintTop_toBottomOf="@id/date_time"
         android:text="@string/place_holder"
-        app:layout_constraintRight_toRightOf="@id/date_time"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:drawableEnd="@drawable/ic_access_time_black_24dp"
+        android:drawablePadding="5dp"
+        android:drawableTint="@color/Carbon_Gray"
+        android:gravity="center|end"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:textSize="20sp"/>
 
     <TextView
         android:layout_marginStart="20dp"
@@ -50,7 +64,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/from"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/message_preview"
         app:layout_constraintStart_toEndOf="@id/mark"
-        android:text="Subject"/>
+        android:text="@string/subject_dummy"/>
+
+    <TextView
+        android:id="@+id/message_preview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/body"
+        app:layout_constraintStart_toEndOf="@id/mark"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toBottomOf="@id/subject"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

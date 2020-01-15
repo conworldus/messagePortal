@@ -107,6 +107,8 @@ public class SplashActivity extends AppCompatActivity
                                 setLogin();
                             });
                             dialog.show();
+
+                            dialog.setCanceledOnTouchOutside(false);
                         }
                     }
                 }
@@ -472,10 +474,11 @@ public class SplashActivity extends AppCompatActivity
                                     entry.setType(profile_entry.ENTRY_TYPE.MULTISELECT); break;
                                 case "service_radius":
                                 case "phone_number":
+                                    entry.setType(profile_entry.ENTRY_TYPE.NUMBER); break;
                                 case "price_min":
                                     entry.setType(profile_entry.ENTRY_TYPE.CURRENCY); break;
-
-                                default: break;
+                                default:
+                                    entry.setType(profile_entry.ENTRY_TYPE.TEXT);break;
                             }
                             GlobalData.DataCache.getProfileData().add(entry);
                         }

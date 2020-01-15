@@ -82,16 +82,12 @@ public class fragment_profile extends Fragment
             profileImage.setImageBitmap(GlobalData.DataCache.getProfileImg());
         }
         else profileImage.setImageResource(R.drawable.ic_photo_camera_black_24dp);
-        profileImage.setOnClickListener(new View.OnClickListener()
+        profileImage.setOnClickListener(v ->
         {
-            @Override
-            public void onClick(View v)
-            {
-                if(imageOptionPane.getVisibility()==View.VISIBLE)
-                    imageOptionPane.setVisibility(View.INVISIBLE);
-                else
-                    imageOptionPane.setVisibility(View.VISIBLE);
-            }
+            if(imageOptionPane.getVisibility()==View.VISIBLE)
+                imageOptionPane.setVisibility(View.INVISIBLE);
+            else
+                imageOptionPane.setVisibility(View.VISIBLE);
         });
         imagePane = view.findViewById(R.id.imagePane);
         imageOptionPane = view.findViewById(R.id.imageOptionPane);
@@ -129,6 +125,12 @@ public class fragment_profile extends Fragment
                 int actionbarHeight = Util.getActionBarHeight(context);
                 finalHeight = height - actionbarHeight;
                 setListHeight(false);
+
+                int mWidth = profileImage.getWidth();
+                ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams)profileImage.getLayoutParams();
+                params.height = mWidth;
+                profileImage.setLayoutParams(params);
+                imageOptionPane.setLayoutParams(params);
                 entryList.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
@@ -137,11 +139,11 @@ public class fragment_profile extends Fragment
         return view;
     }
 
-    void setListHeight(boolean fullScreen)
+    private void setListHeight(boolean fullScreen)
     {
         if(fullScreen)
         {
-            entryList.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, finalHeight));
+            entryList.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, finalHeight-50));
         }
         else
         {
@@ -177,13 +179,9 @@ public class fragment_profile extends Fragment
                     }
                 });
 
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
+                builder.setNegativeButton(R.string.cancel, (dialog, which) ->
                 {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
 
-                    }
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
@@ -196,6 +194,8 @@ public class fragment_profile extends Fragment
                     ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()),
                             new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA);
                 }
+                else
+                    takePic();
             }
         }
     };
@@ -303,66 +303,55 @@ public class fragment_profile extends Fragment
 
                     final AlertDialog dialog = builder.create();
 
-                    cancelBtn.setOnClickListener(new View.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            dialog.dismiss();
-                        }
-                    });
+                    cancelBtn.setOnClickListener(v -> dialog.dismiss());
 
-                    confirmBtn.setOnClickListener(new View.OnClickListener()
+                    confirmBtn.setOnClickListener(v ->
                     {
-                        @Override
-                        public void onClick(View v)
+                        Bitmap newpic =
+                                Bitmap.createScaledBitmap(new_img, 500, 500, true);
+                        GlobalData.DataCache.setProfileImg(newpic);
+                        profileImage.setImageBitmap(newpic);
+                        //invoke data upload now
+                        CONNECTOR_UPLOAD upload = new CONNECTOR_UPLOAD(context);
+                        upload.setHandle(new CONNECTOR_UPLOAD.progressHandle()
                         {
-                            Bitmap newpic =
-                                    Bitmap.createScaledBitmap(new_img, 500, 500, true);
-                            GlobalData.DataCache.setProfileImg(newpic);
-                            profileImage.setImageBitmap(newpic);
-                            //invoke data upload now
-                            CONNECTOR_UPLOAD upload = new CONNECTOR_UPLOAD(context);
-                            upload.setHandle(new CONNECTOR_UPLOAD.progressHandle()
+                            @SuppressLint("SetTextI18n")
+                            @Override
+                            public void pub_progress(int p)
                             {
-                                @SuppressLint("SetTextI18n")
-                                @Override
-                                public void pub_progress(int p)
-                                {
-                                    progress_text.setText(p+"%");
-                                    progressBar.setProgress(p);
-                                }
+                                progress_text.setText(p+"%");
+                                progressBar.setProgress(p);
+                            }
 
-                                @Override
-                                public void fin_progress()
+                            @Override
+                            public void fin_progress()
+                            {
+                                confirmBtn.setText(R.string.done);
+                                confirmBtn.setEnabled(true);
+                                confirmBtn.setFocusable(true);
+                                confirmBtn.setTextColor(Color.WHITE);
+                                confirmBtn.setOnClickListener(new View.OnClickListener()
                                 {
-                                    confirmBtn.setText(R.string.done);
-                                    confirmBtn.setEnabled(true);
-                                    confirmBtn.setFocusable(true);
-                                    confirmBtn.setTextColor(Color.WHITE);
-                                    confirmBtn.setOnClickListener(new View.OnClickListener()
+                                    @Override
+                                    public void onClick(View v)
                                     {
-                                        @Override
-                                        public void onClick(View v)
-                                        {
-                                            dialog.dismiss();
-                                        }
-                                    });
-                                }
+                                        dialog.dismiss();
+                                    }
+                                });
+                            }
 
-                                @Override
-                                public void start_progress()
-                                {
-                                    cancelBtn.setFocusable(false);
-                                    cancelBtn.setEnabled(false);
-                                    confirmBtn.setEnabled(false);
-                                    confirmBtn.setFocusable(false);
-                                    confirmBtn.setTextColor(Color.GRAY);
-                                    cancelBtn.setTextColor(Color.GRAY);
-                                }
-                            });
-                            upload.execute();
-                        }
+                            @Override
+                            public void start_progress()
+                            {
+                                cancelBtn.setFocusable(false);
+                                cancelBtn.setEnabled(false);
+                                confirmBtn.setEnabled(false);
+                                confirmBtn.setFocusable(false);
+                                confirmBtn.setTextColor(Color.GRAY);
+                                cancelBtn.setTextColor(Color.GRAY);
+                            }
+                        });
+                        upload.execute();
                     });
                     dialog.show();
                 }

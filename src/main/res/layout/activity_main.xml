@@ -20,17 +20,17 @@
         app:layout_constraintTop_toTopOf="parent"/>
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/main_bar_height"
         app:layout_constraintTop_toTopOf="parent"
         app:tabTextAppearance="@style/tabItemText"
         app:tabTextColor="@color/white"
         app:tabPadding="0dp"
-        app:tabIndicatorColor="@color/Primary1"
         app:tabIndicatorFullWidth="true"
+        app:tabIndicatorHeight="@dimen/main_bar_height"
+        app:tabIndicator="@color/SECONDARY_3T"
         app:tabIndicatorGravity="center"
-        app:tabIndicatorHeight="80dp"
         android:background="@drawable/shadowborder"
-        android:backgroundTint="@color/Primary5"
+        android:backgroundTint="@color/BASE_COLOR"
         android:id="@+id/ControlTab">
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -49,6 +49,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/profile"/>
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/directory"/>
     </com.google.android.material.tabs.TabLayout>
 
 

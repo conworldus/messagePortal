@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:orientation="vertical"
+    android:layout_marginTop="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:background="@android:drawable/dialog_holo_light_frame"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:padding="5dp"
-        android:background="@color/Primary2">
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="15dp"
+        android:id="@+id/calendar_banner">
         <TextView
             android:id="@+id/schedule_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/place_holder"
+            android:textColor="@color/COMPLIMENTARY_1"
             android:gravity="start|center_vertical"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:textColor="@color/white"
             style="@style/text_xlarge_bold"/>
         <ImageView
             android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
@@ -30,13 +30,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/expansion_indicator"
             android:contentDescription="@string/todo"
-            android:tint="@color/white"/>
+            android:tint="@color/BASE_COLOR"/>
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/ic_share_black_24dp"
-            android:tint="@color/white"
+            android:tint="@color/BASE_COLOR"
             android:id="@+id/calendarShare"
             app:layout_constraintEnd_toStartOf="@id/expansion_indicator"
             android:layout_marginEnd="20dp"
@@ -49,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="80dp"
+        android:paddingTop="10dp"
         android:orientation="horizontal"
         android:baselineAligned="false">
         <LinearLayout
@@ -103,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/place_holder"
-                android:textColor="@color/Primary2"
+                android:textColor="@color/TERTIARY"
                 android:textStyle="bold"
                 style="@style/text_large"/>
 

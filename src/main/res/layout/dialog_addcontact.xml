@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/student_email_here"
+        android:paddingHorizontal="15dp"
+        android:background="@android:drawable/edit_text"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/add_contact_email"
+        android:autofillHints="@string/student_email_here"
+        android:inputType="textEmailAddress"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/red"
+        android:text="@string/ERR_EMAIL_NOT_EXIST"
+        app:layout_constraintTop_toBottomOf="@id/add_contact_email"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:id="@+id/add_contact_error_message"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/add_contact_error_message"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/cancel"
+            app:layout_constraintStart_toEndOf="@id/add_contact_btn_add"
+            android:id="@+id/add_contact_btn_cancel"
+            style="@android:style/Widget.Material.Button.Colored"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/add_contact_error_message"
+            app:layout_constraintEnd_toStartOf="@id/add_contact_btn_cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/add"
+            android:backgroundTint="@color/green_mild"
+            android:id="@+id/add_contact_btn_add"
+            android:textColor="@color/white"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

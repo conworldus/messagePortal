@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -7,34 +8,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/offwhite"
         android:elevation="0dp">
-        <Button
+            <EditText
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="10dp"
+                android:id="@+id/schedule_select_date"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:id="@+id/schedule_select_date"
+                android:paddingHorizontal="15dp"
                 android:text="@string/pick_a_date"
-                android:layout_marginHorizontal="20dp"
-                android:gravity="center"
+                android:textColor="@color/COMPLIMENTARY_1"
                 android:background="@drawable/border_rounded"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/Primary1"
-            />
+                android:drawableEnd="@drawable/ic_date_range_black_24dp"
+                android:drawableTint="@color/COMPLIMENTARY_2"
+                android:focusable="false"
+                android:autofillHints=""
+                android:inputType="date"
+                tools:ignore="LabelFor" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="3dp"
+            android:paddingVertical="10dp"
             android:background="@drawable/border_horizontal_bottom">
             <Spinner
-                style="@android:style/Widget.Spinner"
+                style="@android:style/Widget.Holo.Light.Spinner"
+                android:maxHeight="10dp"
                 android:id="@+id/calendar_display_method"
+                android:backgroundTint="@color/BASE_COLOR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toStartOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <ExpandableListView
@@ -42,8 +51,10 @@
             android:id="@+id/schedule_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@drawable/list_divider_regular"
+            android:divider="@color/Gray_Cement"
             android:dividerHeight="1dp"
+            android:headerDividersEnabled="true"
+            android:footerDividersEnabled="true"
             android:groupIndicator="@null"
             android:layout_marginBottom="?attr/actionBarSize"/>
     </LinearLayout>

@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="tabItemText">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -57,6 +57,19 @@
     <style name="text_base">
         <item name="android:fontFamily">@font/robotoregular</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="text_base_bold" parent="text_base">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_base_italic" parent="text_base">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="text_base_bold_italic" parent="text_base">
+        <item name="android:textStyle">bold|italic</item>
     </style>
 
     <style name="text_large" parent="text_base">

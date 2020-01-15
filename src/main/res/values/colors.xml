@@ -4,19 +4,29 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="white">#FFFFF0</color>
+    <color name="offwhite">#FDFDFF</color>
     <color name="red">#FF0000</color>
     <color name="black">#000000</color>
     <color name="green">#00ff00</color>
     <color name="green_mild">#00a000</color>
     <color name="yellow">#ffff00</color>
-    <color name="yellow_mild">#c0c000</color>
+    <color name="yellow_mild">#e0e000</color>
     <color name="Carbon_Gray">#36454f</color>
     <color name="Ivory">#F0EAD6</color>
-    <color name="Primary1">#370037</color>
-    <color name="Primary2">#530E53</color>
-    <color name="Primary3">#6F256F</color>
-    <color name="Primary4">#8A458A</color>
-    <color name="Primary5">#A66FA6</color>
+
+
+    <color name="COMPLIMENTARY_1">@color/DeepLilac</color>
+    <color name="COMPLIMENTARY_2">@color/VioletBlue</color>
+    <color name="COMPLIMENTARY_3">@color/Plum</color>
+    <color name="COMPLIMENTARY_4">@color/FrenchLilac</color>
+    <color name="BASE_COLOR">@color/Malibu</color>
+    <color name="SECONDARY_1">@color/GoldTips</color>
+    <color name="SECONDARY_2">@color/Equator</color>
+    <color name="SECONDARY_3">@color/Drover</color>
+    <color name="SECONDARY_3T">@color/DroverT</color>
+    <color name="TERTIARY">@color/Feldspar</color>
+
+
     <color name="cPrimary1">#c8ffc8</color>
     <color name="cPrimary2">#acf1ac</color>
     <color name="cPrimary3">#90da90</color>
@@ -27,4 +37,28 @@
     <color name="Gray_Cement">#e3dfd6</color>
     <color name="WhiteSemiTransParent">#90FFFFFF</color>
     <color name="WhiteSemiTransParent2">#C0FFFFFF</color>
+
+    <color name = "Malibu">#4fa7d5</color>
+    <color name = "MalibuT">#4fa7d5</color>
+    <color name = "GoldTips">#e7b32c</color>
+    <color name = "DeepLilac">#b66fcc</color>
+    <color name = "Equator">#e0bc62</color>
+    <color name ="VioletBlue">#a26fb2</color>
+    <color name = "Feldspar">#c18367</color>
+    <color name = "Drover">#fff0a3</color>
+    <color name = "DroverT">#A0fff0a3</color>
+    <color name = "Plum">#e5b2f5</color>
+    <color name = "FrenchLilac">#ffd9ff</color>
+
+    <!--
+    <color name="Primary1">#370037</color>
+    <color name="Primary2">#530E53</color>
+    <color name="Primary3">#6F256F</color>
+    <color name="Primary4">#8A458A</color>
+    <color name="Primary5">#A66FA6</color>
+    <color name="cPrimary1">#c8ffc8</color>
+    <color name="cPrimary2">#acf1ac</color>
+    <color name="cPrimary3">#90da90</color>
+    <color name="cPrimary4">#75ba75</color>
+    <color name="cPrimary5">#599059</color>-->
 </resources>

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
+    android:background="@color/offwhite"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageButton
         android:layout_width="wrap_content"
@@ -13,6 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/single_mail_cancel"
+        android:tint="@color/COMPLIMENTARY_1"
         android:contentDescription="@string/place_holder" />
     <LinearLayout
         android:elevation="0dp"
@@ -25,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            style="?attr/buttonBarStyle">
+            style="?attr/buttonBarStyle"
+            android:background="@drawable/border_horizontal_bottom">
             <ImageButton
                 android:contentDescription="@string/reply"
                 android:id="@+id/single_mail_reply"
@@ -33,11 +36,13 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_reply_black_24dp"
+                android:tint="@color/BASE_COLOR"
                 style="?attr/buttonBarButtonStyle"/>
             <ImageButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:tint="@color/BASE_COLOR"
                 android:src="@drawable/ic_delete_black_24dp"
                 android:id="@+id/single_mail_delete"
                 android:contentDescription="@string/delete"
@@ -46,12 +51,23 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_star_black_24dp"
+                android:src="@drawable/ic_flag_black_24dp"
                 android:id="@+id/single_mail_mark"
+                android:tint="@color/Gray_Cement"
+                android:contentDescription="@string/mark"
+                style="?attr/buttonBarButtonStyle"/>
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:tint="@color/BASE_COLOR"
+                android:src="@drawable/ic_person_add_black_24dp"
+                android:id="@+id/single_mail_add_contact"
                 android:contentDescription="@string/mark"
                 style="?attr/buttonBarButtonStyle"/>
         </LinearLayout>
         <TextView
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/place_holder"
@@ -62,7 +78,8 @@
             android:id="@+id/single_mail_brief_panel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp"
+            android:paddingBottom="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,6 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/text_link"
+                android:textColor="@color/COMPLIMENTARY_1"
                 android:text="@string/view_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -87,7 +105,7 @@
             android:id="@+id/single_mail_detail_panel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             >
 
@@ -111,6 +129,7 @@
                     android:id="@+id/single_mail_hide_detail"
                     android:text="@string/hide_details"
                     style="@style/text_link"
+                    android:textColor="@color/COMPLIMENTARY_1"
                     android:layout_column="3"/>
             </TableRow>
 
@@ -155,25 +174,18 @@
                     android:layout_column="3"/>
             </TableRow>
         </TableLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
-
-
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text=""
+            android:padding="5dp"
             android:gravity="top|start"
             android:minLines="100"
             android:maxLines="1000"
             android:paddingTop="10dp"
             android:id="@+id/single_mail_body"
             android:background="@drawable/border_horizontal"
+            android:backgroundTint="@color/offwhite"
             style="?attr/buttonBarStyle"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

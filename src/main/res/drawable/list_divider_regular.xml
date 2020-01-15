@@ -4,10 +4,7 @@
     android:insetBottom="10dp">
 
     <shape
-        android:shape="line" >
-        <stroke
-            android:width="1dp"
-            android:color="@color/Carbon_Gray" />
-        <size android:height="3dp" />
+        android:shape="rectangle"
+        android:tint="@color/BASE_COLOR">
     </shape>
 </inset>

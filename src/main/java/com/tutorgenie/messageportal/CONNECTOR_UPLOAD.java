@@ -1,5 +1,6 @@
 package com.tutorgenie.messageportal;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,8 +27,8 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class CONNECTOR_UPLOAD extends AsyncTask<JSONObject, Integer, String>
 {
+    @SuppressLint("StaticFieldLeak")
     private Context context;
-    private String response="";
 
     CONNECTOR_UPLOAD(Context context)
     {
@@ -42,7 +44,7 @@ public class CONNECTOR_UPLOAD extends AsyncTask<JSONObject, Integer, String>
 
     private progressHandle handle;
 
-    public void setHandle(progressHandle handle)
+    void setHandle(progressHandle handle)
     {
         this.handle = handle;
     }
@@ -64,13 +66,20 @@ public class CONNECTOR_UPLOAD extends AsyncTask<JSONObject, Integer, String>
                 Log.e("ERROR", "Profile picture does not exist");
                 return null;
             }
+            String sendData = Util.toBase64(data);
 
-            int BytesCount = data.getAllocationByteCount();
-            ByteBuffer bitbuf = ByteBuffer.allocate(BytesCount);
-            data.copyPixelsToBuffer(bitbuf);
-            ByteArrayInputStream bs = new ByteArrayInputStream(bitbuf.array());
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            data.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+
+            int BytesCount = sendData.getBytes().length;
+            //int BytesCount = data.getAllocationByteCount();
+            //ByteBuffer bitbuf = ByteBuffer.allocate(BytesCount);
+            //data.copyPixelsToBuffer(bitbuf);
+            ByteArrayInputStream bs = new ByteArrayInputStream(sendData.getBytes());
+                    //new ByteArrayInputStream(bitbuf.array());
             //bitbuf is no longer needed
             Log.e("Length", String.valueOf(BytesCount));
+
             String url = context.getString(R.string.uploadURL);
             obj = new URL(url);
             connection = (HttpsURLConnection) obj.openConnection();
@@ -83,6 +92,7 @@ public class CONNECTOR_UPLOAD extends AsyncTask<JSONObject, Integer, String>
             connection.addRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundaryMarker);
             connection.addRequestProperty("Webtoken", GlobalData.DataCache.getLogin_info().get(
                     "randomseed"));
+            connection.addRequestProperty("Username", GlobalData.username);
             connection.addRequestProperty("uploaded_file", "part.jpg");
             outputStream = new DataOutputStream(connection.getOutputStream());
             Log.e("Stream","Obtained");
@@ -100,7 +110,7 @@ public class CONNECTOR_UPLOAD extends AsyncTask<JSONObject, Integer, String>
                 outputStream.write(buffer, 0, size_buffer);
                 TotalBytesRead += size_buffer;
                 //now publishProgress
-                Log.e("Bytes", TotalBytesRead+"/"+BytesCount);
+                //Log.e("Bytes", TotalBytesRead+"/"+BytesCount);
                 publishProgress(Math.round(100 * (float)TotalBytesRead /BytesCount));
                 size_buffer = Math.min((BytesCount-BytesRead), 64);
                 BytesRead = bs.read(buffer, 0, size_buffer);
@@ -125,17 +135,16 @@ public class CONNECTOR_UPLOAD extends AsyncTask<JSONObject, Integer, String>
                     return null;
             }
             InputStreamReader read = new InputStreamReader(in);
-            String retString = "";
+            StringBuilder retString = new StringBuilder();
 
             int readData = read.read();
             while (readData != -1)
             {
-                retString += (char) readData;
+                retString.append((char) readData);
                 readData = read.read();
             }
-            Log.e("Response: ", retString);
-            response = retString;
-            return response;
+            Log.e("Response: ", retString.toString());
+            return retString.toString();
         } catch (NullPointerException e)
         {
             //In this case there is an error

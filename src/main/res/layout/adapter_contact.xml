@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/thumb_image"
+        android:contentDescription=""
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/directory_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="300dp"
+        android:textColor="@color/COMPLIMENTARY_1"
+        app:layout_constraintStart_toEndOf="@id/thumb_image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/directory_email"
+        android:text="@string/place_holder"
+        style="@style/text_large_bold"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/directory_email"
+        style="@style/text_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/thumb_image"
+        app:layout_constraintTop_toBottomOf="@id/directory_name"
+        android:maxWidth="170dp"
+        android:text="@string/place_holder"
+        android:layout_marginStart="20dp"/>
+
+    <ImageButton
+        android:id="@+id/directory_send_mail"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/directory_delete"
+        android:layout_marginEnd="70dp"
+        android:tint="@color/BASE_COLOR"
+        android:src="@drawable/ic_mail_outline_black_24dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:contentDescription="@string/todo" />
+    <ImageButton
+        android:id="@+id/directory_delete"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/directory_send_mail"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="70dp"
+        android:src="@drawable/ic_delete_black_24dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:contentDescription="@string/todo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

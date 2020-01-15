@@ -3,6 +3,7 @@ package com.tutorgenie.messageportal;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -308,7 +309,7 @@ public class fragment_mailview extends Fragment
                     content.setText(iMessage.getMessage());
 
                     if(iMessage.getLabel().equals(CONST.label_marked))
-                        mark.setColorFilter(context.getColor(R.color.yellow_mild));
+                        mark.setColorFilter(context.getColor(R.color.red));
 
                     final AlertDialog dialog = builder.create();
                     close.setOnClickListener(v -> dialog.dismiss());
@@ -449,49 +450,57 @@ public class fragment_mailview extends Fragment
 
                     delete.setOnClickListener(v ->
                     {
-                        try
+                        AlertDialog.Builder b = new AlertDialog.Builder(context);
+                        b.setMessage("Delete the current message?");
+                        b.setPositiveButton(R.string.yes, (dialog1, which) ->
                         {
-                            JSONObject obj = Util.connectionObject(context);
-                            obj.put("query_type", "DELETE_MESSAGE");
-                            //construct the data part
-                            JSONArray deleteList = new JSONArray();
-                            deleteList.put(iMessage.getMessageID());
-                            obj.put("data", deleteList);
-                            CONNECTOR conn = new CONNECTOR();
-                            String result = conn.execute(obj).get();
-                            Log.e("DeleteResult", result);
-                            data.remove(iMessage);
-                            delete_list.remove(iMessage);
-                            //now update the delete position
-                            for(int i=0; i<delete_position.size(); i++)
+                            try
                             {
-                                if(delete_position.get(i) == position)
+                                JSONObject obj = Util.connectionObject(context);
+                                obj.put("query_type", "DELETE_MESSAGE");
+                                //construct the data part
+                                JSONArray deleteList = new JSONArray();
+                                deleteList.put(iMessage.getMessageID());
+                                obj.put("data", deleteList);
+                                CONNECTOR conn = new CONNECTOR();
+                                String result = conn.execute(obj).get();
+                                Log.e("DeleteResult", result);
+                                data.remove(iMessage);
+                                delete_list.remove(iMessage);
+                                //now update the delete position
+                                for(int i=0; i<delete_position.size(); i++)
                                 {
-                                    delete_position.remove(i);
-                                    mailList.getChildAt(position).setBackgroundColor(Color.TRANSPARENT);
-                                    break;
+                                    if(delete_position.get(i) == position)
+                                    {
+                                        delete_position.remove(i);
+                                        mailList.getChildAt(position).setBackgroundColor(Color.TRANSPARENT);
+                                        break;
+                                    }
                                 }
-                            }
-                            for(int i=0; i<delete_position.size(); i++)
+                                for(int i=0; i<delete_position.size(); i++)
+                                {
+                                    //second loop up update the list
+                                    if(delete_position.get(i)>position)
+                                    {
+                                        //first change the view
+                                        mailList.getChildAt(delete_position.get(i)).setBackgroundColor(Color.TRANSPARENT);
+                                        mailList.getChildAt(delete_position.get(i)-1).setBackgroundColor(context.getColor(R.color.DeleteMarkColor));
+                                        delete_position.set(i, delete_position.get(i)-1);
+                                        //this is the new value
+                                    }
+                                }
+                                adapter.notifyDataSetChanged();
+                                dialog.dismiss();
+                                GlobalData.DataCache.getSent_messages().remove(iMessage);
+                                GlobalData.DataCache.getInbox_messages().remove(iMessage);
+                            }catch (JSONException| ExecutionException|InterruptedException e)
                             {
-                                //second loop up update the list
-                                if(delete_position.get(i)>position)
-                                {
-                                    //first change the view
-                                    mailList.getChildAt(delete_position.get(i)).setBackgroundColor(Color.TRANSPARENT);
-                                    mailList.getChildAt(delete_position.get(i)-1).setBackgroundColor(context.getColor(R.color.DeleteMarkColor));
-                                    delete_position.set(i, delete_position.get(i)-1);
-                                    //this is the new value
-                                }
+                                e.printStackTrace();
                             }
-                            adapter.notifyDataSetChanged();
-                            dialog.dismiss();
-                            GlobalData.DataCache.getSent_messages().remove(iMessage);
-                            GlobalData.DataCache.getInbox_messages().remove(iMessage);
-                        }catch (JSONException| ExecutionException|InterruptedException e)
-                        {
-                            e.printStackTrace();
-                        }
+                        });
+                        b.setNegativeButton(R.string.cancel, null);
+                        AlertDialog d = b.create();
+                        d.show();
                     });
 
                     mark.setOnClickListener(v ->
@@ -504,14 +513,14 @@ public class fragment_mailview extends Fragment
                                 context);
                         if(newStatus.equals(CONST.label_inbox))
                         {
-                            mark.setColorFilter(Color.BLACK);
-                            listItemMark.setColorFilter(Color.GRAY);
+                            mark.setColorFilter(context.getColor(R.color.Gray_Cement));
+                            listItemMark.setColorFilter(context.getColor(R.color.Gray_Cement));
                         }
                         else
                         {
                             Log.e("Executing: ", "Color");
-                            mark.setColorFilter(context.getColor(R.color.yellow_mild));
-                            listItemMark.setColorFilter(context.getColor(R.color.yellow_mild));
+                            mark.setColorFilter(context.getColor(R.color.red));
+                            listItemMark.setColorFilter(context.getColor(R.color.red));
 
                         }
                         iMessage.setLabel(newStatus);

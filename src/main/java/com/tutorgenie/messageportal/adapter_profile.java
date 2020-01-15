@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.ColorStateList;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.provider.Settings;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -84,7 +86,7 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
     }
 
 
-    @SuppressLint("SimpleDateFormat")
+    @SuppressLint({"SimpleDateFormat", "SetTextI18n"})
     @NonNull
     @Override
     public View getView(final int position, @Nullable final View convertView, @NonNull ViewGroup parent)
@@ -161,187 +163,179 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
                         currentArray.put(s);
                         final TextView t = new TextView(context);
                         t.setLayoutParams(tParams);
-                        t.setPadding(15, 10, 15, 10);
+                        t.setPadding(20, 15, 20, 15);
                         t.setBackgroundResource(R.drawable.clickable_textview);
                         t.setText(s);
                         subjectBox.addView(t);
-                        t.setOnClickListener(new View.OnClickListener()
+                        t.setOnClickListener(v ->
                         {
-                            @Override
-                            public void onClick(final View v)
+                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+                            builder.setMessage("Are you sure you want to remove "+t.getText()+"?");
+                            builder.setPositiveButton(R.string.confirm, (dialog, which) ->
                             {
-                                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-                                builder.setMessage("Are you sure you want to remove "+t.getText()+"?");
-                                builder.setPositiveButton(R.string.confirm, (dialog, which) ->
+                                String subText = ((TextView)v).getText().toString();
+                                try
                                 {
-                                    String subText = ((TextView)v).getText().toString();
-                                    try
+                                    for (int i = 0; i < currentArray.length(); i++)
                                     {
-                                        for (int i = 0; i < currentArray.length(); i++)
+                                        if (currentArray.get(i).toString().trim().equals(subText.trim()))
                                         {
-                                            if (currentArray.get(i).toString().trim().equals(subText.trim()))
-                                            {
-                                                currentArray.remove(i);
-                                                list.remove(i);
-                                                break;
-                                            }
+                                            currentArray.remove(i);
+                                            list.remove(i);
+                                            break;
                                         }
-                                        JSONObject queryData =
-                                                new JSONObject();
-                                        queryData.put("username",
-                                                context.getString(R.string.test_username));
-                                        queryData.put("password",
-                                                context.getString(R.string.test_password));
-                                        queryData.put("query_type",
-                                                "UPDATE_SUBJECT");
-                                        queryData.put("data",
-                                                currentArray.toString());
-                                        String res =
-                                                (new CONNECTOR()).execute(queryData).get();
-                                        if(res.trim().equals("OK"))
-                                        {
-                                            Toast.makeText(context,
-                                                    "res",
-                                                    Toast.LENGTH_SHORT).show();
-
-                                            GlobalData.DataCache.getProfileData().get(position).setContent(currentArray.toString());
-                                            //finally, update the view
-                                            subjectBox.removeView(v);
-                                        }
-                                        else Log.e("ER"
-                                                , res);
-                                    }catch (JSONException |ExecutionException|InterruptedException e)
-                                    {
-                                        e.printStackTrace();
                                     }
-                                });
+                                    JSONObject queryData =
+                                            new JSONObject();
+                                    queryData.put("username",
+                                            context.getString(R.string.test_username));
+                                    queryData.put("password",
+                                            context.getString(R.string.test_password));
+                                    queryData.put("query_type",
+                                            "UPDATE_SUBJECT");
+                                    queryData.put("data",
+                                            currentArray.toString());
+                                    String res =
+                                            (new CONNECTOR()).execute(queryData).get();
+                                    if(res.trim().equals("OK"))
+                                    {
+                                        Toast.makeText(context,
+                                                "res",
+                                                Toast.LENGTH_SHORT).show();
 
-                                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
+                                        GlobalData.DataCache.getProfileData().get(position).setContent(currentArray.toString());
+                                        //finally, update the view
+                                        subjectBox.removeView(v);
+                                    }
+                                    else Log.e("ER"
+                                            , res);
+                                }catch (JSONException |ExecutionException|InterruptedException e)
                                 {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which)
-                                    {
+                                    e.printStackTrace();
+                                }
+                            });
 
-                                    }
-                                });
+                            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which)
+                                {
 
-                                android.app.AlertDialog dialog =builder.create();
-                                dialog.show();
-                            }
+                                }
+                            });
+
+                            android.app.AlertDialog dialog =builder.create();
+                            dialog.show();
                         });
                     }
 
                     final ImageView addBox= new ImageView(context);
                     addBox.setLayoutParams(tParams);
-                    addBox.setImageResource(R.drawable.ic_add_box_black_24dp);;
+                    addBox.setImageResource(R.drawable.ic_add_box_black_24dp);
                     subjectBox.addView(addBox);
-                    addBox.setOnClickListener(new View.OnClickListener()
-                                              {
-                                                  @Override
-                                                  public void onClick(View v)
-                                                  {
-                                                      final PopupMenu submenu = new PopupMenu(context,
-                                                              addBox);
-                                                      Menu m = submenu.getMenu();
-                                                      for(String s: GlobalData.DataCache.getComplete_subject_list())
-                                                      {
-                                                          if(!list.contains(s))
-                                                            m.add(s);
-                                                      }
-                                                      submenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
-                                                      {
-                                                          @Override
-                                                          public boolean onMenuItemClick(MenuItem item)
-                                                          {
-                                                              try
-                                                              {
-                                                                  JSONObject queryData =
-                                                                          new JSONObject();
-                                                                  queryData.put("username",
-                                                                          context.getString(R.string.test_username));
-                                                                  queryData.put("password",
-                                                                          context.getString(R.string.test_password));
-                                                                  queryData.put("query_type",
-                                                                          "UPDATE_SUBJECT");
-                                                                  currentArray.put(item.getTitle());
-                                                                  queryData.put("data",
-                                                                          currentArray.toString());
-                                                                  String res =
-                                                                          (new CONNECTOR()).execute(queryData).get();
-                                                                  if(res.trim().equals("OK"))
-                                                                  {
-                                                                      Toast.makeText(context,
-                                                                              "res",
-                                                                              Toast.LENGTH_SHORT).show();
-                                                                      list.add(item.getTitle().toString()); //add to the list
-                                                                      GlobalData.DataCache.getProfileData().get(position).setContent(currentArray.toString());
-                                                                      //finally, update the view
-                                                                      TextView t = new TextView(context);
-                                                                      t.setLayoutParams(tParams);
-                                                                      t.setPadding(15, 10, 15, 10);
-                                                                      t.setBackgroundResource(R.drawable.clickable_textview);
-                                                                      t.setText(item.getTitle());
-                                                                      subjectBox.addView(t,
-                                                                              subjectBox.getChildCount()-1);
-                                                                      t.setOnClickListener(new View.OnClickListener()
-                                                                      {
-                                                                          @Override
-                                                                          public void onClick(View v)
-                                                                          {
-                                                                              String subText = ((TextView)v).getText().toString();
-                                                                              try
-                                                                              {
-                                                                                  for (int i = 0; i < currentArray.length(); i++)
-                                                                                  {
-                                                                                      if (currentArray.get(i).toString().trim().equals(subText.trim()))
-                                                                                      {
-                                                                                          currentArray.remove(i);
-                                                                                          list.remove(i);
-                                                                                          break;
-                                                                                      }
-                                                                                  }
-                                                                                  JSONObject queryData =
-                                                                                          new JSONObject();
-                                                                                  queryData.put("username",
-                                                                                          context.getString(R.string.test_username));
-                                                                                  queryData.put("password",
-                                                                                          context.getString(R.string.test_password));
-                                                                                  queryData.put("query_type",
-                                                                                          "UPDATE_SUBJECT");
-                                                                                  queryData.put("data",
-                                                                                          currentArray.toString());
-                                                                                  String res =
-                                                                                          (new CONNECTOR()).execute(queryData).get();
-                                                                                  if(res.trim().equals("OK"))
-                                                                                  {
-                                                                                      Toast.makeText(context,
-                                                                                              "res",
-                                                                                              Toast.LENGTH_SHORT).show();
+                    addBox.setOnClickListener(v ->
+                    {
+                        final PopupMenu submenu = new PopupMenu(context,
+                                addBox);
+                        Menu m = submenu.getMenu();
+                        for(String s: GlobalData.DataCache.getComplete_subject_list())
+                        {
+                            if(!list.contains(s))
+                              m.add(s);
+                        }
+                        submenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
+                        {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem item)
+                            {
+                                try
+                                {
+                                    JSONObject queryData =
+                                            new JSONObject();
+                                    queryData.put("username",
+                                            context.getString(R.string.test_username));
+                                    queryData.put("password",
+                                            context.getString(R.string.test_password));
+                                    queryData.put("query_type",
+                                            "UPDATE_SUBJECT");
+                                    currentArray.put(item.getTitle());
+                                    queryData.put("data",
+                                            currentArray.toString());
+                                    String res =
+                                            (new CONNECTOR()).execute(queryData).get();
+                                    if(res.trim().equals("OK"))
+                                    {
+                                        Toast.makeText(context,
+                                                "res",
+                                                Toast.LENGTH_SHORT).show();
+                                        list.add(item.getTitle().toString()); //add to the list
+                                        GlobalData.DataCache.getProfileData().get(position).setContent(currentArray.toString());
+                                        //finally, update the view
+                                        TextView t = new TextView(context);
+                                        t.setLayoutParams(tParams);
+                                        t.setPadding(15, 10, 15, 10);
+                                        t.setBackgroundResource(R.drawable.clickable_textview);
+                                        t.setText(item.getTitle());
+                                        subjectBox.addView(t,
+                                                subjectBox.getChildCount()-1);
+                                        t.setOnClickListener(new View.OnClickListener()
+                                        {
+                                            @Override
+                                            public void onClick(View v)
+                                            {
+                                                String subText = ((TextView)v).getText().toString();
+                                                try
+                                                {
+                                                    for (int i = 0; i < currentArray.length(); i++)
+                                                    {
+                                                        if (currentArray.get(i).toString().trim().equals(subText.trim()))
+                                                        {
+                                                            currentArray.remove(i);
+                                                            list.remove(i);
+                                                            break;
+                                                        }
+                                                    }
+                                                    JSONObject queryData =
+                                                            new JSONObject();
+                                                    queryData.put("username",
+                                                            context.getString(R.string.test_username));
+                                                    queryData.put("password",
+                                                            context.getString(R.string.test_password));
+                                                    queryData.put("query_type",
+                                                            "UPDATE_SUBJECT");
+                                                    queryData.put("data",
+                                                            currentArray.toString());
+                                                    String res =
+                                                            (new CONNECTOR()).execute(queryData).get();
+                                                    if(res.trim().equals("OK"))
+                                                    {
+                                                        Toast.makeText(context,
+                                                                "res",
+                                                                Toast.LENGTH_SHORT).show();
 
-                                                                                      GlobalData.DataCache.getProfileData().get(position).setContent(currentArray.toString());
-                                                                                      //finally, update the view
-                                                                                      subjectBox.removeView(v);
-                                                                                  }
-                                                                                  else Log.e("ER"
-                                                                                          , res);
-                                                                              }catch (JSONException |ExecutionException|InterruptedException e)
-                                                                              {
-                                                                                  e.printStackTrace();
-                                                                              }
-                                                                          }
-                                                                      });
+                                                        GlobalData.DataCache.getProfileData().get(position).setContent(currentArray.toString());
+                                                        //finally, update the view
+                                                        subjectBox.removeView(v);
+                                                    }
+                                                    else Log.e("ER"
+                                                            , res);
+                                                }catch (JSONException |ExecutionException|InterruptedException e)
+                                                {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        });
 
-                                                                  }else Log.e("Err", res);
-                                                              }catch (JSONException | ExecutionException | InterruptedException e)
-                                                              {
-                                                                  e.printStackTrace();
-                                                              }
-                                                              return false;
-                                                          }
-                                                      });
-                                                      submenu.show();
-                                                  }
-                                              });
+                                    }else Log.e("Err", res);
+                                }catch (JSONException | ExecutionException | InterruptedException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                return false;
+                            }
+                        });
+                        submenu.show();
+                    });
                     layout.addView(subjectBox);
                 }catch (JSONException  e)
                 {
@@ -383,13 +377,16 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
                 contentText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
                 if(!data.get(position).getContent().toString().trim().equals("null"))
                 {
-                    if (!title.equals("nationality")&&!title.equals("date_of_birth"))
+                    if (!title.equals("nationality")&&!title.equals("date_of_birth")&&!title.equals("price_min"))
                         contentText.setText(data.get(position).getContent().toString());
                     else if(title.equals("date_of_birth"))
                         contentText.setText(Util.changeDateStringLocale(data.get(position).getContent().toString()));
+                    else if(title.equals("price_min"))
+                        contentText.setText("$"+data.get(position).getContent().toString());
                     else
                         contentText.setText(GlobalData.DataCache.getNationality_map().inverse().get(data.get(position).getContent().toString()));
                 }
+
                 layout.addView(contentText);
                 contentText.setOnClickListener(v ->
                 {
@@ -400,6 +397,7 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
                             null);
 
                     final EditText edit = editDialog.findViewById(R.id.edit_field);
+                    Button edit_confirm = editDialog.findViewById(R.id.profile_edit_confirm), edit_cancel = editDialog.findViewById(R.id.profile_edit_cancel);
                     switch (title)
                     {
                         case "username":
@@ -477,16 +475,72 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
                                 case NUMBER:
                                     edit.setInputType(InputType.TYPE_CLASS_NUMBER);
                                     break;
+                                case CURRENCY: edit.setInputType(InputType.TYPE_CLASS_NUMBER);
                                 default:    edit.setInputType(InputType.TYPE_CLASS_TEXT);
                             }
                             break;
                     }
                     edit.setHint(Util.CapsFirst(title.replace("_", " ")));
                     builder.setView(editDialog);
-                    builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener()
+                    /*builder.setPositiveButton(R.string.confirm, (dialog, which) ->
                     {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
+                        String data="";
+                        if(title.equals("nationality"))
+                        {
+                            //change data
+                            String full=edit.getText().toString();
+                            if(!GlobalData.DataCache.getNationality_map().containsKey(full))
+                            {
+                                Toast.makeText(context, "Nationality Doesn't Exist",
+                                        Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            else data =
+                                    GlobalData.DataCache.getNationality_map().get(full);
+                            //the short version of nationality
+                        }
+                        else
+                            data = edit.getText().toString();
+
+                        try
+                        {
+                            JSONObject queryData =
+                                    new JSONObject();
+                            queryData.put("username",
+                                    context.getString(R.string.test_username));
+                            queryData.put("password",
+                                    context.getString(R.string.test_password));
+                            queryData.put("query_type",
+                                    "UPDATE_PROFILE");
+                            queryData.put("field",
+                                    title);
+                            queryData.put("value", data);
+                            String response = (new CONNECTOR()).execute(queryData).get();
+                            if(response.trim().equals("OK")) //update success
+                            {
+                                if(title.equals("nationality"))
+                                    contentText.setText(GlobalData.DataCache.getNationality_map().inverse().get(data));
+                                else contentText.setText(data);
+                            }
+                        }catch (JSONException |ExecutionException|InterruptedException e)
+                        {
+                            e.printStackTrace();
+                        }
+
+                        notifyDataSetChanged();
+                    });
+
+                    builder.setNegativeButton(R.string.cancel, (dialog, which) ->
+                    {
+
+                    });
+*/
+                    AlertDialog dialog = builder.create();
+
+                    edit_cancel.setOnClickListener(v1 ->
+                            dialog.dismiss());
+                    edit_confirm.setOnClickListener(v1 ->
+                    {
                         {
                             String data="";
                             if(title.equals("nationality"))
@@ -530,26 +584,27 @@ public class adapter_profile extends ArrayAdapter<profile_entry>
                             {
                                 e.printStackTrace();
                             }
+
+                            notifyDataSetChanged();
                         }
                     });
-
-                    builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-
-                        }
-                    });
-
-                    AlertDialog dialog = builder.create();
                     dialog.show();
                 });
+
+                if(contentText.getText()==null||contentText.getText().toString().trim().length()==0)
+                {
+                    contentText.setBackground(context.getDrawable(R.drawable.border_base));
+                }
+                contentText.setCompoundDrawables(null, null, context.getDrawable(R.drawable.ic_compose_black_24dp), null);
+                contentText.setCompoundDrawablePadding(15);
             }
         }
         titleText.setText(Util.CapsFirst(title.replace("_", " "))); //format
         if(title.equals("price_min"))
             titleText.setText(R.string.hourly_price);
+        else if(title.equals("youtube_id"))
+            titleText.setText(R.string.youtube_video_id);
+
         return view;
     }
 

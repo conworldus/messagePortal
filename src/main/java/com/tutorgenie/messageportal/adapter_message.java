@@ -62,11 +62,7 @@ public class adapter_message extends ArrayAdapter<data_type_message>
     {
         Collections.sort(data, (o1, o2) ->
         {
-            if(o1.getFull_date().getTime()<o2.getFull_date().getTime())
-                return 1;
-            else if(o1.getFull_date().getTime()>o2.getFull_date().getTime())
-                return -1;
-            else return 0;
+            return Long.compare(o2.getFull_date().getTime(), o1.getFull_date().getTime());
             //return o1.getFull_date().getTime()>o2.getFull_date().getTime();
         });
     }
@@ -112,6 +108,8 @@ public class adapter_message extends ArrayAdapter<data_type_message>
         {
             view = LayoutInflater.from(context).inflate(ResourcePoint, null);
         }
+
+
         img=view.findViewById(R.id.mark);
         from=view.findViewById(R.id.from);
         date_time = view.findViewById(R.id.date_time);
@@ -122,24 +120,24 @@ public class adapter_message extends ArrayAdapter<data_type_message>
 
         if(m.getLabel().equals("Marked"))
         {
-            img.setColorFilter(context.getColor(R.color.yellow_mild));
+            img.setColorFilter(context.getColor(R.color.red));
         }
         else
-            img.setColorFilter(Color.BLACK);
+            img.setColorFilter(context.getColor(R.color.Gray_Cement));
 
         img.setOnClickListener(v ->
         {
             if(m.getLabel().equals("Inbox"))
             {
                 m.setLabel("Marked");
-                img.setColorFilter(context.getColor(R.color.yellow_mild));
+                img.setColorFilter(context.getColor(R.color.red));
                 //send a code to online
                 updateLabel(m.getMessageID(), "Marked", context);
             }
             else
             {
                 m.setLabel("Inbox");
-                img.setColorFilter(Color.BLACK);
+                img.setColorFilter(context.getColor(R.color.Gray_Cement));
                 //send a code to online db
                 updateLabel(m.getMessageID(), "Inbox", context);
             }

@@ -41,7 +41,7 @@
     <string name="month_view">View a whole month</string>
     <string name="weekly_view">View a whole week</string>
     <string name="date_view">View a single day</string>
-    <string name="pending_view">View only pending class requests</string>
+    <string name="pending_view">Pending requests only</string>
     <string name="specific_date">Specific Date %1$s</string>
     <string name="pick_a_date">Pick a date</string>
     <string name="student_name">Student Name: </string>
@@ -115,12 +115,25 @@
     <string name="register">Register</string>
     <string name="todo">TODO</string>
     <string name="compose_message">Compose Message</string>
-    <string name="cancelled">Cancelled</string>
+    <string name="cancelled">Cancelled or rejected</string>
     <string name="hourly_price">Hourly Price ($HKD)</string>
     <string name="share_to_phone_calendar">Share to Phone Calendar</string>
     <string name="share_to_other_apps">Share to other apps</string>
     <string name="number_zero">0</string>
     <string name="from">From</string>
+    <string name="subject_dummy">Subject</string>
+    <string name="body">body</string>
+    <string name="utility_function_url">.com/appaccess/nonloginfunctions.php</string>
+    <string name="directory">Directory</string>
+    <string name="the_student_directory_is_empty">The student directory is empty</string>
+    <string name="ERR_EMAIL_NOT_EXIST">This email is not registered to any student</string>
+    <string name="add">Add</string>
+    <string name="open_question">Would you like to login as this user?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="add_to_directory">Add To Directory</string>
+    <string name="write_mail">Write mail</string>
+    <string name="youtube_video_id">Youtube Video ID</string>
 
     <string-array name="tutor_education_level">
         <item>Primary</item>
@@ -132,7 +145,7 @@
     </string-array>
 
     <string-array name="tutor_search_languageList">
-        <item>Any</item>
+        <item>None</item>
         <item>Afrikanns</item>
         <item>Albanian</item>
         <item>Arabic</item>

@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.PopupMenu;
 
@@ -44,6 +45,7 @@ import java.util.concurrent.ExecutionException;
 
 public class adapter_calendar extends BaseExpandableListAdapter
 {
+    public static final String SUCCESSFUL_ADDED_TO_PHONE_CALENDAR = "Successful added to phone calendar";
     //use data schedule
     ArrayList<data_type_tutor_schedule_item> schedule_list = new ArrayList<>();
     private Context context;
@@ -308,19 +310,20 @@ public class adapter_calendar extends BaseExpandableListAdapter
                 {
                     case 1:
                     {
-
-                        Log.e("Calling", mItem.getOrder()+"");
+                        boolean result = false;
                         if(!calendarPermission)
                         {
                             if(context.checkSelfPermission(Manifest.permission.WRITE_CALENDAR)== PackageManager.PERMISSION_GRANTED
                                     &&context.checkSelfPermission(Manifest.permission.READ_CALENDAR)==PackageManager.PERMISSION_GRANTED)
-                                    writeCurrentItemToCalendar(groupPosition);
+                                    result = writeCurrentItemToCalendar(groupPosition);
                         }
                         else
                         {
-                            Log.e("Exe", mItem.getOrder()+"");
-                            writeCurrentItemToCalendar(groupPosition);
+                            result = writeCurrentItemToCalendar(groupPosition);
                         }
+                        if(result)
+                            Toast.makeText(context, SUCCESSFUL_ADDED_TO_PHONE_CALENDAR, Toast.LENGTH_SHORT).show();
+                        else Toast.makeText(context, "Failed to add to calendar", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case 2:
@@ -382,7 +385,7 @@ public class adapter_calendar extends BaseExpandableListAdapter
         }
     }*/
 
-    private void writeCurrentItemToCalendar(int groupPosition)
+    private boolean writeCurrentItemToCalendar(int groupPosition)
     {
         Log.e("C", "writeFunc");
         data_type_tutor_schedule_item cItem = schedule_list.get(groupPosition);
@@ -407,14 +410,15 @@ public class adapter_calendar extends BaseExpandableListAdapter
                             "\nLocation: "+cItem.getLocation());
             cv.put(CalendarContract.Events.EVENT_TIMEZONE, "Asia/Hong" +
                     "_Kong");
-            cv.put(CalendarContract.Events.CALENDAR_ID, 1);
-
+            cv.put(CalendarContract.Events.CALENDAR_ID, 1);  //default calendar
             Uri uri = cr.insert(CalendarContract.Events.CONTENT_URI, cv);
             Log.d("URI", Objects.requireNonNull(uri).getLastPathSegment());
-        }catch (ParseException e)
+        }catch (Exception e)
         {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
     @Override

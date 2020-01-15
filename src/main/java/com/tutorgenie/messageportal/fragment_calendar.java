@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -36,7 +37,7 @@ public class fragment_calendar extends Fragment
 {
     private Calendar calendar = Calendar.getInstance();
     private Context context;
-    private Button dateView;
+    private EditText dateView;
     private String dateStr;
     private String monthStr;
     private Pair weekPair;
@@ -117,7 +118,7 @@ public class fragment_calendar extends Fragment
         method_list.add(getString(R.string.month_view));
         method_list.add(getString(R.string.pending_view));
 
-        method.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,
+        method.setAdapter(new ArrayAdapter<>(context, android.R.layout.simple_selectable_list_item,
                 method_list
         ));
 

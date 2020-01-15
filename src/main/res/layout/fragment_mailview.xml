@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/sub_bar_height"
         android:id="@+id/controlBar"
         android:orientation="horizontal"
         style="@style/Widget.AppCompat.ButtonBar"
@@ -20,6 +20,7 @@
             android:background="@null"
             android:layout_gravity="center"
             android:contentDescription="@string/nodescription"
+            android:tint="@color/BASE_COLOR"
             style="@style/Widget.AppCompat.Button"/>
         <ImageButton
             android:layout_width="0dp"
@@ -30,6 +31,7 @@
             android:background="@null"
             android:layout_gravity="center"
             android:contentDescription="@string/delete"
+            android:tint="@color/BASE_COLOR"
             style="@style/Widget.AppCompat.Button"/>
         <ImageButton
             android:layout_width="0dp"
@@ -40,6 +42,7 @@
             android:background="@null"
             android:layout_gravity="center"
             android:contentDescription="@string/delete"
+            android:tint="@color/BASE_COLOR"
             style="@style/Widget.AppCompat.Button"/>
         <ImageButton
             android:layout_width="0dp"
@@ -50,6 +53,7 @@
             android:background="@null"
             android:layout_gravity="center"
             android:contentDescription="@string/delete"
+            android:tint="@color/BASE_COLOR"
             style="@style/Widget.AppCompat.Button"/>
     </LinearLayout>
     <ListView

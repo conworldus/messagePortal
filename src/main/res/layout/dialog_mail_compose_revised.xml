@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageButton
+            android:tint="@color/BASE_COLOR"
             android:id="@+id/compose_cancel_button"
             style="?attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
@@ -29,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:tint="@color/BASE_COLOR"
             android:src="@drawable/ic_send_black_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +40,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/compose_cancel_button"
             android:text="@string/compose_message"
+            android:textColor="@color/COMPLIMENTARY_1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             style="@style/text_large_bold"
@@ -62,7 +65,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/Carbon_Gray"/>
+        android:background="@color/BASE_COLOR"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,7 +79,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/Carbon_Gray"/>
+        android:background="@color/BASE_COLOR"/>
 
     <EditText
         android:hint="@string/enter_your_reply_here"

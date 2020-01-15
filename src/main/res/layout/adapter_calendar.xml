@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/adapter_schedule_item_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@android:drawable/dialog_holo_light_frame">
-    <TextView
-        android:layout_margin="10dp"
-        android:layout_gravity="end"
+    android:orientation="vertical">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="15dp"
+            android:layout_gravity="end"
             android:drawableStart="@drawable/ic_add_box_black_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit_note"
             style="@style/text_link"
-            android:drawableTint="@color/com_facebook_blue"
+            android:textColor="@color/COMPLIMENTARY_2"
+            android:drawableTint="@color/COMPLIMENTARY_2"
+            android:elevation="1dp"
             android:id="@+id/add_note_button"/>
-    <TextView
-        android:id="@+id/add_note"
-        style="@style/text_large"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/dialog_holo_light_frame"
-        android:lineSpacingExtra="2dp"
-        android:minLines="4"
-        android:padding="15dp"
-        android:text="@string/add_note_header" />
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="0dp"
+            android:id="@+id/add_note"
+            style="@style/text_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/dialog_holo_light_frame"
+            android:lineSpacingExtra="2dp"
+            android:minLines="4"
+            android:padding="15dp"
+            android:text="@string/add_note_header" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/student_comment"
         style="@style/text_large"
@@ -54,7 +65,7 @@
             android:layout_width="match_parent"
             android:id="@+id/adapter_calendar_show_map"
             android:text="@string/show_map"
-            android:textColor="@color/com_facebook_blue"/>
+            android:textColor="@color/COMPLIMENTARY_2"/>
     </LinearLayout>
     <org.osmdroid.views.MapView
         android:visibility="gone"
@@ -71,14 +82,14 @@
             android:id="@+id/adapter_calendar_accept"
             android:text="@string/accept"
             style="@style/calendar_textview"
-            android:backgroundTint="@color/green_mild"
+            android:backgroundTint="@color/COMPLIMENTARY_2"
             android:textColor="@color/white"/>
         <Button
             android:id="@+id/adapteR_calendar_reject"
             android:text="@string/decline"
             style="@style/calendar_textview"
-            android:backgroundTint="@color/red"
-            android:textColor="@color/white"/>
+            android:backgroundTint="@color/com_facebook_primary_button_disabled_text_color"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <Button
@@ -86,7 +97,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:drawable/menu_frame"
-        android:backgroundTint="@color/green_mild"
+        android:backgroundTint="@color/cPrimary5"
         android:text="@string/status_cancel"
         android:textColor="@color/white"
         style="@style/calendar_textview" />
